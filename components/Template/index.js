@@ -15,6 +15,10 @@ export default function Template() {
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
+  const cartAmount = cartItems.reduce(function (acc, item) {
+    return acc + item.amount;
+  }, 0);
+
   const addCartItem = (product) => {
     setCartItems((currentItems) => {
       const existingCartItemIndex = currentItems.findIndex(
@@ -59,7 +63,7 @@ export default function Template() {
 
   return (
     <>
-      <Header openCart={setShowCart} />
+      <Header openCart={setShowCart} amount={cartAmount}/>
       <ScrollView>
         <Searchbar search={setSearch} />
         <Categories change={setCategory} category={category} />
@@ -67,10 +71,10 @@ export default function Template() {
         <Products category={category} search={search} add={addCartItem} />
       </ScrollView>
       <Cart
-        closeCart={setShowCart}
         show={showCart}
         cartItems={cartItems}
         add={addCartItem}
+        closeCart={setShowCart}
         remove={removeCartItem}
       />
     </>

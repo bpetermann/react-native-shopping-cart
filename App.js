@@ -1,6 +1,5 @@
-import { View } from 'react-native';
 import Template from './components/Template';
-import { Header } from './components/Organisms';
+import { View } from 'react-native';
 
 export default function App() {
   return (

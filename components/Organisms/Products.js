@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Image, Button, FlatList } from 'react-native';
-import { BaseButton } from '../Atoms';
-import { products, imageMap } from '../../lib/products';
+import { StyleSheet, View, FlatList } from 'react-native';
+import { Product } from '../Molecules';
+import { products } from '../../lib/products';
 
 export default function Products({ category, search, add }) {
   const filteredProducts = () =>
@@ -16,14 +16,7 @@ export default function Products({ category, search, add }) {
       <FlatList
         horizontal
         data={filteredProducts()}
-        renderItem={({ item }) => (
-          <View style={styles.product}>
-            <Image style={styles.img} source={imageMap[item.name]} />
-            <Text>{item.name}</Text>
-            <Text>{item.price} $</Text>
-            <BaseButton onClick={() => add(item)} title='Add to Cart' />
-          </View>
-        )}
+        renderItem={({ item }) => <Product add={add} item={item} />}
         keyExtractor={({ id }) => id}
       />
     </View>
@@ -33,17 +26,8 @@ export default function Products({ category, search, add }) {
 const styles = StyleSheet.create({
   products: {
     backgroundColor: '#84bce5',
-    height: 480,
+    height: 420,
     padding: 16,
     paddingTop: 24,
-  },
-  product: {
-    alignItems: 'center',
-    marginRight: 16,
-    gap: 8,
-  },
-  img: {
-    width: 144,
-    height: 184,
   },
 });

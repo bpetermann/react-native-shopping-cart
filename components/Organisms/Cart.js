@@ -8,6 +8,8 @@ import {
   FlatList,
   Button,
 } from 'react-native';
+import { CartItem } from '../Molecules';
+import { Heading } from '../Atoms';
 
 export default function Cart({ show, closeCart, cartItems, add, remove }) {
   const totalPrice = cartItems
@@ -16,7 +18,7 @@ export default function Cart({ show, closeCart, cartItems, add, remove }) {
     }, 0)
     .toFixed(2);
 
-  const cartLength = cartItems.reduce(function (acc, item) {
+  const cartAmount = cartItems.reduce(function (acc, item) {
     return acc + item.amount;
   }, 0);
 
@@ -31,37 +33,21 @@ export default function Cart({ show, closeCart, cartItems, add, remove }) {
             />
           </Pressable>
         </View>
-        <Text style={styles.heading}>Cart ({cartLength})</Text>
+        <Heading>Cart ({cartAmount})</Heading>
 
         <View style={styles.products}>
           <FlatList
             data={cartItems}
             renderItem={({ item }) => (
-              <View>
-                <View style={styles.product}>
-                  <Text style={styles.heading}>{item.name}</Text>
-                  <View style={styles.amount}>
-                    <Pressable onPress={() => add(item)}>
-                      <Text style={styles.add}>+</Text>
-                    </Pressable>
-                    <Pressable onPress={() => remove(item)}>
-                      <Text style={styles.delete}>-</Text>
-                    </Pressable>
-                  </View>
-                </View>
-                <View style={styles.detail}>
-                  <Text>{(item.price * item.amount).toFixed(2)} $</Text>
-                  <Text>{item.amount}X</Text>
-                </View>
-              </View>
+              <CartItem item={item} add={add} remove={remove} />
             )}
             keyExtractor={({ id }) => id}
           />
         </View>
 
         <View style={styles.total}>
-          <Text style={styles.heading}>Total Amount</Text>
-          <Text style={styles.heading}>{totalPrice} $</Text>
+          <Heading>Total Amount</Heading>
+          <Heading>{totalPrice} $</Heading>
         </View>
         <Button title='Order' color='#ff6900' />
       </View>
@@ -80,45 +66,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingHorizontal: 24,
   },
-  heading: {
-    fontSize: 16,
-    fontWeight: '600',
-  },
   products: {
     width: '100%',
     paddingTop: 18,
     borderBottomWidth: 1,
     borderColor: '#d2d3d5',
-  },
-  product: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingVertical: 8,
-    paddingRight: 4,
-  },
-  detail: {
-    paddingVertical: 8,
-    flexDirection: 'row',
-    marginBottom: 18,
-    gap: 48,
-  },
-  amount: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 16,
-  },
-  add: {
-    borderWidth: 1,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    textAlign: 'center',
-  },
-  delete: {
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    textAlign: 'center',
   },
   total: {
     padding: 24,
