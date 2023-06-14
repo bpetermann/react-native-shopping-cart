@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import { categories } from '../lib/categories';
+import { categories } from '../../lib/categories';
 
 export default function Categories({ change, category }) {
   const changeCategory = (name) => {

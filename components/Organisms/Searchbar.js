@@ -9,7 +9,7 @@ export default function Searchbar({ search }) {
   return (
     <View style={styles.searchbar}>
       <TextInput style={styles.input} onChangeText={searchproducts} />
-      <Image style={styles.img} source={require('../assets/app/search.png')} />
+      <Image style={styles.img} source={require('../../assets/app/search.png')} />
     </View>
   );
 }

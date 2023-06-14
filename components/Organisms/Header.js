@@ -4,20 +4,20 @@ export default function Header({ openCart }) {
   return (
     <View style={styles.container}>
       <View style={styles.nav}>
-        <Image style={styles.img} source={require('../assets/app/logo.png')} />
+        <Image style={styles.img} source={require('../../assets/app/logo.png')} />
         <Image
           style={styles.img}
-          source={require('../assets/app/search.png')}
+          source={require('../../assets/app/search.png')}
         />
-        <Image style={styles.img} source={require('../assets/app/heart.png')} />
+        <Image style={styles.img} source={require('../../assets/app/heart.png')} />
         <Pressable onPress={() => openCart(true)}>
           <Image
             style={styles.img}
-            source={require('../assets/app/cart.png')}
+            source={require('../../assets/app/cart.png')}
           />
         </Pressable>
       </View>
-      <Image style={styles.img} source={require('../assets/app/account.png')} />
+      <Image style={styles.img} source={require('../../assets/app/account.png')} />
     </View>
   );
 }

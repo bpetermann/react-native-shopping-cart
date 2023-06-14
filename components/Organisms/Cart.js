@@ -16,6 +16,10 @@ export default function Cart({ show, closeCart, cartItems, add, remove }) {
     }, 0)
     .toFixed(2);
 
+  const cartLength = cartItems.reduce(function (acc, item) {
+    return acc + item.amount;
+  }, 0);
+
   return (
     <Modal visible={show} animationType='fade'>
       <View style={styles.cart}>
@@ -23,11 +27,11 @@ export default function Cart({ show, closeCart, cartItems, add, remove }) {
           <Pressable onPress={() => closeCart(false)}>
             <Image
               style={styles.img}
-              source={require('../assets/app/close.png')}
+              source={require('../../assets/app/close.png')}
             />
           </Pressable>
         </View>
-        <Text style={styles.heading}>Cart (1)</Text>
+        <Text style={styles.heading}>Cart ({cartLength})</Text>
 
         <View style={styles.products}>
           <FlatList
@@ -70,7 +74,6 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     alignItems: 'center',
     paddingHorizontal: 24,
-
   },
   close: {
     width: '100%',

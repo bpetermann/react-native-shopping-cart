@@ -8,7 +8,7 @@ export default function Hero() {
       <View style={styles.container}>
         <Image
           style={styles.model}
-          source={require('../assets/app/model.png')}
+          source={require('../../assets/app/model.png')}
         />
       </View>
     </View>

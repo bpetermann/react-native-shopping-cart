@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Image, Button, FlatList } from 'react-native';
-import { products, imageMap } from '../lib/products';
+import { BaseButton } from '../Atoms';
+import { products, imageMap } from '../../lib/products';
 
 export default function Products({ category, search, add }) {
   const filteredProducts = () =>
@@ -20,7 +21,7 @@ export default function Products({ category, search, add }) {
             <Image style={styles.img} source={imageMap[item.name]} />
             <Text>{item.name}</Text>
             <Text>{item.price} $</Text>
-            <Button onPress={() => add(item)} title='Add to Cart' />
+            <BaseButton onClick={() => add(item)} title='Add to Cart' />
           </View>
         )}
         keyExtractor={({ id }) => id}
