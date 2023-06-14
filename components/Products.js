@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View, Image, Button, FlatList } from 'react-native';
 import { products, imageMap } from '../lib/products';
 
-export default function Products({ category }) {
+export default function Products({ category, search }) {
   const filteredProducts = () =>
-    products.filter((item) => {
-      return item.category.includes(category);
+    products.filter((product) => {
+      return (
+        product.description.toLowerCase().includes(search) &&
+        product.category.includes(category)
+      );
     });
 
   return (

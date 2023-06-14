@@ -9,7 +9,9 @@ export default function Categories({ change, category }) {
   return (
     <View style={styles.categories}>
       {categories.map(({ name, id }) => (
-        <Pressable onPress={() => changeCategory(name)} key={id}>
+        <Pressable
+        android_ripple={{color: '#efeff0'}} 
+        onPress={() => changeCategory(name)} key={id}>
           <Text style={category === name && styles.active}>{name}</Text>
         </Pressable>
       ))}
