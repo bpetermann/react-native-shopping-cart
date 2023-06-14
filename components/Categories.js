@@ -1,12 +1,9 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import { useState } from 'react';
 import { categories } from '../lib/categories';
 
-export default function Categories() {
-  const [category, setCategory] = useState('Shoes');
+export default function Categories({ change, category }) {
   const changeCategory = (name) => {
-    console.log(name);
-    setCategory(name);
+    change(name);
   };
 
   return (

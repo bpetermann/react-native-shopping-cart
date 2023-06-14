@@ -1,12 +1,17 @@
 import { StyleSheet, Text, View, Image, Button, FlatList } from 'react-native';
 import { products, imageMap } from '../lib/products';
 
-export default function Products() {
+export default function Products({ category }) {
+  const filteredProducts = () =>
+    products.filter((item) => {
+      return item.category.includes(category);
+    });
+
   return (
     <View style={styles.products}>
       <FlatList
         horizontal
-        data={products}
+        data={filteredProducts()}
         renderItem={({ item }) => (
           <View style={styles.product}>
             <Image style={styles.img} source={imageMap[item.name]} />
