@@ -9,7 +9,13 @@ import {
   Button,
 } from 'react-native';
 
-export default function Cart({ show, closeCart, cartItems }) {
+export default function Cart({ show, closeCart, cartItems, add, remove }) {
+  const totalPrice = cartItems
+    .reduce(function (acc, prod) {
+      return acc + prod.amount * prod.price;
+    }, 0)
+    .toFixed(2);
+
   return (
     <Modal visible={show} animationType='fade'>
       <View style={styles.cart}>
@@ -31,8 +37,12 @@ export default function Cart({ show, closeCart, cartItems }) {
                 <View style={styles.product}>
                   <Text style={styles.heading}>{item.name}</Text>
                   <View style={styles.amount}>
-                    <Text style={styles.add}>+</Text>
-                    <Text style={styles.delete}>-</Text>
+                    <Pressable onPress={() => add(item)}>
+                      <Text style={styles.add}>+</Text>
+                    </Pressable>
+                    <Pressable onPress={() => remove(item)}>
+                      <Text style={styles.delete}>-</Text>
+                    </Pressable>
                   </View>
                 </View>
                 <View style={styles.detail}>
@@ -47,7 +57,7 @@ export default function Cart({ show, closeCart, cartItems }) {
 
         <View style={styles.total}>
           <Text style={styles.heading}>Total Amount</Text>
-          <Text style={styles.heading}>100 $</Text>
+          <Text style={styles.heading}>{totalPrice} $</Text>
         </View>
         <Button title='Order' color='#ff6900' />
       </View>
@@ -59,6 +69,8 @@ const styles = StyleSheet.create({
   cart: {
     paddingTop: 50,
     alignItems: 'center',
+    paddingHorizontal: 24,
+
   },
   close: {
     width: '100%',
@@ -71,7 +83,6 @@ const styles = StyleSheet.create({
   },
   products: {
     width: '100%',
-    paddingHorizontal: 24,
     paddingTop: 18,
     borderBottomWidth: 1,
     borderColor: '#d2d3d5',

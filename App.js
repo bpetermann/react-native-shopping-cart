@@ -17,10 +17,10 @@ export default function App() {
 
   const addCartItem = (product) => {
     setCartItems((currentItems) => {
-      const existingCartItemIndex = cartItems.findIndex(
+      const existingCartItemIndex = currentItems.findIndex(
         (item) => item.name === product.name
       );
-      const existingCartItem = cartItems[existingCartItemIndex];
+      const existingCartItem = currentItems[existingCartItemIndex];
       let updatedCart;
       if (existingCartItem) {
         const updatedItem = {
@@ -36,6 +36,27 @@ export default function App() {
     });
   };
 
+  const removeCartItem = (product) => {
+    setCartItems((currentItems) => {
+      const existingCartItemIndex = currentItems.findIndex(
+        (item) => item.name === product.name
+      );
+      const existingCartItem = currentItems[existingCartItemIndex];
+      let updatedCart;
+      if (existingCartItem?.amount > 1) {
+        const updatedItem = {
+          ...existingCartItem,
+          amount: existingCartItem.amount - 1,
+        };
+        updatedCart = [...currentItems];
+        updatedCart[existingCartItemIndex] = updatedItem;
+        return updatedCart;
+      } else {
+        return currentItems.filter((item) => item.name !== product.name);
+      }
+    });
+  };
+
   return (
     <View style={{ paddingTop: 50 }}>
       <Header openCart={setShowCart} />
@@ -45,7 +66,13 @@ export default function App() {
         <Hero />
         <Products category={category} search={search} add={addCartItem} />
       </ScrollView>
-      <Cart closeCart={setShowCart} show={showCart} cartItems={cartItems} />
+      <Cart
+        closeCart={setShowCart}
+        show={showCart}
+        cartItems={cartItems}
+        add={addCartItem}
+        remove={removeCartItem}
+      />
     </View>
   );
 }
