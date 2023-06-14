@@ -1,6 +1,6 @@
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, Pressable } from 'react-native';
 
-export default function Header() {
+export default function Header({ openCart }) {
   return (
     <View style={styles.container}>
       <View style={styles.nav}>
@@ -10,7 +10,12 @@ export default function Header() {
           source={require('../assets/app/search.png')}
         />
         <Image style={styles.img} source={require('../assets/app/heart.png')} />
-        <Image style={styles.img} source={require('../assets/app/cart.png')} />
+        <Pressable onPress={() => openCart(true)}>
+          <Image
+            style={styles.img}
+            source={require('../assets/app/cart.png')}
+          />
+        </Pressable>
       </View>
       <Image style={styles.img} source={require('../assets/app/account.png')} />
     </View>
