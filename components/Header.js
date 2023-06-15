@@ -6,20 +6,20 @@ export default function Header({ openCart, amount }) {
       <View style={styles.nav}>
         <Image
           style={styles.img}
-          source={require('../../assets/app/logo.png')}
+          source={require('../assets/app/logo.png')}
         />
         <Image
           style={styles.img}
-          source={require('../../assets/app/search.png')}
+          source={require('../assets/app/search.png')}
         />
         <Image
           style={styles.img}
-          source={require('../../assets/app/heart.png')}
+          source={require('../assets/app/heart.png')}
         />
         <Pressable onPress={() => openCart(true)}>
           <Image
             style={styles.img}
-            source={require('../../assets/app/cart.png')}
+            source={require('../assets/app/cart.png')}
           />
         </Pressable>
         {!!amount && (
@@ -30,7 +30,7 @@ export default function Header({ openCart, amount }) {
       </View>
       <Image
         style={styles.img}
-        source={require('../../assets/app/account.png')}
+        source={require('../assets/app/account.png')}
       />
     </View>
   );

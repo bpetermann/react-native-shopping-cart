@@ -8,7 +8,7 @@ export default function Hero() {
       <View style={styles.container}>
         <Image
           style={styles.model}
-          source={require('../../assets/app/model.png')}
+          source={require('../assets/app/model.png')}
         />
       </View>
     </View>
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   heading: {
     color: '#fff',
     fontSize: 28,
+    fontWeight: '600',
   },
   text: {
     color: '#fff',

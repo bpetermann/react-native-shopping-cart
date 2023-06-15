@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { imageMap } from '../../../lib/products';
-import { BaseButton } from '../../Atoms';
+import { imageMap } from '../../lib/products';
+import { BaseButton } from '../Shared';
 
 export default function Product({ item, add }) {
   return (

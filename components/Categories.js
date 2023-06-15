@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import { categories } from '../../lib/categories';
+import { categories } from '../lib/categories';
 
 export default function Categories({ change, category }) {
   const changeCategory = (name) => {
@@ -26,10 +26,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 12,
-    paddingHorizontal: 16,
+    paddingHorizontal: 24,
   },
 
   active: {
     borderBottomWidth: 1,
+    fontWeight: '600'
   },
 });

@@ -2,14 +2,13 @@ import {
   StyleSheet,
   View,
   Modal,
-  Text,
   Pressable,
   Image,
   FlatList,
   Button,
 } from 'react-native';
-import { CartItem } from '../Molecules';
-import { Heading } from '../Atoms';
+import CartItem from './CartItem';
+import { Heading } from '../Shared';
 
 export default function Cart({ show, closeCart, cartItems, add, remove }) {
   const totalPrice = cartItems

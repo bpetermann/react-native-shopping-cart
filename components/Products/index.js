@@ -1,5 +1,5 @@
 import { StyleSheet, View, FlatList } from 'react-native';
-import { Product } from '../Molecules';
+import Product from './Product';
 import { products } from '../../lib/products';
 
 export default function Products({ category, search, add }) {
