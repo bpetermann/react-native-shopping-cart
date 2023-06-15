@@ -2,8 +2,8 @@
 
 - Just learning react native by rebuilding my [shopping-cart](https://github.com/bpetermann/shopping-cart) project
 - The purpose of this project is to gain familiarity with React Native development through a small demo application
-- There is not too much functionality built in, you can add products to your cart, search for products and sort products by categories
-- Since I don't currently have access to an iOS system, I can't say how it will look on these devices
+- There isn't too much functionality built in. You can add products to the cart, search for products, and sort them by category
+- Since I don't currently have access to an iOS system, I can't determine how the app will appear on iOS devices
 
 ### Getting Started
 

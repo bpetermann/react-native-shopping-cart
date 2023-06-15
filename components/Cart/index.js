@@ -32,23 +32,34 @@ export default function Cart({ show, closeCart, cartItems, add, remove }) {
             />
           </Pressable>
         </View>
-        <Heading>Cart ({cartAmount})</Heading>
+        {!cartItems.length ? (
+          <View style={styles.empty}>
+            <Button
+              title='No items (yet!)'
+              color='#ff6900'
+              onPress={() => closeCart(false)}
+            />
+          </View>
+        ) : (
+          <>
+            <Heading>Cart ({cartAmount})</Heading>
+            <View style={styles.products}>
+              <FlatList
+                data={cartItems}
+                renderItem={({ item }) => (
+                  <CartItem item={item} add={add} remove={remove} />
+                )}
+                keyExtractor={({ id }) => id}
+              />
+            </View>
 
-        <View style={styles.products}>
-          <FlatList
-            data={cartItems}
-            renderItem={({ item }) => (
-              <CartItem item={item} add={add} remove={remove} />
-            )}
-            keyExtractor={({ id }) => id}
-          />
-        </View>
-
-        <View style={styles.total}>
-          <Heading>Total Amount</Heading>
-          <Heading>{totalPrice} $</Heading>
-        </View>
-        <Button title='Order' color='#ff6900' />
+            <View style={styles.total}>
+              <Heading>Total Amount</Heading>
+              <Heading>{totalPrice} $</Heading>
+            </View>
+            <Button title='Order' color='#ff6900' />
+          </>
+        )}
       </View>
     </Modal>
   );
@@ -60,6 +71,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 24,
   },
+  empty: {
+    width: '100%',
+    paddingTop: 50,
+  },
   close: {
     width: '100%',
     alignItems: 'flex-end',
@@ -67,7 +82,7 @@ const styles = StyleSheet.create({
   },
   products: {
     width: '100%',
-    paddingTop: 18,
+    paddingTop: 24,
     borderBottomWidth: 1,
     borderColor: '#d2d3d5',
   },
