@@ -14,8 +14,10 @@ npm install
 npm start
 ```
 
-After running the above commands, a QR code will be displayed in the terminal or browser window. For Android devices, you can use the Expo Go app to scan the QR code and open the app. Alternatively, you can use
+- Press "a" to open the App in 
 [Android Studio](https://developer.android.com/studio)
+ - For Android devices scan the QR Code that is displayed in the terminal with the [Expo Go](https://expo.dev/client) app
+
 
 ### Thanks
 
