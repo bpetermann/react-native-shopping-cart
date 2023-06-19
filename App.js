@@ -6,10 +6,16 @@ import {
   Cart,
   Header,
 } from './components';
-import { ScrollView, View } from 'react-native';
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  useWindowDimensions,
+} from 'react-native';
 import { useState } from 'react';
 
 export default function Template() {
+  const { width } = useWindowDimensions();
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
   const [showCart, setShowCart] = useState(false);
@@ -60,9 +66,9 @@ export default function Template() {
       }
     });
   };
-
+  console.log(useWindowDimensions());
   return (
-    <View style={{ paddingTop: 50 }}>
+    <View style={width < 480 ? styles.app : styles.web}>
       <Header openCart={setShowCart} amount={cartAmount} />
       <ScrollView>
         <Searchbar search={setSearch} />
@@ -80,3 +86,13 @@ export default function Template() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  app: {
+    flex: 1,
+    paddingTop: 50,
+  },
+  web: {
+    flex: 1,
+  },
+});

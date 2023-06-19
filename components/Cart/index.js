@@ -7,6 +7,7 @@ import {
   FlatList,
   Button,
 } from 'react-native';
+import { Container } from '../Shared';
 import CartItem from './CartItem';
 import { Heading } from '../Shared';
 
@@ -23,6 +24,7 @@ export default function Cart({ show, closeCart, cartItems, add, remove }) {
 
   return (
     <Modal visible={show} animationType='fade'>
+      <Container>
       <View style={styles.cart}>
         <View style={styles.close}>
           <Pressable onPress={() => closeCart(false)}>
@@ -61,6 +63,7 @@ export default function Cart({ show, closeCart, cartItems, add, remove }) {
           </>
         )}
       </View>
+      </Container>
     </Modal>
   );
 }
@@ -70,6 +73,9 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     alignItems: 'center',
     paddingHorizontal: 24,
+    width: '100%',
+    maxWidth: 720,
+
   },
   empty: {
     width: '100%',

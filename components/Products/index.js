@@ -1,6 +1,7 @@
 import { StyleSheet, View, FlatList } from 'react-native';
 import { fetchProducts } from '../../util/http';
 import { useEffect, useState } from 'react';
+import { Container } from '../Shared';
 import Loading from './Loading';
 import Product from './Product';
 
@@ -26,31 +27,30 @@ export default function Products({ category, search, add }) {
     });
 
   return (
-    <View style={styles.products}>
-      {loading ? (
-        <Loading />
-      ) : (
-        <FlatList
-          horizontal
-          data={filteredProducts()}
-          renderItem={({ item }) => <Product add={add} item={item} />}
-          keyExtractor={({ id }) => id}
-        />
-      )}
-    </View>
+    <Container bgColor={'#84bce5'}>
+      <View style={styles.products}>
+        {loading ? (
+          <Loading />
+        ) : (
+          <FlatList
+            horizontal
+            data={filteredProducts()}
+            renderItem={({ item }) => <Product add={add} item={item} />}
+            keyExtractor={({ id }) => id}
+          />
+        )}
+      </View>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
   products: {
-    backgroundColor: '#84bce5',
     height: 420,
     padding: 16,
     paddingTop: 24,
-  },
-  spinner: {
-    alignItems: 'center',
-    paddingTop: 24,
+    width: '100%',
+    maxWidth: 1216,
   },
   img: {
     width: 28,

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { categories } from '../lib/categories';
+import { Container } from './Shared';
 
 export default function Categories({ change, category }) {
   const changeCategory = (name) => {
@@ -7,17 +8,19 @@ export default function Categories({ change, category }) {
   };
 
   return (
-    <View style={styles.categories}>
-      {categories.map(({ name, id }) => (
-        <Pressable
-          android_ripple={{ color: '#efeff0' }}
-          onPress={() => changeCategory(name)}
-          key={id}
-        >
-          <Text style={category === name && styles.active}>{name}</Text>
-        </Pressable>
-      ))}
-    </View>
+    <Container>
+      <View style={styles.categories}>
+        {categories.map(({ name, id }) => (
+          <Pressable
+            android_ripple={{ color: '#efeff0' }}
+            onPress={() => changeCategory(name)}
+            key={id}
+          >
+            <Text style={category === name && styles.active}>{name}</Text>
+          </Pressable>
+        ))}
+      </View>
+    </Container>
   );
 }
 
@@ -27,10 +30,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 12,
     paddingHorizontal: 24,
+    width: '100%',
+    maxWidth: 1216,
   },
 
   active: {
     borderBottomWidth: 1,
-    fontWeight: '600'
+    fontWeight: '600',
   },
 });

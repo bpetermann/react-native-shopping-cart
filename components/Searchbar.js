@@ -1,16 +1,21 @@
 import { StyleSheet, View, Image, TextInput } from 'react-native';
+import { Container } from './Shared';
 
 export default function Searchbar({ search }) {
-  
   const searchproducts = (text) => {
     search(text.toLowerCase());
   };
 
   return (
-    <View style={styles.searchbar}>
-      <TextInput style={styles.input} onChangeText={searchproducts} />
-      <Image style={styles.img} source={require('../assets/app/search.png')} />
-    </View>
+    <Container border>
+      <View style={styles.searchbar}>
+        <TextInput style={styles.input} onChangeText={searchproducts} />
+        <Image
+          style={styles.img}
+          source={require('../assets/app/search.png')}
+        />
+      </View>
+    </Container>
   );
 }
 
@@ -19,9 +24,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    borderBottomWidth: 1,
-    borderColor: '#d2d3d5',
+    paddingHorizontal: 24,
+    width: '100%',
+    maxWidth: 1216,
   },
   input: {
     height: 52,
