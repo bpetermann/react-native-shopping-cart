@@ -66,7 +66,7 @@ export default function Template() {
       }
     });
   };
-  console.log(useWindowDimensions());
+
   return (
     <View style={width < 480 ? styles.app : styles.web}>
       <Header openCart={setShowCart} amount={cartAmount} />
