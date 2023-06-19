@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     padding: 12,
-    paddingHorizontal: 24,
+    paddingHorizontal: 16,
     maxWidth: 1216,
   },
   nav: {

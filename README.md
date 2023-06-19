@@ -4,6 +4,7 @@
 - The purpose of this project is to gain familiarity with React Native development through a small demo application
 - There isn't too much functionality built in. You can add products to the cart, search for products, and sort them by category
 - Since I don't currently have access to an iOS system, I can't determine how the app will appear on iOS devices
+- The main focus lies on app development, causing the styling to be less suitable for web 
 
 ### Getting Started
 

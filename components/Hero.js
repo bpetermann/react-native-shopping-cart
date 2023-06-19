@@ -45,6 +45,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingVertical: 16,
     height: '80%',
+    maxWidth: 480,
+
   },
   model: {
     width: '100%',

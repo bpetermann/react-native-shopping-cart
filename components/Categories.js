@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     padding: 12,
     paddingHorizontal: 24,
     width: '100%',
-    maxWidth: 1216,
+    maxWidth: 480,
   },
 
   active: {
