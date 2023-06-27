@@ -29,3 +29,7 @@ npm start
 ### Recommended IDE Setup
 
 [VS Code](https://code.visualstudio.com/)
+
+### Demo
+
+[demo.webm](https://github.com/bpetermann/react-native-shopping-cart/assets/83461111/bd91f80e-8d02-4abc-9e9e-dffdd23cc14e)
