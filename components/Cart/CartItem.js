@@ -1,6 +1,9 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { CartContext } from '../../store/context/cart-context';
+import { useContext } from 'react';
+export default function CartItem({ item }) {
+  const { addCartItem: add, removeCartItem: remove } = useContext(CartContext);
 
-export default function CartItem({ item, add, remove }) {
   return (
     <View>
       <View style={styles.product}>

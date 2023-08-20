@@ -1,11 +1,13 @@
+import { CartContext } from '../../store/context/cart-context';
 import { StyleSheet, View, FlatList } from 'react-native';
+import { useEffect, useState, useContext } from 'react';
 import { fetchProducts } from '../../util/http';
-import { useEffect, useState } from 'react';
 import { Container } from '../Shared';
 import Loading from './Loading';
 import Product from './Product';
 
-export default function Products({ category, search, add }) {
+export default function Products({ category, search }) {
+  const { addCartItem: add } = useContext(CartContext);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
 

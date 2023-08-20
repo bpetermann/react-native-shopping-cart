@@ -7,62 +7,60 @@ import {
   FlatList,
   Button,
 } from 'react-native';
+import { CartContext } from '../../store/context/cart-context';
 import { Container } from '../Shared';
 import CartItem from './CartItem';
 import { Heading } from '../Shared';
+import { useContext } from 'react';
 
-export default function Cart({ show, closeCart, cartItems, add, remove }) {
+export default function Cart({ show, closeCart }) {
+  const { cartItems, amount } = useContext(CartContext);
+
   const totalPrice = cartItems
     .reduce(function (acc, prod) {
       return acc + prod.amount * prod.price;
     }, 0)
     .toFixed(2);
 
-  const cartAmount = cartItems.reduce(function (acc, item) {
-    return acc + item.amount;
-  }, 0);
-
   return (
     <Modal visible={show} animationType='fade'>
       <Container>
-      <View style={styles.cart}>
-        <View style={styles.close}>
-          <Pressable onPress={() => closeCart(false)}>
-            <Image
-              style={styles.img}
-              source={require('../../assets/app/close.png')}
-            />
-          </Pressable>
-        </View>
-        {!cartItems.length ? (
-          <View style={styles.empty}>
-            <Button
-              title='No items (yet!)'
-              color='#ff6900'
-              onPress={() => closeCart(false)}
-            />
+        <View style={styles.cart}>
+          <View style={styles.close}>
+            <Pressable onPress={() => closeCart(false)}>
+              <Image
+                style={styles.img}
+                source={require('../../assets/app/close.png')}
+              />
+            </Pressable>
           </View>
-        ) : (
-          <>
-            <Heading>Cart ({cartAmount})</Heading>
-            <View style={styles.products}>
-              <FlatList
-                data={cartItems}
-                renderItem={({ item }) => (
-                  <CartItem item={item} add={add} remove={remove} />
-                )}
-                keyExtractor={({ id }) => id}
+          {!cartItems.length ? (
+            <View style={styles.empty}>
+              <Button
+                title='No items (yet!)'
+                color='#ff6900'
+                onPress={() => closeCart(false)}
               />
             </View>
+          ) : (
+            <>
+              <Heading>Cart ({amount})</Heading>
+              <View style={styles.products}>
+                <FlatList
+                  data={cartItems}
+                  renderItem={({ item }) => <CartItem item={item} />}
+                  keyExtractor={({ id }) => id}
+                />
+              </View>
 
-            <View style={styles.total}>
-              <Heading>Total Amount</Heading>
-              <Heading>{totalPrice} $</Heading>
-            </View>
-            <Button title='Order' color='#ff6900' />
-          </>
-        )}
-      </View>
+              <View style={styles.total}>
+                <Heading>Total Amount</Heading>
+                <Heading>{totalPrice} $</Heading>
+              </View>
+              <Button title='Order' color='#ff6900' />
+            </>
+          )}
+        </View>
       </Container>
     </Modal>
   );
@@ -75,7 +73,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     width: '100%',
     maxWidth: 720,
-
   },
   empty: {
     width: '100%',
