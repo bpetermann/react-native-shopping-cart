@@ -7,14 +7,18 @@ import {
   FlatList,
   Button,
 } from 'react-native';
-import { CartContext } from '../../store/context/cart-context';
-import { Container } from '../Shared';
+import { CartContext } from '@context/cart-context';
+import { Container, Heading } from '@components/Shared';
 import CartItem from './CartItem';
-import { Heading } from '../Shared';
 import { useContext } from 'react';
 
-export default function Cart({ show, closeCart }) {
-  const { cartItems, amount } = useContext(CartContext);
+export default function Cart() {
+  const {
+    cartItems,
+    amount,
+    showCart,
+    setShowCart: closeCart,
+  } = useContext(CartContext);
 
   const totalPrice = cartItems
     .reduce(function (acc, prod) {
@@ -23,7 +27,7 @@ export default function Cart({ show, closeCart }) {
     .toFixed(2);
 
   return (
-    <Modal visible={show} animationType='fade'>
+    <Modal visible={showCart} animationType='fade'>
       <Container>
         <View style={styles.cart}>
           <View style={styles.close}>

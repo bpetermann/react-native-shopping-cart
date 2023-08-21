@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import { categories } from '../lib/categories';
-import { Container } from './Shared';
+import { categories } from '@lib/categories';
+import { Container } from '@components/Shared';
 
 export default function Categories({ change, category }) {
   const changeCategory = (name) => {

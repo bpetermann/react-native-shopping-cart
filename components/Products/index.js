@@ -1,8 +1,8 @@
-import { CartContext } from '../../store/context/cart-context';
 import { StyleSheet, View, FlatList } from 'react-native';
 import { useEffect, useState, useContext } from 'react';
-import { fetchProducts } from '../../util/http';
-import { Container } from '../Shared';
+import { CartContext } from '@context/cart-context';
+import { Container } from '@components/Shared';
+import { fetchProducts } from '@util/http';
 import Loading from './Loading';
 import Product from './Product';
 

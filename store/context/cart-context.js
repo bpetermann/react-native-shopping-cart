@@ -3,12 +3,15 @@ import { createContext, useState, useEffect } from 'react';
 export const CartContext = createContext({
   cartItems: [],
   amount: undefined,
-  addCartItem: (product) => {},
-  removeCartItem: (product) => {},
+  showCart: false,
+  setShowCart: () => {},
+  addCartItem: () => {},
+  removeCartItem: () => {},
 });
 
 export const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [showCart, setShowCart] = useState(false);
   const [amount, setAmount] = useState([]);
 
   const addCartItem = (product) => {
@@ -64,6 +67,8 @@ export const CartContextProvider = ({ children }) => {
   const value = {
     cartItems: cartItems,
     amount: amount,
+    showCart: showCart,
+    setShowCart: setShowCart,
     addCartItem: addCartItem,
     removeCartItem: removeCartItem,
   };

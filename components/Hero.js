@@ -1,17 +1,12 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  useWindowDimensions,
-} from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import useBreakpoints from '@hooks/useBreakpoints';
 
 export default function Hero() {
-  const { width } = useWindowDimensions();
+  const { isM } = useBreakpoints();
 
   return (
     <View style={styles.container}>
-      <View style={width < 720 ? styles.hero : styles.web}>
+      <View style={isM ? styles.hero : styles.web}>
         <View>
           <Text style={styles.heading}>Winter Sale</Text>
           <Text style={styles.text}>Up to -50% off your favorite styles</Text>

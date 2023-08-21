@@ -1,10 +1,10 @@
 import { StyleSheet, View, Image, Text, Pressable } from 'react-native';
-import { CartContext } from '../store/context/cart-context';
-import { Container } from './Shared';
+import { CartContext } from '@context/cart-context';
+import { Container } from '@components/Shared';
 import { useContext } from 'react';
 
-export default function Header({ openCart }) {
-  const { amount } = useContext(CartContext);
+export default function Header() {
+  const { amount, setShowCart: openCart } = useContext(CartContext);
 
   return (
     <Container bgColor={'#efeff0'} border>

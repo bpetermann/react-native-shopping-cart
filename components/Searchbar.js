@@ -1,5 +1,5 @@
 import { StyleSheet, View, Image, TextInput } from 'react-native';
-import { Container } from './Shared';
+import { Container } from '@components/Shared';
 
 export default function Searchbar({ search }) {
   const searchproducts = (text) => {

@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { imageMap } from '../../lib/products';
-import { BaseButton } from '../Shared';
+import { CartContext } from '@context/cart-context';
+import { BaseButton } from '@components/Shared';
+import { imageMap } from '@lib/products';
 import { useContext } from 'react';
-import { CartContext } from '../../store/context/cart-context';
 
 export default function Product({ item }) {
   const { addCartItem: add } = useContext(CartContext);

@@ -6,32 +6,27 @@ import {
   Cart,
   Header,
 } from './components';
-import {
-  ScrollView,
-  View,
-  StyleSheet,
-  useWindowDimensions,
-} from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import { useState } from 'react';
 import { CartContextProvider } from './store/context/cart-context';
+import useBreakpoints from './hooks/useBreakpoints';
 
 export default function Template() {
-  const { width } = useWindowDimensions();
   const [category, setCategory] = useState('Shoes');
-  const [showCart, setShowCart] = useState(false);
   const [search, setSearch] = useState('');
+  const { isS } = useBreakpoints();
 
   return (
-    <View style={width < 480 ? styles.app : styles.web}>
+    <View style={isS ? styles.app : styles.web}>
       <CartContextProvider>
-        <Header openCart={setShowCart} />
+        <Header />
         <ScrollView>
           <Searchbar search={setSearch} />
           <Categories change={setCategory} category={category} />
           <Hero />
           <Products category={category} search={search} />
         </ScrollView>
-        <Cart show={showCart} closeCart={setShowCart} />
+        <Cart />
       </CartContextProvider>
     </View>
   );
