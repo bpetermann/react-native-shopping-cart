@@ -1,6 +1,6 @@
 import { StyleSheet, View, Image, Text, Pressable } from 'react-native';
-import { CartContext } from '@context/cart-context';
-import { Container } from '@components/Shared';
+import { CartContext } from '@/store/context/cart-context';
+import { Container } from '@/components/Shared';
 import { useContext } from 'react';
 
 export default function Header() {

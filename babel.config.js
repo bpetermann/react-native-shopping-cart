@@ -7,11 +7,7 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
-            '@components': './components',
-            '@context': './store/context',
-            '@hooks': './hooks',
-            '@lib': './lib',
-            '@util': './util',
+            '@': '.',
           },
         },
       ],

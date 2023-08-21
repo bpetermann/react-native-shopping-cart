@@ -1,27 +1,16 @@
 import { StyleSheet, View, FlatList } from 'react-native';
-import { useEffect, useState, useContext } from 'react';
-import { CartContext } from '@context/cart-context';
-import { Container } from '@components/Shared';
-import { fetchProducts } from '@util/http';
-import Loading from './Loading';
+import { CartContext } from '@/store/context/cart-context';
+import { Container } from '@/components/Shared';
+import { fetchProducts } from '@/util/http';
+import withLoader from '@/hoc/withLoader';
+import { useContext } from 'react';
 import Product from './Product';
 
-export default function Products({ category, search }) {
+export function Products({ category, search, data }) {
   const { addCartItem: add } = useContext(CartContext);
-  const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const getProducts = async () => {
-      const data = await fetchProducts();
-      setProducts(data);
-      setLoading(false);
-    };
-    getProducts();
-  }, []);
 
   const filteredProducts = () =>
-    products.filter((product) => {
+    data.filter((product) => {
       return (
         product.description.toLowerCase().includes(search) &&
         product.category.includes(category)
@@ -31,16 +20,12 @@ export default function Products({ category, search }) {
   return (
     <Container bgColor={'#84bce5'}>
       <View style={styles.products}>
-        {loading ? (
-          <Loading />
-        ) : (
-          <FlatList
-            horizontal
-            data={filteredProducts()}
-            renderItem={({ item }) => <Product add={add} item={item} />}
-            keyExtractor={({ id }) => id}
-          />
-        )}
+        <FlatList
+          horizontal
+          data={filteredProducts()}
+          renderItem={({ item }) => <Product add={add} item={item} />}
+          keyExtractor={({ id }) => id}
+        />
       </View>
     </Container>
   );
@@ -59,3 +44,5 @@ const styles = StyleSheet.create({
     height: 28,
   },
 });
+
+export default withLoader(Products, fetchProducts);

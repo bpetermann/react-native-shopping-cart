@@ -7,8 +7,8 @@ import {
   FlatList,
   Button,
 } from 'react-native';
-import { CartContext } from '@context/cart-context';
-import { Container, Heading } from '@components/Shared';
+import { CartContext } from '@/store/context/cart-context';
+import { Container, Heading } from '@/components/Shared';
 import CartItem from './CartItem';
 import { useContext } from 'react';
 

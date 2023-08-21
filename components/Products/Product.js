@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { CartContext } from '@context/cart-context';
-import { BaseButton } from '@components/Shared';
-import { imageMap } from '@lib/products';
+import { CartContext } from '@/store/context/cart-context';
+import { BaseButton } from '@/components/Shared';
+import { imageMap } from '@/lib/products';
 import { useContext } from 'react';
 
 export default function Product({ item }) {

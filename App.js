@@ -5,11 +5,11 @@ import {
   Products,
   Cart,
   Header,
-} from './components';
+} from '@/components';
 import { ScrollView, View, StyleSheet } from 'react-native';
 import { useState } from 'react';
-import { CartContextProvider } from './store/context/cart-context';
-import useBreakpoints from './hooks/useBreakpoints';
+import { CartContextProvider } from '@/store/context/cart-context';
+import useBreakpoints from '@/hooks/useBreakpoints';
 
 export default function Template() {
   const [category, setCategory] = useState('Shoes');
