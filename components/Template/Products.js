@@ -2,9 +2,9 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import { CartContext } from '@/store/context/cart-context';
 import { Container } from '@/components/Shared';
 import { fetchProducts } from '@/util/http';
+import Product from '@/components/Product';
 import withLoader from '@/hoc/withLoader';
 import { useContext } from 'react';
-import Product from './Product';
 
 export function Products({ category, search, data }) {
   const { addCartItem: add } = useContext(CartContext);

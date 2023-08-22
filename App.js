@@ -1,21 +1,11 @@
-import {
-  Searchbar,
-  Categories,
-  Hero,
-  Products,
-  Cart,
-  Favorites,
-  Header,
-} from '@/components';
 import { FavoritesContextProvider } from '@/store/context/favorites-context';
 import { CartContextProvider } from '@/store/context/cart-context';
-import { ScrollView, View, StyleSheet } from 'react-native';
-import { useState } from 'react';
 import useBreakpoints from '@/hooks/useBreakpoints';
+import { View, StyleSheet } from 'react-native';
+import Template from '@/components/Template';
+import Header from '@/components/Header';
 
-export default function Template() {
-  const [category, setCategory] = useState('Shoes');
-  const [search, setSearch] = useState('');
+export default function App() {
   const { isS } = useBreakpoints();
 
   return (
@@ -23,14 +13,7 @@ export default function Template() {
       <FavoritesContextProvider>
         <View style={isS ? styles.app : styles.web}>
           <Header />
-          <ScrollView>
-            <Searchbar search={setSearch} />
-            <Categories change={setCategory} category={category} />
-            <Hero />
-            <Products category={category} search={search} />
-          </ScrollView>
-          <Cart />
-          <Favorites />
+          <Template />
         </View>
       </FavoritesContextProvider>
     </CartContextProvider>

@@ -1,4 +1,4 @@
-import { FavoritesContext } from '../store/context/favorites-context';
+import { FavoritesContext } from '../../store/context/favorites-context';
 import { StyleSheet, View, Image, Text } from 'react-native';
 import { Container, IconButton } from '@/components/Shared';
 import { CartContext } from '@/store/context/cart-context';
@@ -12,18 +12,15 @@ export default function Header() {
     <Container bgColor={'#efeff0'} border>
       <View style={styles.header}>
         <View style={styles.nav}>
+          <Image style={styles.img} source={require('@/assets/app/logo.png')} />
           <Image
             style={styles.img}
-            source={require('../assets/app/logo.png')}
-          />
-          <Image
-            style={styles.img}
-            source={require('../assets/app/search.png')}
+            source={require('@/assets/app/search.png')}
           />
           <View style={styles.iconButton}>
             <IconButton
               onClick={() => setShowFavorites(true)}
-              img={require('../assets/app/heart.png')}
+              img={require('@/assets/app/heart.png')}
             />
             {!!favoriteItems.length && (
               <View style={styles.favAmount}>
@@ -34,7 +31,7 @@ export default function Header() {
           <View style={styles.iconButton}>
             <IconButton
               onClick={() => openCart(true)}
-              img={require('../assets/app/cart.png')}
+              img={require('@/assets/app/cart.png')}
             />
             {!!amount && (
               <View style={styles.amount}>
@@ -45,7 +42,7 @@ export default function Header() {
         </View>
         <Image
           style={styles.img}
-          source={require('../assets/app/account.png')}
+          source={require('@/assets/app/account.png')}
         />
       </View>
     </Container>

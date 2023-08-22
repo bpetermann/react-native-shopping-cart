@@ -12,7 +12,7 @@ export default function Searchbar({ search }) {
         <TextInput style={styles.input} onChangeText={searchproducts} />
         <Image
           style={styles.img}
-          source={require('../assets/app/search.png')}
+          source={require('@/assets/app/search.png')}
         />
       </View>
     </Container>

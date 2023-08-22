@@ -2,8 +2,8 @@ import { Container, Heading, IconButton } from '@/components/Shared';
 import { FavoritesContext } from '@/store/context/favorites-context';
 import { StyleSheet, View, Modal, FlatList } from 'react-native';
 import { CartContext } from '@/store/context/cart-context';
-import Product from '../Products/Product';
 import { useContext } from 'react';
+import Product from '../Product';
 
 export default function Favorites() {
   const { favoriteItems, showFavorites, setShowFavorites } =
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   products: {
     paddingTop: 24,
-    paddingBottom: 48
+    paddingBottom: 48,
   },
   close: {
     width: '100%',
