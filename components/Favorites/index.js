@@ -1,16 +1,8 @@
-import {
-  StyleSheet,
-  View,
-  Modal,
-  FlatList,
-  Pressable,
-  Image,
-} from 'react-native';
+import { Container, Heading, IconButton } from '@/components/Shared';
 import { FavoritesContext } from '@/store/context/favorites-context';
+import { StyleSheet, View, Modal, FlatList } from 'react-native';
 import { CartContext } from '@/store/context/cart-context';
-import { Container, Heading } from '@/components/Shared';
 import Product from '../Products/Product';
-
 import { useContext } from 'react';
 
 export default function Favorites() {
@@ -23,12 +15,10 @@ export default function Favorites() {
       <Container>
         <View style={styles.favs}>
           <View style={styles.close}>
-            <Pressable onPress={() => setShowFavorites(false)}>
-              <Image
-                style={styles.img}
-                source={require('../../assets/app/close.png')}
-              />
-            </Pressable>
+            <IconButton
+              onClick={() => setShowFavorites(false)}
+              img={require('../../assets/app/close.png')}
+            />
           </View>
           <Heading>Favorites</Heading>
           <View style={styles.products}>
@@ -55,10 +45,7 @@ const styles = StyleSheet.create({
   },
   products: {
     paddingTop: 24,
-  },
-  img: {
-    width: 28,
-    height: 28,
+    paddingBottom: 48
   },
   close: {
     width: '100%',

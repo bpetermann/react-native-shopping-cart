@@ -1,12 +1,12 @@
-import { StyleSheet, View, Image, Text, Pressable } from 'react-native';
 import { FavoritesContext } from '../store/context/favorites-context';
+import { StyleSheet, View, Image, Text } from 'react-native';
+import { Container, IconButton } from '@/components/Shared';
 import { CartContext } from '@/store/context/cart-context';
-import { Container } from '@/components/Shared';
 import { useContext } from 'react';
 
 export default function Header() {
   const { amount, setShowCart: openCart } = useContext(CartContext);
-  const { setShowFavorites } = useContext(FavoritesContext);
+  const { setShowFavorites, favoriteItems } = useContext(FavoritesContext);
 
   return (
     <Container bgColor={'#efeff0'} border>
@@ -20,23 +20,28 @@ export default function Header() {
             style={styles.img}
             source={require('../assets/app/search.png')}
           />
-          <Pressable onPress={() => setShowFavorites(true)}>
-            <Image
-              style={styles.img}
-              source={require('../assets/app/heart.png')}
+          <View style={styles.iconButton}>
+            <IconButton
+              onClick={() => setShowFavorites(true)}
+              img={require('../assets/app/heart.png')}
             />
-          </Pressable>
-          <Pressable onPress={() => openCart(true)}>
-            <Image
-              style={styles.img}
-              source={require('../assets/app/cart.png')}
+            {!!favoriteItems.length && (
+              <View style={styles.favAmount}>
+                <Text style={styles.count}>{favoriteItems.length}</Text>
+              </View>
+            )}
+          </View>
+          <View style={styles.iconButton}>
+            <IconButton
+              onClick={() => openCart(true)}
+              img={require('../assets/app/cart.png')}
             />
-          </Pressable>
-          {!!amount && (
-            <View style={styles.amount}>
-              <Text style={styles.count}>{amount}</Text>
-            </View>
-          )}
+            {!!amount && (
+              <View style={styles.amount}>
+                <Text style={styles.count}>{amount}</Text>
+              </View>
+            )}
+          </View>
         </View>
         <Image
           style={styles.img}
@@ -62,6 +67,9 @@ const styles = StyleSheet.create({
     width: '50%',
     maxWidth: 320,
   },
+  iconButton: {
+    position: 'relative',
+  },
   amount: {
     backgroundColor: '#ff6900',
     position: 'absolute',
@@ -77,6 +85,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     color: '#fff',
     fontSize: 12,
+  },
+  favAmount: {
+    backgroundColor: '#ff6900',
+    position: 'absolute',
+    width: 16,
+    height: 16,
+    borderRadius: 15 / 2,
+    right: -6,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   img: {
     width: 28,

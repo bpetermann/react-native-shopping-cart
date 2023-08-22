@@ -1,16 +1,8 @@
-import {
-  StyleSheet,
-  View,
-  Modal,
-  Pressable,
-  Image,
-  FlatList,
-  Button,
-} from 'react-native';
+import { StyleSheet, View, Modal, FlatList, Button } from 'react-native';
+import { Container, Heading, IconButton } from '@/components/Shared';
 import { CartContext } from '@/store/context/cart-context';
-import { Container, Heading } from '@/components/Shared';
-import CartItem from './CartItem';
 import { useContext } from 'react';
+import CartItem from './CartItem';
 
 export default function Cart() {
   const {
@@ -31,12 +23,10 @@ export default function Cart() {
       <Container>
         <View style={styles.cart}>
           <View style={styles.close}>
-            <Pressable onPress={() => closeCart(false)}>
-              <Image
-                style={styles.img}
-                source={require('../../assets/app/close.png')}
-              />
-            </Pressable>
+            <IconButton
+              onClick={() => closeCart(false)}
+              img={require('../../assets/app/close.png')}
+            />
           </View>
           {!cartItems.length ? (
             <View style={styles.empty}>
@@ -99,9 +89,5 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  img: {
-    width: 28,
-    height: 28,
   },
 });

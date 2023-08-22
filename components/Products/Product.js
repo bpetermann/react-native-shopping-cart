@@ -24,7 +24,7 @@ export default function Product({ item }) {
         android_ripple={{ color: '#efeff0' }}
       >
         <Image
-          style={isFavorite ? styles.favorite2 : styles.favorite}
+          style={[styles.icon, isFavorite && styles.favorite]}
           source={require('../../assets/app/heart.png')}
         />
       </Pressable>
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   product: {
     alignItems: 'center',
     marginRight: 16,
+    paddingBottom: 16,
     gap: 8,
     position: 'relative',
   },
@@ -48,13 +49,10 @@ const styles = StyleSheet.create({
     top: 16,
     right: 16,
   },
-  favorite2: {
-    width: 28,
-    height: 28,
-    filter:
-      'invert(40%) sepia(96%) saturate(1660%) hue-rotate(1deg) brightness(103%) contrast(105%)',
-  },
   favorite: {
+    tintColor: 'orange',
+  },
+  icon: {
     width: 28,
     height: 28,
   },
