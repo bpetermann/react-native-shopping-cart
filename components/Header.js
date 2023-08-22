@@ -1,10 +1,12 @@
 import { StyleSheet, View, Image, Text, Pressable } from 'react-native';
+import { FavoritesContext } from '../store/context/favorites-context';
 import { CartContext } from '@/store/context/cart-context';
 import { Container } from '@/components/Shared';
 import { useContext } from 'react';
 
 export default function Header() {
   const { amount, setShowCart: openCart } = useContext(CartContext);
+  const { setShowFavorites } = useContext(FavoritesContext);
 
   return (
     <Container bgColor={'#efeff0'} border>
@@ -18,10 +20,12 @@ export default function Header() {
             style={styles.img}
             source={require('../assets/app/search.png')}
           />
-          <Image
-            style={styles.img}
-            source={require('../assets/app/heart.png')}
-          />
+          <Pressable onPress={() => setShowFavorites(true)}>
+            <Image
+              style={styles.img}
+              source={require('../assets/app/heart.png')}
+            />
+          </Pressable>
           <Pressable onPress={() => openCart(true)}>
             <Image
               style={styles.img}
