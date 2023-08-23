@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { FavoritesContext } from '@/store/context/favorites-context';
 import { CartContext } from '@/store/context/cart-context';
-import { BaseButton } from '@/components/Shared';
+import { BaseButton } from '@/components/Atoms';
 import { imageMap } from '@/lib/products';
 import { useContext } from 'react';
 
-export default function Product({ item }) {
+export default function Product({ item, navigate }) {
   const { addCartItem: add } = useContext(CartContext);
   const { toggleFavorite: toggle, favoriteItems } =
     useContext(FavoritesContext);
@@ -14,7 +14,12 @@ export default function Product({ item }) {
 
   return (
     <View style={styles.product}>
-      <Image style={styles.img} source={imageMap[item.name]} />
+      <Pressable
+        onPress={navigate}
+        android_ripple={{ color: '#efeff0' }}
+      >
+        <Image style={styles.img} source={imageMap[item.name]} />
+      </Pressable>
       <Text>{item.name}</Text>
       <Text>{item.price} $</Text>
       <BaseButton onClick={() => add(item)} title='Add to Cart' />
@@ -25,7 +30,7 @@ export default function Product({ item }) {
       >
         <Image
           style={[styles.icon, isFavorite && styles.favorite]}
-          source={require('../../assets/app/heart.png')}
+          source={require('@/assets/app/heart.png')}
         />
       </Pressable>
     </View>

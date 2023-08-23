@@ -1,9 +1,9 @@
-import { Container, Heading, IconButton } from '@/components/Shared';
+import { Container, Heading, IconButton } from '@/components/Atoms';
 import { FavoritesContext } from '@/store/context/favorites-context';
 import { StyleSheet, View, Modal, FlatList } from 'react-native';
 import { CartContext } from '@/store/context/cart-context';
+import { Product } from '@/components/Molecules/Home';
 import { useContext } from 'react';
-import Product from '../Product';
 
 export default function Favorites() {
   const { favoriteItems, showFavorites, setShowFavorites } =
@@ -17,7 +17,7 @@ export default function Favorites() {
           <View style={styles.close}>
             <IconButton
               onClick={() => setShowFavorites(false)}
-              img={require('../../assets/app/close.png')}
+              img={require('@/assets/app/close.png')}
             />
           </View>
           <Heading>Favorites</Heading>

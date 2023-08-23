@@ -1,12 +1,12 @@
 import { StyleSheet, View, FlatList } from 'react-native';
 import { CartContext } from '@/store/context/cart-context';
-import { Container } from '@/components/Shared';
+import { Container } from '@/components/Atoms';
 import { fetchProducts } from '@/util/http';
-import Product from '@/components/Product';
+import { Product } from '@/components/Molecules/Home';
 import withLoader from '@/hoc/withLoader';
 import { useContext } from 'react';
 
-export function Products({ category, search, data }) {
+export function Products({ category, search, navigate, data }) {
   const { addCartItem: add } = useContext(CartContext);
 
   const filteredProducts = () =>
@@ -23,7 +23,9 @@ export function Products({ category, search, data }) {
         <FlatList
           horizontal
           data={filteredProducts()}
-          renderItem={({ item }) => <Product add={add} item={item} />}
+          renderItem={({ item }) => (
+            <Product add={add} item={item} navigate={navigate} />
+          )}
           keyExtractor={({ id }) => id}
         />
       </View>

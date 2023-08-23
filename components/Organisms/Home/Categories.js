@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import { Container } from '@/components/Shared';
+import { Container } from '@/components/Atoms';
 import { categories } from '@/lib/categories';
 
 export default function Categories({ change, category }) {

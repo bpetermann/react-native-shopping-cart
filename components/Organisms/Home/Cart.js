@@ -1,8 +1,8 @@
 import { StyleSheet, View, Modal, FlatList, Button } from 'react-native';
-import { Container, Heading, IconButton } from '@/components/Shared';
+import { Container, Heading, IconButton } from '@/components/Atoms';
 import { CartContext } from '@/store/context/cart-context';
 import { useContext } from 'react';
-import CartItem from './CartItem';
+import {CartItem} from '@/components/Molecules/Home';
 
 export default function Cart() {
   const {
@@ -25,7 +25,7 @@ export default function Cart() {
           <View style={styles.close}>
             <IconButton
               onClick={() => closeCart(false)}
-              img={require('../../assets/app/close.png')}
+              img={require('@/assets/app/close.png')}
             />
           </View>
           {!cartItems.length ? (
