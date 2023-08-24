@@ -3,8 +3,6 @@ import {
   Hero,
   Products,
   Searchbar,
-  Cart,
-  Favorites,
 } from '@/components/Organisms/Home';
 import { ScrollView } from 'react-native';
 import { useState } from 'react';
@@ -13,8 +11,10 @@ export default function Home({ navigation }) {
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
 
-  const showDetail = () => {
-    navigation.navigate('ProductDetail');
+  const showDetail = (item) => {
+    navigation.navigate('ProductDetail', {
+      item,
+    });
   };
 
   return (
@@ -25,8 +25,6 @@ export default function Home({ navigation }) {
         <Hero />
         <Products category={category} search={search} navigate={showDetail} />
       </ScrollView>
-      <Cart />
-      <Favorites />
     </>
   );
 }

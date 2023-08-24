@@ -1,8 +1,8 @@
 import { StyleSheet, View, Modal, FlatList, Button } from 'react-native';
 import { Container, Heading, IconButton } from '@/components/Atoms';
-import { CartContext } from '@/store/context/cart-context';
+import { CartContext } from '@/context/cart-context';
+import {CartItem} from '@/components/Molecules/App';
 import { useContext } from 'react';
-import {CartItem} from '@/components/Molecules/Home';
 
 export default function Cart() {
   const {

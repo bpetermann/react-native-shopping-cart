@@ -1,10 +1,10 @@
-import { FavoritesContextProvider } from '@/store/context/favorites-context';
+import { FavoritesContextProvider } from '@/context/favorites-context';
+import { Cart, Favorites, Header } from '@/components/Organisms/App';
+import { CartContextProvider } from '@/context/cart-context';
 import { createStackNavigator } from '@react-navigation/stack';
-import { CartContextProvider } from '@/store/context/cart-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { Home, ProductDetail } from '@/components/Templates';
 import useBreakpoints from '@/hooks/useBreakpoints';
-import Header from '@/components/Molecules/Header';
 import { View, StyleSheet } from 'react-native';
 
 export default function App() {
@@ -24,9 +24,14 @@ export default function App() {
                 component={Home}
                 options={{ headerShown: false }}
               />
-              <Stack.Screen name='ProductDetail' component={ProductDetail} />
+              <Stack.Screen
+                name='ProductDetail'
+                component={ProductDetail}
+              />
             </Stack.Navigator>
           </NavigationContainer>
+          <Cart />
+          <Favorites />
         </View>
       </FavoritesContextProvider>
     </CartContextProvider>

@@ -1,8 +1,8 @@
 import { StyleSheet, View, FlatList } from 'react-native';
-import { CartContext } from '@/store/context/cart-context';
+import { CartContext } from '@/context/cart-context';
+import { Product } from '@/components/Molecules/App';
 import { Container } from '@/components/Atoms';
 import { fetchProducts } from '@/util/http';
-import { Product } from '@/components/Molecules/Home';
 import withLoader from '@/hoc/withLoader';
 import { useContext } from 'react';
 

@@ -1,8 +1,8 @@
 import { Container, Heading, IconButton } from '@/components/Atoms';
-import { FavoritesContext } from '@/store/context/favorites-context';
+import { FavoritesContext } from '@/context/favorites-context';
 import { StyleSheet, View, Modal, FlatList } from 'react-native';
-import { CartContext } from '@/store/context/cart-context';
-import { Product } from '@/components/Molecules/Home';
+import { CartContext } from '@/context/cart-context';
+import { Product } from '@/components/Molecules/App';
 import { useContext } from 'react';
 
 export default function Favorites() {

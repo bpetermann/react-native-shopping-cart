@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
-import { FavoritesContext } from '@/store/context/favorites-context';
-import { CartContext } from '@/store/context/cart-context';
+import { FavoritesContext } from '@/context/favorites-context';
+import { CartContext } from '@/context/cart-context';
 import { BaseButton } from '@/components/Atoms';
 import { imageMap } from '@/lib/products';
 import { useContext } from 'react';

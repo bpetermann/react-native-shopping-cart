@@ -1,7 +1,7 @@
-import { FavoritesContext } from '@/store/context/favorites-context';
+import { FavoritesContext } from '@/context/favorites-context';
 import { StyleSheet, View, Image, Text } from 'react-native';
 import { Container, IconButton } from '@/components/Atoms';
-import { CartContext } from '@/store/context/cart-context';
+import { CartContext } from '@/context/cart-context';
 import { useContext } from 'react';
 
 export default function Header() {
