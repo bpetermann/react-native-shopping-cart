@@ -15,7 +15,9 @@ export default function Product({ item, navigate }) {
   return (
     <View style={styles.product}>
       <Pressable
-        onPress={() => navigate(item)}
+        onPress={() => {
+          navigate && navigate(item);
+        }}
         android_ripple={{ color: '#efeff0' }}
       >
         <Image style={styles.img} source={imageMap[item.name]} />

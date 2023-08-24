@@ -20,7 +20,7 @@ export default function Favorites() {
               img={require('@/assets/app/close.png')}
             />
           </View>
-          <Heading>Favorites</Heading>
+          <Heading>Favorites ({favoriteItems.length})</Heading>
           <View style={styles.products}>
             <FlatList
               data={favoriteItems}

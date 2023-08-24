@@ -1,7 +1,11 @@
 import { StyleSheet, View, Image, TextInput } from 'react-native';
 import { Container } from '@/components/Atoms';
+import { useRef } from 'react';
+import { Pressable } from 'react-native';
 
-export default function Searchbar({ search }) {
+export default function Searchbar() {
+  const ref = useRef();
+
   const searchproducts = (text) => {
     search(text.toLowerCase());
   };
@@ -9,11 +13,22 @@ export default function Searchbar({ search }) {
   return (
     <Container border>
       <View style={styles.searchbar}>
-        <TextInput style={styles.input} onChangeText={searchproducts} />
-        <Image
-          style={styles.img}
-          source={require('@/assets/app/search.png')}
+        <TextInput
+          ref={ref}
+          style={styles.input}
+          onChangeText={searchproducts}
         />
+        <Pressable
+          onPress={() => {
+            ref.current.focus();
+          }}
+          android_ripple={{ color: '#efeff0' }}
+        >
+          <Image
+            style={styles.img}
+            source={require('@/assets/app/search.png')}
+          />
+        </Pressable>
       </View>
     </Container>
   );

@@ -27,7 +27,7 @@ export default function App() {
               <Stack.Screen
                 name='ProductDetail'
                 component={ProductDetail}
-              />
+                options={({ route }) => ({ title: `${route.params.item.name} Detail` })}              />
             </Stack.Navigator>
           </NavigationContainer>
           <Cart />
