@@ -1,5 +1,5 @@
 import { FavoritesContextProvider } from '@/context/favorites-context';
-import { Cart, Favorites, Header } from '@/components/Organisms/App';
+import { Cart, Favorites } from '@/components/Organisms/App';
 import { CartContextProvider } from '@/context/cart-context';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -16,7 +16,6 @@ export default function App() {
     <CartContextProvider>
       <FavoritesContextProvider>
         <View style={isS ? styles.app : styles.web}>
-          <Header />
           <NavigationContainer>
             <Stack.Navigator>
               <Stack.Screen
@@ -27,7 +26,8 @@ export default function App() {
               <Stack.Screen
                 name='ProductDetail'
                 component={ProductDetail}
-                options={({ route }) => ({ title: `${route.params.item.name} Detail` })}              />
+                options={{ headerShown: false }}
+              />
             </Stack.Navigator>
           </NavigationContainer>
           <Cart />

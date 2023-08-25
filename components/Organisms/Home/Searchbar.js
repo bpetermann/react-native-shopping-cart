@@ -1,11 +1,9 @@
 import { StyleSheet, View, Image, TextInput } from 'react-native';
 import { Container } from '@/components/Atoms';
-import { useRef } from 'react';
+import { forwardRef } from 'react';
 import { Pressable } from 'react-native';
 
-export default function Searchbar() {
-  const ref = useRef();
-
+const Searchbar = forwardRef(({ focus, search }, ref) => {
   const searchproducts = (text) => {
     search(text.toLowerCase());
   };
@@ -18,12 +16,7 @@ export default function Searchbar() {
           style={styles.input}
           onChangeText={searchproducts}
         />
-        <Pressable
-          onPress={() => {
-            ref.current.focus();
-          }}
-          android_ripple={{ color: '#efeff0' }}
-        >
+        <Pressable onPress={focus} android_ripple={{ color: '#efeff0' }}>
           <Image
             style={styles.img}
             source={require('@/assets/app/search.png')}
@@ -32,7 +25,9 @@ export default function Searchbar() {
       </View>
     </Container>
   );
-}
+});
+
+export default Searchbar;
 
 const styles = StyleSheet.create({
   searchbar: {

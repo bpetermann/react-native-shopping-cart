@@ -4,18 +4,21 @@ import { Container, IconButton } from '@/components/Atoms';
 import { CartContext } from '@/context/cart-context';
 import { useContext } from 'react';
 
-export default function Header() {
-  const { amount, setShowCart: openCart } = useContext(CartContext);
+export default function Header({ navigation, focus }) {
   const { setShowFavorites, favoriteItems } = useContext(FavoritesContext);
+  const { amount, setShowCart: openCart } = useContext(CartContext);
 
   return (
     <Container bgColor={'#efeff0'} border>
       <View style={styles.header}>
         <View style={styles.nav}>
-          <Image style={styles.img} source={require('@/assets/app/logo.png')} />
-          <Image
-            style={styles.img}
-            source={require('@/assets/app/search.png')}
+          <IconButton
+            onClick={() => navigation && navigation.navigate('Home')}
+            img={require('@/assets/app/logo.png')}
+          />
+          <IconButton
+            onClick={() => focus && focus()}
+            img={require('@/assets/app/search.png')}
           />
           <View style={styles.iconButton}>
             <IconButton
