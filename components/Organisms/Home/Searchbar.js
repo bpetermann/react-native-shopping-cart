@@ -3,7 +3,7 @@ import { Container } from '@/components/Atoms';
 import { forwardRef } from 'react';
 import { Pressable } from 'react-native';
 
-const Searchbar = forwardRef(({ focus, search }, ref) => {
+export default forwardRef(({ focus, search }, ref) => {
   const searchproducts = (text) => {
     search(text.toLowerCase());
   };
@@ -26,8 +26,6 @@ const Searchbar = forwardRef(({ focus, search }, ref) => {
     </Container>
   );
 });
-
-export default Searchbar;
 
 const styles = StyleSheet.create({
   searchbar: {

@@ -2,17 +2,22 @@ import { FavoritesContext } from '@/context/favorites-context';
 import { StyleSheet, View, Image, Text } from 'react-native';
 import { Container, IconButton } from '@/components/Atoms';
 import { CartContext } from '@/context/cart-context';
+import { useRoute } from '@react-navigation/native';
 import { useContext } from 'react';
 
 export default function Header({ navigation, focus }) {
   const { setShowFavorites, favoriteItems } = useContext(FavoritesContext);
   const { amount, setShowCart: openCart } = useContext(CartContext);
+  const route = useRoute();
+  
+  const isHome = route.name === 'Home';
 
   return (
     <Container bgColor={'#efeff0'} border>
       <View style={styles.header}>
         <View style={styles.nav}>
           <IconButton
+            style={{ tintColor: isHome ? '#2e5492' : undefined }}
             onClick={() => navigation && navigation.navigate('Home')}
             img={require('@/assets/app/logo.png')}
           />
