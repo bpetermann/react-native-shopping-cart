@@ -1,9 +1,9 @@
+import { Home, ProductDetail, Authentication } from '@/components/Templates';
 import { FavoritesContextProvider } from '@/context/favorites-context';
 import { Cart, Favorites } from '@/components/Organisms/App';
 import { CartContextProvider } from '@/context/cart-context';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { Home, ProductDetail } from '@/components/Templates';
 import useBreakpoints from '@/hooks/useBreakpoints';
 import { View, StyleSheet } from 'react-native';
 
@@ -26,6 +26,11 @@ export default function App() {
               <Stack.Screen
                 name='ProductDetail'
                 component={ProductDetail}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name='Authentication'
+                component={Authentication}
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>

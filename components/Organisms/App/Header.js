@@ -9,7 +9,7 @@ export default function Header({ navigation, focus }) {
   const { setShowFavorites, favoriteItems } = useContext(FavoritesContext);
   const { amount, setShowCart: openCart } = useContext(CartContext);
   const route = useRoute();
-  
+
   const isHome = route.name === 'Home';
 
   return (
@@ -48,9 +48,9 @@ export default function Header({ navigation, focus }) {
             )}
           </View>
         </View>
-        <Image
-          style={styles.img}
-          source={require('@/assets/app/account.png')}
+        <IconButton
+          onClick={() => navigation && navigation.navigate('Authentication')}
+          img={require('@/assets/app/account.png')}
         />
       </View>
     </Container>

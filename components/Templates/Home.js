@@ -26,7 +26,7 @@ export default function Home({ navigation }) {
   return (
     <>
       <ScrollView>
-        <Header focus={focusSearch}/>
+        <Header focus={focusSearch} navigation={navigation} />
         <Searchbar ref={ref} focus={focusSearch} search={setSearch} />
         <Categories change={setCategory} category={category} />
         <Hero />
