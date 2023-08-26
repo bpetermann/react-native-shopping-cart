@@ -1,6 +1,6 @@
+import { Container, IconButton, NavigationButton } from '@/components/Atoms';
 import { FavoritesContext } from '@/context/favorites-context';
-import { StyleSheet, View, Image, Text } from 'react-native';
-import { Container, IconButton } from '@/components/Atoms';
+import { StyleSheet, View, Text } from 'react-native';
 import { CartContext } from '@/context/cart-context';
 import { useRoute } from '@react-navigation/native';
 import { useContext } from 'react';
@@ -10,16 +10,14 @@ export default function Header({ navigation, focus }) {
   const { amount, setShowCart: openCart } = useContext(CartContext);
   const route = useRoute();
 
-  const isHome = route.name === 'Home';
-
   return (
-    <Container bgColor={'#efeff0'} border>
+    <Container bgColor={'#efeff0'} border shadow>
       <View style={styles.header}>
         <View style={styles.nav}>
-          <IconButton
-            style={{ tintColor: isHome ? '#2e5492' : undefined }}
-            onClick={() => navigation && navigation.navigate('Home')}
+          <NavigationButton
+            onClick={() => navigation.navigate('Home')}
             img={require('@/assets/app/logo.png')}
+            isActive={route.name === 'Home'}
           />
           <IconButton
             onClick={() => focus && focus()}
@@ -48,9 +46,10 @@ export default function Header({ navigation, focus }) {
             )}
           </View>
         </View>
-        <IconButton
-          onClick={() => navigation && navigation.navigate('Authentication')}
+        <NavigationButton
+          onClick={() => navigation.navigate('Authentication')}
           img={require('@/assets/app/account.png')}
+          isActive={route.name === 'Authentication'}
         />
       </View>
     </Container>
@@ -104,5 +103,6 @@ const styles = StyleSheet.create({
   img: {
     width: 28,
     height: 28,
+    padding: 30,
   },
 });
