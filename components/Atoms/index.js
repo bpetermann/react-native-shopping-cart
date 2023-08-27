@@ -1,3 +1,4 @@
+export { default as AmountButton } from './AmountButton';
 export { default as BaseButton } from './BaseButton';
 export { default as Container } from './Container';
 export { default as Heading } from './Heading';

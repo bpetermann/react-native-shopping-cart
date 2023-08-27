@@ -2,7 +2,7 @@
 
 - Just learning react native by rebuilding my [shopping-cart](https://github.com/bpetermann/shopping-cart) project
 - The purpose of this project is to gain familiarity with React Native development through a small demo application
-- There isn't too much functionality built in. You can add products to the cart, search for products, and sort them by category
+- You can like products, add them to your cart, view a single product and so on.
 - Since I don't currently have access to an iOS system, I can't determine how the app will appear on iOS devices
 - The main focus lies on app development, causing the styling to be less suitable for web
 
@@ -29,7 +29,3 @@ npm start
 ### Recommended IDE Setup
 
 [VS Code](https://code.visualstudio.com/)
-
-### Demo
-
-[demo.webm](https://github.com/bpetermann/react-native-shopping-cart/assets/83461111/bd91f80e-8d02-4abc-9e9e-dffdd23cc14e)
