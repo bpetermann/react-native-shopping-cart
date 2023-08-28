@@ -4,10 +4,13 @@ import {
   AuthSwitch,
 } from '@/components/Molecules/Authentication';
 import { StyleSheet, View, Text } from 'react-native';
+import { AuthContext } from '@/context/auth-context';
 import { validEmail } from '@/helper';
+import { useContext } from 'react';
 import { useState } from 'react';
 
 export default function Login({ showRegister, setShowRegister }) {
+  const { login } = useContext(AuthContext);
   const [validate, setValidate] = useState(false);
   const [userData, setUserData] = useState({
     email: '',
@@ -42,7 +45,7 @@ export default function Login({ showRegister, setShowRegister }) {
             onClick={() => {
               setValidate(true);
               if (validEmail(email) && password.length) {
-                console.log(userData);
+                login(userData);
               }
             }}
             text={'Login'}

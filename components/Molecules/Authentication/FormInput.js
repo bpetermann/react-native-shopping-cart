@@ -1,12 +1,20 @@
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 
-export default function Login({ isValid, onChange, error, placer, password }) {
+export default function Login({
+  value,
+  isValid,
+  onChange,
+  error,
+  placer,
+  password,
+}) {
   return (
     <View style={{ width: '100%' }}>
       <TextInput
         placeholder={placer}
         secureTextEntry={password ? true : false}
         style={styles.input}
+        value={value}
         onChangeText={onChange}
       />
       {isValid && (

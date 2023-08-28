@@ -3,11 +3,14 @@ import {
   Confirm,
   AuthSwitch,
 } from '@/components/Molecules/Authentication';
+import { AuthContext } from '@/context/auth-context';
 import { StyleSheet, View, Text } from 'react-native';
 import { validEmail } from '@/helper';
+import { useContext } from 'react';
 import { useState } from 'react';
 
 export default function Register({ showRegister, setShowRegister }) {
+  const { register } = useContext(AuthContext);
   const [validate, setValidate] = useState(false);
   const [userData, setUserData] = useState({
     email: '',
@@ -27,6 +30,7 @@ export default function Register({ showRegister, setShowRegister }) {
             onChange={(text) => {
               setUserData((prev) => ({ ...prev, email: text }));
             }}
+            value={email}
             error={'Please enter a valid email address'}
             placer={'Email'}
           />
@@ -35,6 +39,7 @@ export default function Register({ showRegister, setShowRegister }) {
             onChange={(text) => {
               setUserData((prev) => ({ ...prev, password: text }));
             }}
+            value={password}
             error={'Your password must be at least 6 characters long'}
             placer={'Password'}
             password
@@ -44,6 +49,7 @@ export default function Register({ showRegister, setShowRegister }) {
             onChange={(text) => {
               setUserData((prev) => ({ ...prev, confirmPassword: text }));
             }}
+            value={confirmPassword}
             error={'Passwords do not match'}
             placer={'Confirm password'}
             password
@@ -56,7 +62,18 @@ export default function Register({ showRegister, setShowRegister }) {
                 password.length &&
                 password === confirmPassword
               ) {
-                console.log(userData);
+                const valid = register({
+                  email,
+                  password,
+                });
+                if (valid) {
+                  setUserData({
+                    email: '',
+                    password: '',
+                    confirmPassword: '',
+                  });
+                  setValidate(false);
+                }
               }
             }}
             text={'Register'}
