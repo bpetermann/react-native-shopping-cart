@@ -1,6 +1,6 @@
 import { StyleSheet, Image, Pressable } from 'react-native';
 
-export default function Button({ onClick, img, style }) {
+export default function IconButton({ onClick, img, style }) {
   return (
     <Pressable onPress={onClick} android_ripple={{ color: '#efeff0' }}>
       <Image style={[styles.img, style]} source={img} />

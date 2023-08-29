@@ -9,7 +9,11 @@ import { validEmail } from '@/helper';
 import { useContext } from 'react';
 import { useState } from 'react';
 
-export default function Register({ showRegister, setShowRegister }) {
+export default function Register({
+  navigation,
+  showRegister,
+  setShowRegister,
+}) {
   const { register } = useContext(AuthContext);
   const [validate, setValidate] = useState(false);
   const [userData, setUserData] = useState({
@@ -73,6 +77,7 @@ export default function Register({ showRegister, setShowRegister }) {
                     confirmPassword: '',
                   });
                   setValidate(false);
+                  navigation.navigate('Home');
                 }
               }
             }}

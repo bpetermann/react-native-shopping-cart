@@ -9,7 +9,7 @@ import { validEmail } from '@/helper';
 import { useContext } from 'react';
 import { useState } from 'react';
 
-export default function Login({ showRegister, setShowRegister }) {
+export default function Login({ navigation, showRegister, setShowRegister }) {
   const { login } = useContext(AuthContext);
   const [validate, setValidate] = useState(false);
   const [userData, setUserData] = useState({
@@ -44,8 +44,18 @@ export default function Login({ showRegister, setShowRegister }) {
           <Confirm
             onClick={() => {
               setValidate(true);
+
               if (validEmail(email) && password.length) {
-                login(userData);
+                const valid = login(userData);
+
+                if (valid) {
+                  setUserData({
+                    email: '',
+                    password: '',
+                  });
+                  setValidate(false);
+                  navigation.navigate('Home');
+                }
               }
             }}
             text={'Login'}

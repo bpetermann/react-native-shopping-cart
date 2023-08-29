@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 
-export default function Login({
+export default function FormInput({
   value,
   isValid,
   onChange,
@@ -12,6 +12,7 @@ export default function Login({
     <View style={{ width: '100%' }}>
       <TextInput
         placeholder={placer}
+        placeholderTextColor={'#747474'}
         secureTextEntry={password ? true : false}
         style={styles.input}
         value={value}

@@ -4,14 +4,21 @@ import {
   Products,
   Searchbar,
 } from '@/components/Organisms/Home';
+import { AuthContext } from '@/context/auth-context';
 import { Header } from '@/components/Organisms/App';
+import { useState, createRef, useEffect } from 'react';
 import { ScrollView } from 'react-native';
-import { useState, createRef } from 'react';
+import { useContext } from 'react';
 
 export default function Home({ navigation }) {
+  const { getUser } = useContext(AuthContext);
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
   const ref = createRef();
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const focusSearch = () => {
     ref.current.focus();

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, Pressable } from 'react-native';
 
-export default function Button({ onClick, title }) {
+export default function BaseButton({ onClick, title }) {
   return (
     <Pressable onPress={onClick} android_ripple={{ color: '#efeff0' }}>
       <Text style={styles.button}>{title}</Text>

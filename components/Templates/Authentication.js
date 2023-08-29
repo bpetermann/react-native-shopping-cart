@@ -1,10 +1,17 @@
-import { Login, Register } from '@/components/Organisms/Authentication';
+import {
+  Login,
+  Register,
+  LoggedIn,
+} from '@/components/Organisms/Authentication';
+import { AuthContext } from '@/context/auth-context';
 import { Header } from '@/components/Organisms/App';
 import { View, ScrollView } from 'react-native';
+import { useContext } from 'react';
 import { useState } from 'react';
 
-export default function ProductDetail({ navigation }) {
+export default function Authentication({ navigation }) {
   const [showRegister, setShowRegister] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const border = (
     <View
@@ -21,12 +28,23 @@ export default function ProductDetail({ navigation }) {
     <>
       <Header navigation={navigation} />
       <ScrollView>
-        <Login showRegister={showRegister} setShowRegister={setShowRegister} />
-        {border}
-        <Register
-          showRegister={showRegister}
-          setShowRegister={setShowRegister}
-        />
+        {!user ? (
+          <>
+            <Login
+              navigation={navigation}
+              showRegister={showRegister}
+              setShowRegister={setShowRegister}
+            />
+            {border}
+            <Register
+              navigation={navigation}
+              showRegister={showRegister}
+              setShowRegister={setShowRegister}
+            />
+          </>
+        ) : (
+          <LoggedIn />
+        )}
       </ScrollView>
     </>
   );

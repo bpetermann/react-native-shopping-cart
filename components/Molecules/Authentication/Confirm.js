@@ -1,6 +1,6 @@
 import { StyleSheet, Text, Pressable } from 'react-native';
 
-export default function Login({ onClick, text }) {
+export default function Confirm({ onClick, text }) {
   return (
     <Pressable
       style={styles.button}

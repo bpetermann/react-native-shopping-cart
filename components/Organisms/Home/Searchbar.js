@@ -1,9 +1,15 @@
 import { StyleSheet, View, Image, TextInput } from 'react-native';
+import { AuthContext } from '@/context/auth-context';
 import { Container } from '@/components/Atoms';
-import { forwardRef } from 'react';
 import { Pressable } from 'react-native';
+import { useContext } from 'react';
+import { forwardRef } from 'react';
 
 export default forwardRef(({ focus, search }, ref) => {
+  const { user } = useContext(AuthContext);
+
+  const userGreeting = `Welcome, ${user?.email?.split('@')?.[0]}!`;
+
   const searchproducts = (text) => {
     search(text.toLowerCase());
   };
@@ -15,6 +21,8 @@ export default forwardRef(({ focus, search }, ref) => {
           ref={ref}
           style={styles.input}
           onChangeText={searchproducts}
+          placeholder={user ? userGreeting : 'Search'}
+          placeholderTextColor={'#747474'}
         />
         <Pressable onPress={focus} android_ripple={{ color: '#efeff0' }}>
           <Image

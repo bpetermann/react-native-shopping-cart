@@ -1,6 +1,6 @@
 import { Container, Heading, IconButton } from '@/components/Atoms';
-import { FavoritesContext } from '@/context/favorites-context';
 import { StyleSheet, View, Modal, FlatList } from 'react-native';
+import { FavoritesContext } from '@/context/favorites-context';
 import { CartContext } from '@/context/cart-context';
 import { Product } from '@/components/Molecules/App';
 import { useContext } from 'react';

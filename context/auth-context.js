@@ -8,27 +8,64 @@ export const AuthContext = createContext({
 });
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(null);
 
   const register = (data) => {
     const userIndex = users.findIndex((i) => i.email === data.email);
+
     if (userIndex < 0) {
-      users.push(data);
+      users.push({ ...data, id: Math.floor(Math.random() * Date.now()) });
+      login(data);
       return true;
     }
+
+    return false;
   };
 
   const login = (data) => {
-    const user = users.filter((i) => i.email === data.email);
+    const user = users.filter((i) => i.email === data.email)?.[0];
+
     if (user) {
-      setUser(user[0]);
+      setUser({ email: user.email });
+      storeUser(user.email);
+      return true;
+    }
+
+    return false;
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('user');
+  };
+
+  const storeUser = async (user) => {
+    const data = JSON.stringify(user);
+    try {
+      localStorage.setItem('user', data);
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
+  const getUser = async () => {
+    try {
+      const value = await localStorage.getItem('user');
+      if (value !== null) {
+        const email = JSON.parse(value);
+        setUser({ email });
+      }
+    } catch (error) {
+      // Error retrieving data
     }
   };
 
   const value = {
     register: register,
     login: login,
+    logout: logout,
     user: user,
+    getUser: getUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

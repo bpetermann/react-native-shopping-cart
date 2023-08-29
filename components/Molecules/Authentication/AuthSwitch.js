@@ -1,6 +1,6 @@
 import { StyleSheet, Text, Pressable } from 'react-native';
 
-export default function Switch({ onClick, text }) {
+export default function AuthSwitch({ onClick, text }) {
   return (
     <Pressable
       onPress={onClick}

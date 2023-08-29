@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Image, View } from 'react-native';
 import { Heading } from '@/components/Atoms';
 
-export default function ProductDetail() {
+export default function DeliveryConditions() {
   return (
     <View
       style={{

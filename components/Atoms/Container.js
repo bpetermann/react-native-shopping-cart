@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 
-export default function Heading({ children, border, bgColor, shadow }) {
+export default function Container({ children, border, bgColor, shadow }) {
   return (
     <View
       style={[
