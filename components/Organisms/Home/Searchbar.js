@@ -8,7 +8,7 @@ import { forwardRef } from 'react';
 export default forwardRef(({ focus, search }, ref) => {
   const { user } = useContext(AuthContext);
 
-  const userGreeting = `Welcome, ${user?.email?.split('@')?.[0]}!`;
+  const userGreeting = `👋 Welcome, ${user?.email?.split('@')?.[0]}!`;
 
   const searchproducts = (text) => {
     search(text.toLowerCase());

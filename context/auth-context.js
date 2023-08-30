@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useState } from 'react';
 
 const users = [];
@@ -36,13 +37,13 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    AsyncStorage.removeItem('user');
   };
 
   const storeUser = async (user) => {
     const data = JSON.stringify(user);
     try {
-      localStorage.setItem('user', data);
+      AsyncStorage.setItem('user', data);
     } catch (error) {
       // Error saving data
     }
@@ -50,7 +51,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const getUser = async () => {
     try {
-      const value = await localStorage.getItem('user');
+      const value = await AsyncStorage.getItem('user');
       if (value !== null) {
         const email = JSON.parse(value);
         setUser({ email });
