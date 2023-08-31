@@ -77,7 +77,9 @@ export default function Register({
                     confirmPassword: '',
                   });
                   setValidate(false);
-                  navigation.navigate('Home');
+                  navigation.navigate('Home', {
+                    success: 'Registration',
+                  });
                 }
               }
             }}
