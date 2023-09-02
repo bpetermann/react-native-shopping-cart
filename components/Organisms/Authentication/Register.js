@@ -5,6 +5,7 @@ import {
 } from '@/components/Molecules/Authentication';
 import { AuthContext } from '@/context/auth-context';
 import { StyleSheet, View, Text } from 'react-native';
+import useFail from '@/hooks/useFail';
 import { validEmail } from '@/helper';
 import { useContext } from 'react';
 import { useState } from 'react';
@@ -15,12 +16,14 @@ export default function Register({
   setShowRegister,
 }) {
   const { register } = useContext(AuthContext);
+  const [error, setError] = useState(null);
   const [validate, setValidate] = useState(false);
   const [userData, setUserData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
   });
+  useFail(error);
 
   const { email, password, confirmPassword } = userData;
 
@@ -60,27 +63,30 @@ export default function Register({
           />
           <Confirm
             onClick={() => {
+              setError(null);
               setValidate(true);
               if (
                 validEmail(email) &&
                 password.length &&
                 password === confirmPassword
               ) {
-                const valid = register({
+                const isSucces = register({
                   email,
                   password,
                 });
-                if (valid) {
+                if (isSucces) {
+                  navigation.navigate('Home', {
+                    success: 'Registration',
+                  });
+                } else {
+                  setError('Registration');
                   setUserData({
                     email: '',
                     password: '',
                     confirmPassword: '',
                   });
-                  setValidate(false);
-                  navigation.navigate('Home', {
-                    success: 'Registration',
-                  });
                 }
+                setValidate(false);
               }
             }}
             text={'Register'}
