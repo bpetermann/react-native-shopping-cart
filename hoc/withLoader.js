@@ -6,11 +6,11 @@ export default function withLoader(Element, fetch) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-      const getProducts = async () => {
+      const getData = async () => {
         const data = await fetch();
         setData(data);
       };
-      getProducts();
+      getData();
     }, []);
 
     if (!data) {
