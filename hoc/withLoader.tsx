@@ -1,9 +1,13 @@
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ComponentType } from 'react';
+import { Product } from '@/util/types';
 
-export default function withLoader(Element, fetch) {
-  return (props) => {
-    const [data, setData] = useState([]);
+export default function withLoader<P extends object>(
+  Element: ComponentType<P>,
+  fetch: () => Promise<Product[]>
+) {
+  return (props: P) => {
+    const [data, setData] = useState<Product[]>([]);
 
     useEffect(() => {
       const getData = async () => {

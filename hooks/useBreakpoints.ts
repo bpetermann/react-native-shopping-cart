@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 
 export default function useBreakpoints() {
   const { width } = useWindowDimensions();
-  const [isS, setIsS] = useState('');
-  const [isM, setIsM] = useState('');
+  const [isS, setIsS] = useState<boolean>(false);
+  const [isM, setIsM] = useState<boolean>(false);
 
   useEffect(() => {
     setIsS(width < 480 ? true : false);
