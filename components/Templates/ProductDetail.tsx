@@ -3,10 +3,18 @@ import {
   ProductDetails,
 } from '@/components/Organisms/ProductDetail';
 import { StyleSheet, Image, View, ScrollView } from 'react-native';
+import { NavigationProp } from '@react-navigation/native';
 import { Header } from '@/components/Organisms/App';
 import { imageMap } from '@/lib/products';
+import { Product } from '@/util/types';
 
-export default function ProductDetail({ navigation, route }) {
+type Props = {
+  onClick: () => {};
+  navigation: NavigationProp<any, any>;
+  route: { params: { item: Product } };
+};
+
+const ProductDetail: React.FC<Props> = ({ navigation, route }) => {
   const { item } = route.params;
 
   return (
@@ -23,7 +31,7 @@ export default function ProductDetail({ navigation, route }) {
       </ScrollView>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -37,3 +45,5 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 });
+
+export default ProductDetail;

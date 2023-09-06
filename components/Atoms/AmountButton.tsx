@@ -1,6 +1,22 @@
-import { StyleSheet, View, Text, Pressable, Image } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  Image,
+  ImageSourcePropType,
+  StyleProp,
+  ImageStyle,
+} from 'react-native';
 
-export default function AmountButton({ img, onClick, style, amount }) {
+type Props = {
+  onClick: () => void;
+  img: ImageSourcePropType;
+  style?: StyleProp<ImageStyle>;
+  amount: number;
+};
+
+const AmountButton: React.FC<Props> = ({ img, onClick, style, amount }) => {
   return (
     <View style={styles.iconButton}>
       <Pressable onPress={onClick} android_ripple={{ color: '#efeff0' }}>
@@ -13,7 +29,7 @@ export default function AmountButton({ img, onClick, style, amount }) {
       )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   iconButton: {
@@ -40,3 +56,5 @@ const styles = StyleSheet.create({
     height: 28,
   },
 });
+
+export default AmountButton;

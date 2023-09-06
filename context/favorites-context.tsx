@@ -1,18 +1,35 @@
-import { createContext, useState } from 'react';
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useState,
+} from 'react';
+import { Product } from '@/util/types';
 
-export const FavoritesContext = createContext({
+interface FavoritesContext {
+  favoriteItems: Product[];
+  showFavorites: boolean;
+  setShowFavorites: Dispatch<SetStateAction<boolean>>;
+  toggleFavorite: (item: Product) => void;
+}
+
+export const FavoritesContext = createContext<FavoritesContext>({
   favoriteItems: [],
   showFavorites: false,
   setShowFavorites: () => {},
   toggleFavorite: () => {},
-  removeFavoriteItem: () => {},
 });
 
-export const FavoritesContextProvider = ({ children }) => {
-  const [favoriteItems, setFavoriteItems] = useState([]);
+export const FavoritesContextProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
+  const [favoriteItems, setFavoriteItems] = useState<Product[]>([]);
   const [showFavorites, setShowFavorites] = useState(false);
 
-  const toggleFavorite = (item) => {
+  const toggleFavorite = (item: Product) => {
     const index = favoriteItems.findIndex((i) => i.id === item.id);
 
     if (index < 0) {

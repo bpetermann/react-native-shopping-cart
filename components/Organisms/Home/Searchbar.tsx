@@ -1,16 +1,20 @@
 import { StyleSheet, View, Image, TextInput } from 'react-native';
 import { AuthContext } from '@/context/auth-context';
 import { Container } from '@/components/Atoms';
+import { useContext, forwardRef, SetStateAction, Dispatch } from 'react';
 import { Pressable } from 'react-native';
-import { useContext } from 'react';
-import { forwardRef } from 'react';
 
-export default forwardRef(({ focus, search }, ref) => {
+type Props = {
+  focus: () => void;
+  search: Dispatch<SetStateAction<string>>;
+};
+
+const Searchbar = forwardRef<TextInput, Props>(({ focus, search }, ref) => {
   const { user } = useContext(AuthContext);
 
   const userGreeting = `👋 Welcome, ${user?.email?.split('@')?.[0]}!`;
 
-  const searchproducts = (text) => {
+  const searchproducts = (text: string) => {
     search(text.toLowerCase());
   };
 
@@ -53,3 +57,5 @@ const styles = StyleSheet.create({
     height: 28,
   },
 });
+
+export default Searchbar;

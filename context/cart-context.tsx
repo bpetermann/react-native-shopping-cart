@@ -1,20 +1,37 @@
-import { createContext, useState, useEffect } from 'react';
+import {
+  createContext,
+  useState,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+  ReactNode,
+} from 'react';
+import { Product } from '@/util/types';
 
-export const CartContext = createContext({
+interface CartContext {
+  cartItems: Product[];
+  amount: number;
+  showCart: boolean;
+  setShowCart: Dispatch<SetStateAction<boolean>>;
+  addCartItem: (item: Product) => void;
+  removeCartItem: (item: Product) => void;
+}
+
+export const CartContext = createContext<CartContext>({
   cartItems: [],
-  amount: undefined,
+  amount: 0,
   showCart: false,
   setShowCart: () => {},
   addCartItem: () => {},
   removeCartItem: () => {},
 });
 
-export const CartContextProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+export const CartContextProvider = ({ children }: { children: ReactNode }) => {
+  const [cartItems, setCartItems] = useState<Product[]>([]);
   const [showCart, setShowCart] = useState(false);
-  const [amount, setAmount] = useState([]);
+  const [amount, setAmount] = useState(0);
 
-  const addCartItem = (product) => {
+  const addCartItem = (product: Product) => {
     setCartItems((currentItems) => {
       const existingCartItemIndex = currentItems.findIndex(
         (item) => item.name === product.name
@@ -35,7 +52,7 @@ export const CartContextProvider = ({ children }) => {
     });
   };
 
-  const removeCartItem = (product) => {
+  const removeCartItem = (product: Product) => {
     setCartItems((currentItems) => {
       const existingCartItemIndex = currentItems.findIndex(
         (item) => item.name === product.name

@@ -1,4 +1,5 @@
 import { StyleSheet, View, FlatList } from 'react-native';
+import { Product as ProductType } from '@/util/types';
 import { CartContext } from '@/context/cart-context';
 import { Product } from '@/components/Molecules/App';
 import { Container } from '@/components/Atoms';
@@ -6,11 +7,17 @@ import { fetchProducts } from '@/util/http';
 import withLoader from '@/hoc/withLoader';
 import { useContext } from 'react';
 
-export function Products({ category, search, navigate, data }) {
-  const { addCartItem: add } = useContext(CartContext);
+type Props = {
+  category: string;
+  search: string;
+  navigate: (item: ProductType) => void;
+  data?: ProductType[];
+};
+
+const Products: React.FC<Props> = ({ category, search, navigate, data }) => {
 
   const filteredProducts = () =>
-    data.filter((product) => {
+    data?.filter((product) => {
       return (
         product.description.toLowerCase().includes(search) &&
         product.category.includes(category)
@@ -23,15 +30,13 @@ export function Products({ category, search, navigate, data }) {
         <FlatList
           horizontal
           data={filteredProducts()}
-          renderItem={({ item }) => (
-            <Product add={add} item={item} navigate={navigate} />
-          )}
+          renderItem={({ item }) => <Product item={item} navigate={navigate} />}
           keyExtractor={({ id }) => id}
         />
       </View>
     </Container>
   );
-}
+};
 
 const styles = StyleSheet.create({
   products: {

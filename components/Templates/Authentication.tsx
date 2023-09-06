@@ -8,8 +8,13 @@ import { Header } from '@/components/Organisms/App';
 import { View, ScrollView } from 'react-native';
 import { useContext } from 'react';
 import { useState } from 'react';
+import { NavigationProp } from '@react-navigation/native';
 
-export default function Authentication({ navigation }) {
+type Props = {
+  navigation: NavigationProp<any, any>;
+};
+
+const Authentication: React.FC<Props> = ({ navigation }) => {
   const [showRegister, setShowRegister] = useState(false);
   const { user } = useContext(AuthContext);
 
@@ -48,4 +53,6 @@ export default function Authentication({ navigation }) {
       </ScrollView>
     </>
   );
-}
+};
+
+export default Authentication;

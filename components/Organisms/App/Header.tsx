@@ -5,12 +5,18 @@ import {
   AmountButton,
 } from '@/components/Atoms';
 import { FavoritesContext } from '@/context/favorites-context';
+import { NavigationProp } from '@react-navigation/native';
 import { CartContext } from '@/context/cart-context';
 import { useRoute } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
 import { useContext } from 'react';
 
-export default function Header({ navigation, focus }) {
+type Props = {
+  navigation: NavigationProp<any, any>;
+  focus?: () => void;
+};
+
+const Header: React.FC<Props> = ({ navigation, focus }) => {
   const { setShowFavorites, favoriteItems } = useContext(FavoritesContext);
   const { amount, setShowCart: openCart } = useContext(CartContext);
   const route = useRoute();
@@ -25,7 +31,7 @@ export default function Header({ navigation, focus }) {
             isActive={route.name === 'Home'}
           />
           <IconButton
-            onClick={() => focus && focus()}
+            onClick={async () => focus && focus()}
             img={require('@/assets/app/search.png')}
           />
           <AmountButton
@@ -47,7 +53,7 @@ export default function Header({ navigation, focus }) {
       </View>
     </Container>
   );
-}
+};
 
 const styles = StyleSheet.create({
   header: {
@@ -65,3 +71,5 @@ const styles = StyleSheet.create({
     maxWidth: 320,
   },
 });
+
+export default Header;

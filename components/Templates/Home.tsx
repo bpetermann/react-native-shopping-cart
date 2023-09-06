@@ -4,30 +4,38 @@ import {
   Products,
   Searchbar,
 } from '@/components/Organisms/Home';
+import { NavigationProp } from '@react-navigation/native';
 import { useState, createRef, useEffect } from 'react';
 import { AuthContext } from '@/context/auth-context';
 import { Header } from '@/components/Organisms/App';
-import { ScrollView } from 'react-native';
+import { ScrollView, TextInput } from 'react-native';
+import { Product } from '@/util/types';
 import { useSuccess } from '@/hooks';
 import { useContext } from 'react';
 
-export default function Home({ navigation, route }) {
+type Props = {
+  onClick: () => {};
+  navigation: NavigationProp<any, any>;
+  route?: { params: { success: string } };
+};
+
+const Home: React.FC<Props> = ({ navigation, route }) => {
   const { getUser } = useContext(AuthContext);
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
   const success = route?.params?.success;
   useSuccess(success);
-  const ref = createRef();
+  const ref = createRef<TextInput>();
 
   useEffect(() => {
     getUser();
   }, []);
 
   const focusSearch = () => {
-    ref.current.focus();
+    ref?.current?.focus();
   };
 
-  const showDetail = (item) => {
+  const showDetail = (item: Product) => {
     navigation.navigate('ProductDetail', {
       item,
     });
@@ -44,4 +52,6 @@ export default function Home({ navigation, route }) {
       </ScrollView>
     </>
   );
-}
+};
+
+export default Home;

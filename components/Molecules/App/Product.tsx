@@ -1,11 +1,17 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { FavoritesContext } from '@/context/favorites-context';
+import { Product as ProductType } from '@/util/types';
 import { CartContext } from '@/context/cart-context';
 import { BaseButton } from '@/components/Atoms';
 import { imageMap } from '@/lib/products';
 import { useContext } from 'react';
 
-export default function Product({ item, navigate }) {
+type Props = {
+  item: ProductType;
+  navigate: (item: ProductType) => void;
+};
+
+const Product: React.FC<Props> = ({ item, navigate }) => {
   const { addCartItem: add } = useContext(CartContext);
   const { toggleFavorite: toggle, favoriteItems } =
     useContext(FavoritesContext);
@@ -37,7 +43,7 @@ export default function Product({ item, navigate }) {
       </Pressable>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   product: {
@@ -64,3 +70,5 @@ const styles = StyleSheet.create({
     height: 28,
   },
 });
+
+export default Product;

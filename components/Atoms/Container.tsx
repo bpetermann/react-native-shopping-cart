@@ -1,6 +1,14 @@
 import { View, StyleSheet } from 'react-native';
+import { ReactNode } from 'react';
 
-export default function Container({ children, border, bgColor, shadow }) {
+type Props = {
+  children: ReactNode;
+  border?: boolean;
+  bgColor?: string;
+  shadow?: boolean;
+};
+
+const Container: React.FC<Props> = ({ children, border, bgColor, shadow }) => {
   return (
     <View
       style={[
@@ -13,7 +21,7 @@ export default function Container({ children, border, bgColor, shadow }) {
       {children}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -33,3 +41,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#171717',
   },
 });
+
+export default Container;
