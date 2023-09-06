@@ -5,8 +5,8 @@ import { CartContextProvider } from '@/context/cart-context';
 import { AuthContextProvider } from '@/context/auth-context';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import useBreakpoints from '@/hooks/useBreakpoints';
 import { View, StyleSheet } from 'react-native';
+import { useBreakpoints } from '@/hooks';
 
 export default function App() {
   const { isS } = useBreakpoints();

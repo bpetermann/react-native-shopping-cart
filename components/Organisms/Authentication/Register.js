@@ -5,9 +5,9 @@ import {
 } from '@/components/Molecules/Authentication';
 import { AuthContext } from '@/context/auth-context';
 import { StyleSheet, View, Text } from 'react-native';
-import useFail from '@/hooks/useFail';
 import { validEmail } from '@/helper';
 import { useContext } from 'react';
+import { useFail } from '@/hooks';
 import { useState } from 'react';
 
 export default function Register({

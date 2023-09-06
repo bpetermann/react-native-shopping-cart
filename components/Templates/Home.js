@@ -7,8 +7,8 @@ import {
 import { useState, createRef, useEffect } from 'react';
 import { AuthContext } from '@/context/auth-context';
 import { Header } from '@/components/Organisms/App';
-import useSuccess from '@/hooks/useSuccess';
 import { ScrollView } from 'react-native';
+import { useSuccess } from '@/hooks';
 import { useContext } from 'react';
 
 export default function Home({ navigation, route }) {

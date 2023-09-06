@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import useBreakpoints from '@/hooks/useBreakpoints';
+import { useBreakpoints } from '@/hooks';
 
 export default function Hero() {
   const { isM } = useBreakpoints();
