@@ -7,10 +7,10 @@ import {
 import { NavigationProp } from '@react-navigation/native';
 import { useState, createRef, useEffect } from 'react';
 import { AuthContext } from '@/context/auth-context';
-import { Header } from '@/components/Organisms/App';
 import { ScrollView, TextInput } from 'react-native';
+import { Header } from '@/components/Organisms/App';
 import { Product } from '@/util/types';
-import { useBreakpoints, useSuccess } from '@/hooks';
+import { useSuccess } from '@/hooks';
 import { useContext } from 'react';
 
 type Props = {
@@ -24,10 +24,10 @@ type Props = {
 
 const Home = ({ navigation, route }: Props) => {
   const { getUser } = useContext(AuthContext);
-  const { isS } = useBreakpoints();
+  const success = route?.params?.success;
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
-  const success = route?.params?.success;
+
   useSuccess(success);
 
   const ref = createRef<TextInput>();

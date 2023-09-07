@@ -6,9 +6,9 @@ import {
 import { NavigationProp } from '@react-navigation/native';
 import { StyleSheet, View, Text } from 'react-native';
 import { AuthContext } from '@/context/auth-context';
+import { useContext, useState } from 'react';
 import { validEmail } from '@/helper';
-import { useContext } from 'react';
-import { useState } from 'react';
+import { useFail } from '@/hooks';
 
 type Props = {
   navigation: NavigationProp<any, any>;
@@ -21,12 +21,15 @@ const Login: React.FC<Props> = ({
   showRegister,
   setShowRegister,
 }) => {
+  const [error, setError] = useState<string | undefined>(undefined);
   const { login } = useContext(AuthContext);
   const [validate, setValidate] = useState(false);
   const [userData, setUserData] = useState({
     email: '',
     password: '',
   });
+
+  useFail(error);
 
   const { email, password } = userData;
 
@@ -45,7 +48,7 @@ const Login: React.FC<Props> = ({
             placer={'Email'}
           />
           <FormInput
-            isValid={validate && !password.length}
+            isValid={validate && !(password.trim().length >= 6)}
             onChange={(text) => {
               setUserData((prev) => ({ ...prev, password: text }));
             }}
@@ -56,6 +59,7 @@ const Login: React.FC<Props> = ({
           />
           <Confirm
             onClick={() => {
+              setError(undefined);
               setValidate(true);
 
               if (validEmail(email) && password.length) {
@@ -67,6 +71,8 @@ const Login: React.FC<Props> = ({
                   });
                   setValidate(false);
                   navigation.navigate('Home');
+                } else {
+                  setError('Login');
                 }
               }
             }}
