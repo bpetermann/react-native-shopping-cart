@@ -1,6 +1,12 @@
-import { Image, Pressable, View } from 'react-native';
+import { Image, ImageSourcePropType, Pressable, View } from 'react-native';
 
-export default function NavigationButton({ isActive, onClick, img }) {
+type Props = {
+  isActive: boolean;
+  onClick: () => void;
+  img: ImageSourcePropType;
+};
+
+const NavigationButton: React.FC<Props> = ({ isActive, onClick, img }) => {
   return (
     <View
       style={{
@@ -23,4 +29,6 @@ export default function NavigationButton({ isActive, onClick, img }) {
       )}
     </View>
   );
-}
+};
+
+export default NavigationButton;

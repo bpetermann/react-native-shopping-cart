@@ -1,8 +1,13 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { CartContext } from '@/context/cart-context';
+import { Product } from '@/util/types';
 import { useContext } from 'react';
 
-export default function CartItem({ item }) {
+type Props = {
+  item: Product;
+};
+
+const CartItem: React.FC<Props> = ({ item }) => {
   const { addCartItem: add, removeCartItem: remove } = useContext(CartContext);
 
   return (
@@ -24,7 +29,7 @@ export default function CartItem({ item }) {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   heading: {
@@ -62,3 +67,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+export default CartItem;

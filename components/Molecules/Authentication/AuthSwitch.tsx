@@ -1,6 +1,11 @@
 import { StyleSheet, Text, Pressable } from 'react-native';
 
-export default function AuthSwitch({ onClick, text }) {
+type Props = {
+  onClick: () => void;
+  text: string;
+};
+
+const AuthSwitch: React.FC<Props> = ({ onClick, text }) => {
   return (
     <Pressable
       onPress={onClick}
@@ -24,7 +29,7 @@ export default function AuthSwitch({ onClick, text }) {
       </Text>
     </Pressable>
   );
-}
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -33,3 +38,5 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
+
+export default AuthSwitch;

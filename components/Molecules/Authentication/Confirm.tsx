@@ -1,6 +1,11 @@
 import { StyleSheet, Text, Pressable } from 'react-native';
 
-export default function Confirm({ onClick, text }) {
+type Props = {
+  onClick: () => void;
+  text: string;
+};
+
+const Confirm: React.FC<Props> = ({ onClick, text }) => {
   return (
     <Pressable
       style={styles.button}
@@ -17,7 +22,7 @@ export default function Confirm({ onClick, text }) {
       </Text>
     </Pressable>
   );
-}
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -26,3 +31,5 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
+
+export default Confirm;
