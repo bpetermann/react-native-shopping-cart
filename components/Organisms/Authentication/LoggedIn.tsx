@@ -2,7 +2,7 @@ import { View, Pressable, Text } from 'react-native';
 import { AuthContext } from '@/context/auth-context';
 import { useContext } from 'react';
 
-export default function LoggedIn() {
+const LoggedIn = () => {
   const { logout } = useContext(AuthContext);
 
   return (
@@ -36,4 +36,6 @@ export default function LoggedIn() {
       </Pressable>
     </View>
   );
-}
+};
+
+export default LoggedIn;

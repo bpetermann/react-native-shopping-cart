@@ -1,9 +1,14 @@
 import { StyleSheet, Text, Image, View, Pressable } from 'react-native';
 import { FavoritesContext } from '@/context/favorites-context';
 import { CartContext } from '@/context/cart-context';
+import { Product } from '@/util/types';
 import { useContext } from 'react';
 
-export default function ProductDetail({ item }) {
+type Props = {
+  item: Product;
+};
+
+const ProductDetail: React.FC<Props> = ({ item }) => {
   const { toggleFavorite, favoriteItems } = useContext(FavoritesContext);
   const { addCartItem: add } = useContext(CartContext);
 
@@ -42,7 +47,7 @@ export default function ProductDetail({ item }) {
       </View>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -72,3 +77,5 @@ const styles = StyleSheet.create({
     height: 28,
   },
 });
+
+export default ProductDetail;

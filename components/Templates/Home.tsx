@@ -10,7 +10,7 @@ import { AuthContext } from '@/context/auth-context';
 import { Header } from '@/components/Organisms/App';
 import { ScrollView, TextInput } from 'react-native';
 import { Product } from '@/util/types';
-import { useSuccess } from '@/hooks';
+import { useBreakpoints, useSuccess } from '@/hooks';
 import { useContext } from 'react';
 
 type Props = {
@@ -21,10 +21,13 @@ type Props = {
 
 const Home: React.FC<Props> = ({ navigation, route }) => {
   const { getUser } = useContext(AuthContext);
+  const { isS } = useBreakpoints();
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
   const success = route?.params?.success;
-  useSuccess(success);
+  if (isS) {
+    useSuccess(success);
+  }
   const ref = createRef<TextInput>();
 
   useEffect(() => {

@@ -1,10 +1,10 @@
 import { StyleSheet, View, Modal, FlatList, Button } from 'react-native';
 import { Container, Heading, IconButton } from '@/components/Atoms';
 import { CartContext } from '@/context/cart-context';
-import {CartItem} from '@/components/Molecules/App';
+import { CartItem } from '@/components/Molecules/App';
 import { useContext } from 'react';
 
-export default function Cart() {
+const Cart = () => {
   const {
     cartItems,
     amount,
@@ -58,7 +58,7 @@ export default function Cart() {
       </Container>
     </Modal>
   );
-}
+};
 
 const styles = StyleSheet.create({
   cart: {
@@ -91,3 +91,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
+
+export default Cart;

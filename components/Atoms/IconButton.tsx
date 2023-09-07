@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 type Props = {
-  onClick: () => {};
+  onClick: () => void;
   img: ImageSourcePropType;
   style?: StyleProp<ImageStyle>;
 };

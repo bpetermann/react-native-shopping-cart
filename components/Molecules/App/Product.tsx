@@ -8,7 +8,7 @@ import { useContext } from 'react';
 
 type Props = {
   item: ProductType;
-  navigate: (item: ProductType) => void;
+  navigate?: (item: ProductType) => void;
 };
 
 const Product: React.FC<Props> = ({ item, navigate }) => {

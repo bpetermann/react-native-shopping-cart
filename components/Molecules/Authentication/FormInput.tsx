@@ -1,13 +1,22 @@
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 
-export default function FormInput({
+type Props = {
+  value: string;
+  isValid: boolean;
+  onChange: (text: string) => void;
+  error: string;
+  placer: string;
+  password?: boolean;
+};
+
+const FormInput: React.FC<Props> = ({
   value,
   isValid,
   onChange,
   error,
   placer,
   password,
-}) {
+}) => {
   return (
     <View style={{ width: '100%' }}>
       <TextInput
@@ -30,7 +39,7 @@ export default function FormInput({
       )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   input: {
@@ -41,3 +50,5 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
 });
+
+export default FormInput;

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { useBreakpoints } from '@/hooks';
 
-export default function Hero() {
+const Hero = () => {
   const { isM } = useBreakpoints();
 
   return (
@@ -20,7 +20,7 @@ export default function Hero() {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     paddingBottom: 16,
     paddingLeft: 16,
-    gap: 4,
     width: '100%',
     maxWidth: 1216,
     gap: 8,
@@ -71,3 +70,5 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 });
+
+export default Hero;

@@ -1,14 +1,12 @@
 import { Container, Heading, IconButton } from '@/components/Atoms';
 import { StyleSheet, View, Modal, FlatList } from 'react-native';
 import { FavoritesContext } from '@/context/favorites-context';
-import { CartContext } from '@/context/cart-context';
 import { Product } from '@/components/Molecules/App';
 import { useContext } from 'react';
 
-export default function Favorites() {
+const Favorites = () => {
   const { favoriteItems, showFavorites, setShowFavorites } =
     useContext(FavoritesContext);
-  const { addToCart: add } = useContext(CartContext);
 
   return (
     <Modal visible={showFavorites} animationType='fade'>
@@ -24,7 +22,7 @@ export default function Favorites() {
           <View style={styles.products}>
             <FlatList
               data={favoriteItems}
-              renderItem={({ item }) => <Product add={add} item={item} />}
+              renderItem={({ item }) => <Product item={item} />}
               keyExtractor={({ id }) => id}
             />
           </View>
@@ -32,7 +30,7 @@ export default function Favorites() {
       </Container>
     </Modal>
   );
-}
+};
 
 const styles = StyleSheet.create({
   favs: {
@@ -53,3 +51,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
 });
+
+export default Favorites;

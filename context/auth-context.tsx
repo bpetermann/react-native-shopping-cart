@@ -3,9 +3,10 @@ import { ReactNode, createContext, useState } from 'react';
 
 interface UserContext {
   user: { email: string } | null;
-  register?: (data: { email: string; name: string; password: string }) => void;
-  login?: (email: string) => void;
+  register: (data: { email: string; password: string }) => boolean;
+  login: (email: string) => boolean;
   getUser: () => void;
+  logout: () => void;
 }
 
 type User = {
@@ -18,19 +19,20 @@ const users: User[] = [];
 
 export const AuthContext = createContext<UserContext>({
   user: null,
-  register: () => {},
-  login: () => {},
+  register: () => {
+    return false;
+  },
+  login: () => {
+    return false;
+  },
   getUser: () => {},
+  logout: () => {},
 });
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<{ email: string } | null>(null);
 
-  const register = (data: {
-    email: string;
-    name: string;
-    password: string;
-  }) => {
+  const register = (data: { email: any; password: string }) => {
     const userIndex = users.findIndex((i) => i.email === data.email);
 
     if (userIndex < 0) {
@@ -50,7 +52,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       storeUser(user.email);
       return true;
     }
-
     return false;
   };
 

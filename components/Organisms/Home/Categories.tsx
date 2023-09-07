@@ -2,8 +2,13 @@ import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { Container } from '@/components/Atoms';
 import { categories } from '@/lib/categories';
 
-export default function Categories({ change, category }) {
-  const changeCategory = (name) => {
+type Props = {
+  category: string;
+  change: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Categories: React.FC<Props> = ({ change, category }) => {
+  const changeCategory = (name: string) => {
     change(name);
   };
 
@@ -22,7 +27,7 @@ export default function Categories({ change, category }) {
       </View>
     </Container>
   );
-}
+};
 
 const styles = StyleSheet.create({
   categories: {
@@ -39,3 +44,5 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+
+export default Categories;

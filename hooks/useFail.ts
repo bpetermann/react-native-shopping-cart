@@ -1,7 +1,7 @@
 import { ToastAndroid } from 'react-native';
 import { useEffect } from 'react';
 
-export default function useSuccess(fail: string) {
+export default function useSuccess(fail: string | undefined) {
   useEffect(() => {
     if (fail) {
       (function () {

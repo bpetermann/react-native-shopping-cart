@@ -3,13 +3,24 @@ import {
   Confirm,
   AuthSwitch,
 } from '@/components/Molecules/Authentication';
+import { NavigationProp } from '@react-navigation/native';
 import { StyleSheet, View, Text } from 'react-native';
 import { AuthContext } from '@/context/auth-context';
 import { validEmail } from '@/helper';
 import { useContext } from 'react';
 import { useState } from 'react';
 
-export default function Login({ navigation, showRegister, setShowRegister }) {
+type Props = {
+  navigation: NavigationProp<any, any>;
+  showRegister: boolean;
+  setShowRegister: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Login: React.FC<Props> = ({
+  navigation,
+  showRegister,
+  setShowRegister,
+}) => {
   const { login } = useContext(AuthContext);
   const [validate, setValidate] = useState(false);
   const [userData, setUserData] = useState({
@@ -29,6 +40,7 @@ export default function Login({ navigation, showRegister, setShowRegister }) {
             onChange={(text) => {
               setUserData((prev) => ({ ...prev, email: text }));
             }}
+            value={email}
             error={'Please enter a valid email address'}
             placer={'Email'}
           />
@@ -37,6 +49,7 @@ export default function Login({ navigation, showRegister, setShowRegister }) {
             onChange={(text) => {
               setUserData((prev) => ({ ...prev, password: text }));
             }}
+            value={password}
             error={'Please enter your password'}
             placer={'Password'}
             password
@@ -46,8 +59,7 @@ export default function Login({ navigation, showRegister, setShowRegister }) {
               setValidate(true);
 
               if (validEmail(email) && password.length) {
-                const valid = login(userData);
-
+                const valid = login(email);
                 if (valid) {
                   setUserData({
                     email: '',
@@ -71,7 +83,7 @@ export default function Login({ navigation, showRegister, setShowRegister }) {
       )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -82,3 +94,5 @@ const styles = StyleSheet.create({
     gap: 32,
   },
 });
+
+export default Login;

@@ -3,6 +3,7 @@ import {
   Confirm,
   AuthSwitch,
 } from '@/components/Molecules/Authentication';
+import { NavigationProp } from '@react-navigation/native';
 import { AuthContext } from '@/context/auth-context';
 import { StyleSheet, View, Text } from 'react-native';
 import { validEmail } from '@/helper';
@@ -10,13 +11,19 @@ import { useContext } from 'react';
 import { useFail } from '@/hooks';
 import { useState } from 'react';
 
-export default function Register({
+type Props = {
+  navigation: NavigationProp<any, any>;
+  showRegister: boolean;
+  setShowRegister: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Register: React.FC<Props> = ({
   navigation,
   showRegister,
   setShowRegister,
-}) {
+}) => {
   const { register } = useContext(AuthContext);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | undefined>(undefined);
   const [validate, setValidate] = useState(false);
   const [userData, setUserData] = useState({
     email: '',
@@ -63,7 +70,7 @@ export default function Register({
           />
           <Confirm
             onClick={() => {
-              setError(null);
+              setError(undefined);
               setValidate(true);
               if (
                 validEmail(email) &&
@@ -102,7 +109,7 @@ export default function Register({
       )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -113,3 +120,5 @@ const styles = StyleSheet.create({
     gap: 32,
   },
 });
+
+export default Register;

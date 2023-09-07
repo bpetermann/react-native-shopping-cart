@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Image, View } from 'react-native';
 import { Heading } from '@/components/Atoms';
 
-export default function DeliveryConditions() {
+const DeliveryConditions = () => {
   return (
     <View
       style={{
@@ -54,7 +54,7 @@ export default function DeliveryConditions() {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   icon: {
@@ -62,3 +62,5 @@ const styles = StyleSheet.create({
     height: 28,
   },
 });
+
+export default DeliveryConditions;
