@@ -7,11 +7,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet } from 'react-native';
 import { useBreakpoints } from '@/hooks';
+import { Product } from './util/types';
+
+export type RootStackParamList = {
+  Home: { success: string };
+  ProductDetail: { item: Product };
+  Authentication: undefined;
+};
 
 export default function App() {
   const { isS } = useBreakpoints();
 
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<RootStackParamList>();
 
   return (
     <CartContextProvider>

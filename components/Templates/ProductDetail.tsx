@@ -9,12 +9,15 @@ import { imageMap } from '@/lib/products';
 import { Product } from '@/util/types';
 
 type Props = {
-  onClick: () => {};
   navigation: NavigationProp<any, any>;
-  route: { params: { item: Product } };
+  route: {
+    params: {
+      item: Product;
+    };
+  };
 };
 
-const ProductDetail: React.FC<Props> = ({ navigation, route }) => {
+const ProductDetail = ({ navigation, route }: Props) => {
   const { item } = route.params;
 
   return (

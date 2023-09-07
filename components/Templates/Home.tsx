@@ -14,20 +14,22 @@ import { useBreakpoints, useSuccess } from '@/hooks';
 import { useContext } from 'react';
 
 type Props = {
-  onClick: () => {};
   navigation: NavigationProp<any, any>;
-  route?: { params: { success: string } };
+  route: {
+    params: {
+      success: string;
+    };
+  };
 };
 
-const Home: React.FC<Props> = ({ navigation, route }) => {
+const Home = ({ navigation, route }: Props) => {
   const { getUser } = useContext(AuthContext);
   const { isS } = useBreakpoints();
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
   const success = route?.params?.success;
-  if (isS) {
-    useSuccess(success);
-  }
+  useSuccess(success);
+
   const ref = createRef<TextInput>();
 
   useEffect(() => {
