@@ -1,18 +1,25 @@
-import { setStoreData, getStoreData, clearStoreData } from '@/helper';
+import {
+  setStoreData,
+  getStoreData,
+  clearStoreData,
+  hashValue,
+} from '@/helper';
 import { ReactNode, createContext, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface UserContext {
   user: { email: string } | null;
   register: (data: { email: string; password: string }) => boolean;
-  login: (email: string) => boolean;
+  login: (data: { email: string; password: string }) => boolean;
   getUser: () => void;
   logout: () => void;
 }
 
 type User = {
-  id: number;
+  id: string;
   email: string;
   password: string;
+  date: number;
 };
 
 const users: User[] = [];
@@ -36,21 +43,32 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const userIndex = users.findIndex((i) => i.email === data.email);
 
     if (userIndex < 0) {
-      users.push({ ...data, id: Math.floor(Math.random() * Date.now()) });
-      login(data.email);
+      const time = Date.now();
+
+      const user = {
+        email: data.email,
+        password: hashValue(data.password, time),
+        id: uuidv4(),
+        date: time,
+      };
+
+      users.push(user);
+      login(data);
       return true;
     }
 
     return false;
   };
 
-  const login = (email: string) => {
-    const user = users.filter((i) => i.email === email)?.[0];
+  const login = (data: { email: any; password: string }) => {
+    const user = users.filter((i) => i.email === data.email)?.[0];
 
     if (user) {
-      setUser({ email: user.email });
-      setStoreData(user.email, 'user');
-      return true;
+      if (hashValue(data.password, user.date) === user.password) {
+        setUser({ email: user.email });
+        setStoreData(user.email, 'user');
+        return true;
+      }
     }
     return false;
   };

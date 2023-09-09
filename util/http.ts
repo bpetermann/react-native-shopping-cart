@@ -14,6 +14,8 @@ export async function fetchProducts() {
 
     return items;
   } catch (error) {
-    console.log(error);
+    throw new Error(
+      error instanceof Error ? error.message : 'Something went wrong'
+    );
   }
 }

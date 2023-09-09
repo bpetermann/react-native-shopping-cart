@@ -63,7 +63,7 @@ const Login: React.FC<Props> = ({
               setValidate(true);
 
               if (validEmail(email) && password.length) {
-                const valid = login(email);
+                const valid = login({ email, password });
                 if (valid) {
                   setUserData({
                     email: '',

@@ -7,6 +7,15 @@ export function validEmail(value: string) {
   ).test(value);
 }
 
+export function hashValue(value: string, time: number) {
+  return (
+    +value
+      .split('')
+      .map((item) => item.charCodeAt(0))
+      .join('') * time
+  ).toString();
+}
+
 export async function setStoreData(data: Product[], key: string): Promise<void>;
 
 export async function setStoreData(data: string, key: string): Promise<void>;
