@@ -5,13 +5,11 @@ import {
   Searchbar,
 } from '@/components/Organisms/Home';
 import { NavigationProp } from '@react-navigation/native';
-import { useState, createRef, useEffect } from 'react';
-import { AuthContext } from '@/context/auth-context';
 import { ScrollView, TextInput } from 'react-native';
+import { useInitialData, useSuccess } from '@/hooks';
 import { Header } from '@/components/Organisms/App';
+import { useState, createRef } from 'react';
 import { Product } from '@/util/types';
-import { useSuccess } from '@/hooks';
-import { useContext } from 'react';
 
 type Props = {
   navigation: NavigationProp<any, any>;
@@ -23,18 +21,14 @@ type Props = {
 };
 
 const Home = ({ navigation, route }: Props) => {
-  const { getUser } = useContext(AuthContext);
   const success = route?.params?.success;
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
 
   useSuccess(success);
+  useInitialData();
 
   const ref = createRef<TextInput>();
-
-  useEffect(() => {
-    getUser();
-  }, []);
 
   const focusSearch = () => {
     ref?.current?.focus();

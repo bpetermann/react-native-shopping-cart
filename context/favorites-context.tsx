@@ -5,6 +5,7 @@ import {
   createContext,
   useState,
 } from 'react';
+import { setStoreData, getStoreData } from '@/helper';
 import { Product } from '@/util/types';
 
 interface FavoritesContext {
@@ -12,6 +13,7 @@ interface FavoritesContext {
   showFavorites: boolean;
   setShowFavorites: Dispatch<SetStateAction<boolean>>;
   toggleFavorite: (item: Product) => void;
+  getFavorites: () => void;
 }
 
 export const FavoritesContext = createContext<FavoritesContext>({
@@ -19,6 +21,7 @@ export const FavoritesContext = createContext<FavoritesContext>({
   showFavorites: false,
   setShowFavorites: () => {},
   toggleFavorite: () => {},
+  getFavorites: () => {},
 });
 
 export const FavoritesContextProvider = ({
@@ -34,9 +37,19 @@ export const FavoritesContextProvider = ({
 
     if (index < 0) {
       setFavoriteItems((prev) => [...prev, item]);
+      setStoreData([...favoriteItems, item], 'favorites');
     } else {
       const newItems = favoriteItems.filter((i) => i.id !== item.id);
       setFavoriteItems(newItems);
+      setStoreData(newItems, 'favorites');
+    }
+  };
+
+  const getFavorites = async () => {
+    const favorites = await getStoreData('favorites');
+
+    if (Array.isArray(favorites)) {
+      setFavoriteItems(favorites);
     }
   };
 
@@ -45,6 +58,7 @@ export const FavoritesContextProvider = ({
     showFavorites: showFavorites,
     setShowFavorites: setShowFavorites,
     toggleFavorite: toggleFavorite,
+    getFavorites: getFavorites,
   };
 
   return (

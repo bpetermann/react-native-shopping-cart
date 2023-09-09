@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setStoreData, getStoreData, clearStoreData } from '@/helper';
 import { ReactNode, createContext, useState } from 'react';
 
 interface UserContext {
@@ -49,7 +49,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
     if (user) {
       setUser({ email: user.email });
-      storeUser(user.email);
+      setStoreData(user.email, 'user');
       return true;
     }
     return false;
@@ -57,27 +57,14 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = () => {
     setUser(null);
-    AsyncStorage.removeItem('user');
-  };
-
-  const storeUser = async (user: string) => {
-    const data = JSON.stringify(user);
-    try {
-      AsyncStorage.setItem('user', data);
-    } catch (error) {
-      // Error saving data
-    }
+    clearStoreData('user');
   };
 
   const getUser = async () => {
-    try {
-      const value = await AsyncStorage.getItem('user');
-      if (value !== null) {
-        const email = JSON.parse(value);
-        setUser({ email });
-      }
-    } catch (error) {
-      // Error retrieving data
+    const user = await getStoreData('user');
+
+    if (typeof user === 'string') {
+      setUser({ email: user });
     }
   };
 
