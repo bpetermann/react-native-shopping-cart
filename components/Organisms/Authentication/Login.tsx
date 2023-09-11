@@ -62,19 +62,23 @@ const Login: React.FC<Props> = ({
               setError(undefined);
               setValidate(true);
 
-              if (validEmail(email) && password.length) {
-                const valid = login({ email, password });
-                if (valid) {
-                  setUserData({
-                    email: '',
-                    password: '',
-                  });
-                  setValidate(false);
-                  navigation.navigate('Home');
-                } else {
-                  setError('Login');
-                }
+              if (!(validEmail(email) && password.length)) {
+                return;
               }
+
+              const valid = login({ email, password });
+
+              if (!valid) {
+                setError('Login');
+                return;
+              }
+
+              setUserData({
+                email: '',
+                password: '',
+              });
+              setValidate(false);
+              navigation.navigate('Home');
             }}
             text={'Login'}
           />

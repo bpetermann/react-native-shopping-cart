@@ -72,29 +72,36 @@ const Register: React.FC<Props> = ({
             onClick={() => {
               setError(undefined);
               setValidate(true);
+
               if (
-                validEmail(email) &&
-                password.length &&
-                password === confirmPassword
+                !(
+                  validEmail(email) &&
+                  password.length &&
+                  password === confirmPassword
+                )
               ) {
-                const isSucces = register({
-                  email,
-                  password,
-                });
-                if (isSucces) {
-                  navigation.navigate('Home', {
-                    success: 'Registration',
-                  });
-                } else {
-                  setError('Registration');
-                  setUserData({
-                    email: '',
-                    password: '',
-                    confirmPassword: '',
-                  });
-                }
-                setValidate(false);
+                return;
               }
+
+              const isSucces = register({
+                email,
+                password,
+              });
+
+              if (!isSucces) {
+                setError('Registration');
+                setUserData({
+                  email: '',
+                  password: '',
+                  confirmPassword: '',
+                });
+                return;
+              }
+
+              navigation.navigate('Home', {
+                success: 'Registration',
+              });
+              setValidate(false);
             }}
             text={'Register'}
           />
