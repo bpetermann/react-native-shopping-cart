@@ -17,7 +17,7 @@ export default function withLoader<P extends object>(
       getData();
     }, []);
 
-    if (!data) {
+    if (!data.length) {
       return (
         <View style={styles.spinner}>
           <ActivityIndicator size='large' color='black' />

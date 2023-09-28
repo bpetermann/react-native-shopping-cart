@@ -40,6 +40,7 @@ const Header: React.FC<Props> = ({ navigation, focus }) => {
             amount={favoriteItems.length}
           />
           <AmountButton
+            testID='cart'
             onClick={() => openCart(true)}
             img={require('@/assets/app/cart.png')}
             amount={amount}

@@ -30,7 +30,11 @@ const Product: React.FC<Props> = ({ item, navigate }) => {
       </Pressable>
       <Text>{item.name}</Text>
       <Text>{item.price} $</Text>
-      <BaseButton onClick={() => add(item)} title='Add to Cart' />
+      <BaseButton
+        testID={`add-${item.id}`}
+        onClick={() => add(item)}
+        title='Add to Cart'
+      />
       <Pressable
         style={styles.favoriteButton}
         onPress={() => toggle(item)}
