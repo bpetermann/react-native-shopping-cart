@@ -26,8 +26,12 @@ const Products: React.FC<Props> = ({ category, search, navigate, data }) => {
   );
 
   const zeroSearch = (
-    <View style={styles.zero}>
-      <Text>No products found</Text>
+    <View style={{ padding: 24 }}>
+      <Text style={{ textAlign: 'center' }}>
+        Your search for{' '}
+        <Text style={{ fontWeight: '600' }}>{`"${search}"`} </Text>
+        did not match any entries
+      </Text>
     </View>
   );
 
