@@ -1,38 +1,55 @@
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, Text } from 'react-native';
 import { Product as ProductType } from '@/util/types';
-import { CartContext } from '@/context/cart-context';
 import { Product } from '@/components/Molecules/App';
 import { Container } from '@/components/Atoms';
 import { fetchProducts } from '@/util/http';
 import withLoader from '@/hoc/withLoader';
-import { useContext } from 'react';
+import { useMemo } from 'react';
 
 type Props = {
   category: string;
   search: string;
   navigate: (item: ProductType) => void;
-  data?: ProductType[];
+  data: ProductType[];
 };
 
 const Products: React.FC<Props> = ({ category, search, navigate, data }) => {
+  const products = useMemo(
+    () =>
+      data?.filter((product) => {
+        return (
+          product.description.toLowerCase().includes(search) &&
+          product.category.includes(category)
+        );
+      }),
+    [data, category, search]
+  );
 
-  const filteredProducts = () =>
-    data?.filter((product) => {
-      return (
-        product.description.toLowerCase().includes(search) &&
-        product.category.includes(category)
-      );
-    });
+  const zeroSearch = (
+    <View style={{ padding: 24 }}>
+      <Text style={{ textAlign: 'center' }}>
+        Your search for{' '}
+        <Text style={{ fontWeight: '600' }}>{`"${search}"`} </Text>
+        did not match any entries
+      </Text>
+    </View>
+  );
 
   return (
     <Container bgColor={'#84bce5'}>
       <View style={styles.products}>
-        <FlatList
-          horizontal
-          data={filteredProducts()}
-          renderItem={({ item }) => <Product item={item} navigate={navigate} />}
-          keyExtractor={({ id }) => id}
-        />
+        {products.length ? (
+          <FlatList
+            horizontal
+            data={products}
+            renderItem={({ item }) => (
+              <Product item={item} navigate={navigate} />
+            )}
+            keyExtractor={({ id }) => id}
+          />
+        ) : (
+          <>{zeroSearch}</>
+        )}
       </View>
     </Container>
   );
