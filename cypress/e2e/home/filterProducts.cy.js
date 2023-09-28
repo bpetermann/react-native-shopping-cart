@@ -14,8 +14,11 @@ describe('Filter products', () => {
     });
   });
 
-  it('should not show items that are filtered out', () => {
-    cy.get('input').type(invalidSearchTerm);
-    cy.contains('No products found');
+  it('should show zero search on invalid search term', () => {
+    cy.get('input')
+      .type(invalidSearchTerm)
+      .then(() => {
+        cy.contains(`did not match any entries`);
+      });
   });
 });
