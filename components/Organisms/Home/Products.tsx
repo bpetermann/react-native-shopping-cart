@@ -41,6 +41,7 @@ const Products: React.FC<Props> = ({ category, search, navigate, data }) => {
         {products.length ? (
           <FlatList
             horizontal
+            testID='products'
             data={products}
             renderItem={({ item }) => (
               <Product item={item} navigate={navigate} />
@@ -66,6 +67,11 @@ const styles = StyleSheet.create({
   img: {
     width: 28,
     height: 28,
+  },
+  zero: {
+    paddingTop: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

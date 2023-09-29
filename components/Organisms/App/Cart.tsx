@@ -21,7 +21,7 @@ const Cart = () => {
   return (
     <Modal visible={showCart} animationType='fade'>
       <Container>
-        <View style={styles.cart}>
+        <View style={styles.cart} testID={`cart-modal`}>
           <View style={styles.close}>
             <IconButton
               onClick={() => closeCart(false)}

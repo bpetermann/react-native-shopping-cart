@@ -40,6 +40,7 @@ const Header: React.FC<Props> = ({ navigation, focus }) => {
             amount={favoriteItems.length}
           />
           <AmountButton
+            testID='cart'
             onClick={() => openCart(true)}
             img={require('@/assets/app/cart.png')}
             amount={amount}
@@ -49,6 +50,7 @@ const Header: React.FC<Props> = ({ navigation, focus }) => {
           onClick={() => navigation.navigate('Authentication')}
           img={require('@/assets/app/account.png')}
           isActive={route.name === 'Authentication'}
+          testID={"auth-link"}
         />
       </View>
     </Container>

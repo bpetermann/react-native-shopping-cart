@@ -14,16 +14,27 @@ type Props = {
   img: ImageSourcePropType;
   style?: StyleProp<ImageStyle>;
   amount: number;
+  testID?: string;
 };
 
-const AmountButton: React.FC<Props> = ({ img, onClick, style, amount }) => {
+const AmountButton: React.FC<Props> = ({
+  img,
+  onClick,
+  style,
+  amount,
+  testID,
+}) => {
   return (
     <View style={styles.iconButton}>
-      <Pressable onPress={onClick} android_ripple={{ color: '#efeff0' }}>
+      <Pressable
+        testID={testID}
+        onPress={onClick}
+        android_ripple={{ color: '#efeff0' }}
+      >
         <Image style={[styles.img, style]} source={img} />
       </Pressable>
       {!!amount && (
-        <View style={styles.amount}>
+        <View style={styles.amount} testID={`${testID}-amount`}>
           <Text style={styles.count}>{amount}</Text>
         </View>
       )}

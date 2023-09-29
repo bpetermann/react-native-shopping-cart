@@ -7,6 +7,7 @@ type Props = {
   error: string;
   placer: string;
   password?: boolean;
+  testID?: string;
 };
 
 const FormInput: React.FC<Props> = ({
@@ -16,6 +17,7 @@ const FormInput: React.FC<Props> = ({
   error,
   placer,
   password,
+  testID,
 }) => {
   return (
     <View style={{ width: '100%' }}>
@@ -26,6 +28,7 @@ const FormInput: React.FC<Props> = ({
         style={styles.input}
         value={value}
         onChangeText={onChange}
+        testID={testID}
       />
       {isValid && (
         <Text

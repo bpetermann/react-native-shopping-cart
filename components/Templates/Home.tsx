@@ -47,7 +47,12 @@ const Home = ({ navigation, route }: Props) => {
         <Searchbar ref={ref} focus={focusSearch} search={setSearch} />
         <Categories change={setCategory} category={category} />
         <Hero />
-        <Products category={category} search={search} navigate={showDetail} />
+        <Products
+          category={category}
+          search={search}
+          navigate={showDetail}
+          data={[]}
+        />
       </ScrollView>
     </>
   );

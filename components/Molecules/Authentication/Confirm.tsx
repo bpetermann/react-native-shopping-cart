@@ -3,14 +3,16 @@ import { StyleSheet, Text, Pressable } from 'react-native';
 type Props = {
   onClick: () => void;
   text: string;
+  testID?: string;
 };
 
-const Confirm: React.FC<Props> = ({ onClick, text }) => {
+const Confirm: React.FC<Props> = ({ onClick, text, testID }) => {
   return (
     <Pressable
       style={styles.button}
       onPress={onClick}
       android_ripple={{ color: '#efeff0' }}
+      testID={testID}
     >
       <Text
         style={{
