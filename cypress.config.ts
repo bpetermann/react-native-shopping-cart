@@ -6,7 +6,7 @@ export default defineConfig({
       // implement node event listeners here
     },
     baseUrl: 'http://localhost:19006',
-    viewportHeight: 892,
-    viewportWidth: 412,
+    viewportHeight: 890,
+    viewportWidth: 481,
   },
 });

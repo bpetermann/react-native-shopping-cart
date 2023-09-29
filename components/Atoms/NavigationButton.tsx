@@ -4,16 +4,26 @@ type Props = {
   isActive: boolean;
   onClick: () => void;
   img: ImageSourcePropType;
+  testID?: string;
 };
 
-const NavigationButton: React.FC<Props> = ({ isActive, onClick, img }) => {
+const NavigationButton: React.FC<Props> = ({
+  isActive,
+  onClick,
+  img,
+  testID,
+}) => {
   return (
     <View
       style={{
         position: 'relative',
       }}
     >
-      <Pressable onPress={onClick} android_ripple={{ color: '#efeff0' }}>
+      <Pressable
+        onPress={onClick}
+        android_ripple={{ color: '#efeff0' }}
+        testID={testID}
+      >
         <Image style={{ width: 28, height: 28 }} source={img} />
       </Pressable>
       {isActive && (

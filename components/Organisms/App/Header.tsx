@@ -50,6 +50,7 @@ const Header: React.FC<Props> = ({ navigation, focus }) => {
           onClick={() => navigation.navigate('Authentication')}
           img={require('@/assets/app/account.png')}
           isActive={route.name === 'Authentication'}
+          testID={"auth-link"}
         />
       </View>
     </Container>

@@ -47,6 +47,7 @@ const Register: React.FC<Props> = ({
             value={email}
             error={'Please enter a valid email address'}
             placer={'Email'}
+            testID={'registration-email'}
           />
           <FormInput
             isValid={validate && !(password.trim().length >= 6)}
@@ -57,6 +58,7 @@ const Register: React.FC<Props> = ({
             error={'Your password must be at least 6 characters long'}
             placer={'Password'}
             password
+            testID={'registration-password'}
           />
           <FormInput
             isValid={validate && password !== confirmPassword}
@@ -67,6 +69,7 @@ const Register: React.FC<Props> = ({
             error={'Passwords do not match'}
             placer={'Confirm password'}
             password
+            testID={'registration-confirm'}
           />
           <Confirm
             onClick={() => {
@@ -104,6 +107,7 @@ const Register: React.FC<Props> = ({
               setValidate(false);
             }}
             text={'Register'}
+            testID={'registration-submit'}
           />
         </>
       ) : (
