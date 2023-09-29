@@ -1,16 +1,24 @@
 /// <reference types="cypress" />
 
 describe('Filter products', () => {
+  const firstProduct =
+    '[data-testid="products"] > :nth-child(1) > :nth-child(1)';
   const invalidSearchTerm = 'abcdefghijklmopqrstuvwxyz';
 
   beforeEach(() => {
     cy.visit('/');
+
+    cy.get(firstProduct)
+      .invoke('text')
+      .then((fullText) => {
+        cy.wrap(fullText.substring(0, 5)).as('product');
+      });
   });
 
   it('should show items matching the filter', () => {
-    cy.contains('Sandals').then(() => {
-      cy.get('input').type('Sandals');
-      cy.contains('Sandals');
+    cy.get('@product').then((value) => {
+      cy.get('input').type(value);
+      cy.contains(value);
     });
   });
 
