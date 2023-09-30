@@ -1,12 +1,14 @@
 import { Container, Heading, IconButton } from '@/components/Atoms';
 import { StyleSheet, View, Modal, FlatList } from 'react-native';
 import { FavoritesContext } from '@/context/favorites-context';
+import { useTranslation } from '@/context/i18n-context';
 import { Product } from '@/components/Molecules/App';
 import { useContext } from 'react';
 
 const Favorites = () => {
   const { favoriteItems, showFavorites, setShowFavorites } =
     useContext(FavoritesContext);
+  const { t } = useTranslation();
 
   return (
     <Modal visible={showFavorites} animationType='fade'>
@@ -18,7 +20,9 @@ const Favorites = () => {
               img={require('@/assets/app/close.png')}
             />
           </View>
-          <Heading>Favorites ({favoriteItems.length})</Heading>
+          <Heading>
+            {t('Favorites')} ({favoriteItems.length})
+          </Heading>
           <View style={styles.products}>
             <FlatList
               data={favoriteItems}

@@ -1,7 +1,8 @@
 import { StyleSheet, View, Modal, FlatList, Button } from 'react-native';
 import { Container, Heading, IconButton } from '@/components/Atoms';
-import { CartContext } from '@/context/cart-context';
+import { useTranslation } from '@/context/i18n-context';
 import { CartItem } from '@/components/Molecules/App';
+import { CartContext } from '@/context/cart-context';
 import { useContext } from 'react';
 
 const Cart = () => {
@@ -17,6 +18,7 @@ const Cart = () => {
       return acc + prod.amount * prod.price;
     }, 0)
     .toFixed(2);
+  const { t } = useTranslation();
 
   return (
     <Modal visible={showCart} animationType='fade'>
@@ -31,14 +33,16 @@ const Cart = () => {
           {!cartItems.length ? (
             <View style={styles.empty}>
               <Button
-                title='No items (yet!)'
+                title={t('No items (yet!)')}
                 color='#ff6900'
                 onPress={() => closeCart(false)}
               />
             </View>
           ) : (
             <>
-              <Heading>Cart ({amount})</Heading>
+              <Heading>
+                {t('Cart')} ({amount})
+              </Heading>
               <View style={styles.products}>
                 <FlatList
                   data={cartItems}
@@ -48,10 +52,10 @@ const Cart = () => {
               </View>
 
               <View style={styles.total}>
-                <Heading>Total Amount</Heading>
+                <Heading>{t('Total Amount')}</Heading>
                 <Heading>{totalPrice} $</Heading>
               </View>
-              <Button title='Order' color='#ff6900' />
+              <Button title={t('Order')} color='#ff6900' />
             </>
           )}
         </View>
