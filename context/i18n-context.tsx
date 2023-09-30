@@ -1,17 +1,25 @@
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 import * as Localization from 'expo-localization';
 import { en, de } from '@/lib/localizations';
 import { I18n } from 'i18n-js';
 
 interface TranslationContext {
   language: string;
+  selectLanguage: () => void;
   i18n: I18n;
 }
 
 export const TranslationContext = createContext<TranslationContext>({
   language: '',
+  selectLanguage: () => {},
   i18n: new I18n({ en, de }),
 });
+
+export const useTranslationContext = () => {
+  const { language, selectLanguage, i18n } = useContext(TranslationContext);
+
+  return { language, selectLanguage, i18n };
+};
 
 export const TranslationContextProvider = ({
   children,

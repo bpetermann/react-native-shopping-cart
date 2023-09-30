@@ -1,10 +1,9 @@
+import { useTranslationContext } from '@/context/i18n-context';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { useBreakpoints } from '@/hooks';
-import { TranslationContext } from '@/context/i18n-context';
-import { useContext } from 'react';
 
 const Hero = () => {
-  const { i18n } = useContext(TranslationContext);
+  const { i18n } = useTranslationContext();
   const { isM } = useBreakpoints();
 
   return (
@@ -13,7 +12,7 @@ const Hero = () => {
         <View>
           <Text style={styles.heading}>Winter Sale</Text>
           <Text style={styles.text}>
-            {i18n.t("Up to -50% off your favorite styles")}
+            {i18n.t('Up to -50% off your favorite styles')}
           </Text>
         </View>
         <View style={styles.image}>
