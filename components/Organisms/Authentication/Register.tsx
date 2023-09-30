@@ -116,6 +116,7 @@ const Register: React.FC<Props> = ({
           onClick={() => {
             setShowRegister(true);
           }}
+          testID={'auth-switch'}
         />
       )}
     </View>

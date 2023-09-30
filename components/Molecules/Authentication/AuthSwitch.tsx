@@ -3,9 +3,10 @@ import { StyleSheet, Text, Pressable } from 'react-native';
 type Props = {
   onClick: () => void;
   text: string;
+  testID?: string;
 };
 
-const AuthSwitch: React.FC<Props> = ({ onClick, text }) => {
+const AuthSwitch: React.FC<Props> = ({ onClick, text, testID }) => {
   return (
     <Pressable
       onPress={onClick}
@@ -18,6 +19,7 @@ const AuthSwitch: React.FC<Props> = ({ onClick, text }) => {
         },
       ]}
       android_ripple={{ color: '#efeff0' }}
+      testID={testID}
     >
       <Text
         style={{

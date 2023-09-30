@@ -46,6 +46,7 @@ const Login: React.FC<Props> = ({
             value={email}
             error={'Please enter a valid email address'}
             placer={'Email'}
+            testID={'login-email'}
           />
           <FormInput
             isValid={validate && !(password.trim().length >= 6)}
@@ -56,6 +57,7 @@ const Login: React.FC<Props> = ({
             error={'Please enter your password'}
             placer={'Password'}
             password
+            testID={'login-password'}
           />
           <Confirm
             onClick={() => {

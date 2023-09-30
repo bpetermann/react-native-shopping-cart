@@ -9,7 +9,7 @@ describe('Register a user', () => {
   beforeEach(() => {
     cy.visit('/');
     cy.get('[data-testid="auth-link"]').click();
-    cy.get('.r-marginTop-1wzrnnt > .css-view-175oi2r')
+    cy.get('[data-testid="auth-switch"]')
       .click()
       .then(() => {
         cy.get('[data-testid="registration-email"]').as('emailInput');
@@ -64,7 +64,11 @@ describe('Register a user', () => {
     cy.get('@submit')
       .click()
       .then(() => {
-        cy.contains('Winter Sale');
+        cy.get('input').should(
+          'have.attr',
+          'placeholder',
+          `👋 Welcome, ${validEmail.split('@')[0]}!`
+        );
       });
   });
 });
