@@ -15,10 +15,12 @@ export const TranslationContext = createContext<TranslationContext>({
   i18n: new I18n({ en, de }),
 });
 
-export const useTranslationContext = () => {
+export const useTranslation = () => {
   const { language, selectLanguage, i18n } = useContext(TranslationContext);
 
-  return { language, selectLanguage, i18n };
+  const t = (s: string) => i18n.t(`${s}`);
+
+  return { language, selectLanguage, t };
 };
 
 export const TranslationContextProvider = ({

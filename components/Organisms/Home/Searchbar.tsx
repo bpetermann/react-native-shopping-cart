@@ -1,7 +1,8 @@
+import { useContext, forwardRef, SetStateAction, Dispatch } from 'react';
 import { StyleSheet, View, Image, TextInput } from 'react-native';
+import { useTranslation } from '@/context/i18n-context';
 import { AuthContext } from '@/context/auth-context';
 import { Container } from '@/components/Atoms';
-import { useContext, forwardRef, SetStateAction, Dispatch } from 'react';
 import { Pressable } from 'react-native';
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const Searchbar = forwardRef<TextInput, Props>(({ focus, search }, ref) => {
+  const { t } = useTranslation();
   const { user } = useContext(AuthContext);
 
   const userGreeting = `👋 Welcome, ${user?.email?.split('@')?.[0]}!`;
@@ -25,7 +27,7 @@ const Searchbar = forwardRef<TextInput, Props>(({ focus, search }, ref) => {
           ref={ref}
           style={styles.input}
           onChangeText={searchproducts}
-          placeholder={user ? userGreeting : 'Search'}
+          placeholder={user ? userGreeting : t('Search')}
           placeholderTextColor={'#747474'}
         />
         <Pressable onPress={focus} android_ripple={{ color: '#efeff0' }}>
