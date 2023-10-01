@@ -1,5 +1,6 @@
 import { StyleSheet, Text, Image, View, Pressable } from 'react-native';
 import { FavoritesContext } from '@/context/favorites-context';
+import { useTranslation } from '@/context/i18n-context';
 import { CartContext } from '@/context/cart-context';
 import { Product } from '@/util/types';
 import { useContext } from 'react';
@@ -11,6 +12,7 @@ type Props = {
 const ProductDetail: React.FC<Props> = ({ item }) => {
   const { toggleFavorite, favoriteItems } = useContext(FavoritesContext);
   const { addCartItem: add } = useContext(CartContext);
+  const { t } = useTranslation();
 
   const isFavorite = favoriteItems.find((i) => i.id === item.id);
 
@@ -31,7 +33,7 @@ const ProductDetail: React.FC<Props> = ({ item }) => {
               textAlign: 'center',
             }}
           >
-            Add to Cart
+            {t('Add to Cart')}
           </Text>
         </Pressable>
         <Pressable

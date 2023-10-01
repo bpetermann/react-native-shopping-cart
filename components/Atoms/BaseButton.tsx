@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderWidth: 1,
     padding: 10,
+    maxWidth: 126,
     textAlign: 'center',
   },
 });

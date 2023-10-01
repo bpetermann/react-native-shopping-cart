@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { useTranslation } from '@/context/i18n-context';
 import { Container } from '@/components/Atoms';
 import { categories } from '@/lib/categories';
 
@@ -11,6 +12,7 @@ const Categories: React.FC<Props> = ({ change, category }) => {
   const changeCategory = (name: string) => {
     change(name);
   };
+  const { t } = useTranslation();
 
   return (
     <Container>
@@ -21,7 +23,9 @@ const Categories: React.FC<Props> = ({ change, category }) => {
             onPress={() => changeCategory(name)}
             key={id}
           >
-            <Text style={category === name && styles.active}>{name}</Text>
+            <Text style={category === name && styles.active}>
+              {t(`${name}`)}
+            </Text>
           </Pressable>
         ))}
       </View>

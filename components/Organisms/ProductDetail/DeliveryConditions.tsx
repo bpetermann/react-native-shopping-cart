@@ -1,7 +1,10 @@
 import { StyleSheet, Text, Image, View } from 'react-native';
+import { useTranslation } from '@/context/i18n-context';
 import { Heading } from '@/components/Atoms';
 
 const DeliveryConditions = () => {
+  const { t } = useTranslation();
+
   return (
     <View
       style={{
@@ -22,8 +25,8 @@ const DeliveryConditions = () => {
           style={[styles.icon]}
           source={require('@/assets/app/shipping.png')}
         />
-        <Heading>2 -4 Working days</Heading>
-        <Text>Standard delivery</Text>
+        <Heading>{t('2 -4 Working days')}</Heading>
+        <Text>{t('Standard delivery')}</Text>
       </View>
       <View
         style={{
@@ -36,7 +39,7 @@ const DeliveryConditions = () => {
         }}
       >
         <Image style={[styles.icon]} source={require('@/assets/app/box.png')} />
-        <Text>Free Shipping & Returns</Text>
+        <Text>{t('Free Shipping & Returns')}</Text>
       </View>
       <View
         style={{
@@ -50,7 +53,7 @@ const DeliveryConditions = () => {
           style={[styles.icon]}
           source={require('@/assets/app/return.png')}
         />
-        <Text>30 days return policy</Text>
+        <Text>{t('30 days return policy')}</Text>
       </View>
     </View>
   );

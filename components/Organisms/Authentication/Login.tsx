@@ -4,6 +4,7 @@ import {
   AuthSwitch,
 } from '@/components/Molecules/Authentication';
 import { NavigationProp } from '@react-navigation/native';
+import { useTranslation } from '@/context/i18n-context';
 import { StyleSheet, View, Text } from 'react-native';
 import { AuthContext } from '@/context/auth-context';
 import { useContext, useState } from 'react';
@@ -28,14 +29,16 @@ const Login: React.FC<Props> = ({
     email: '',
     password: '',
   });
-
+  const { t } = useTranslation();
   useFail(error);
 
   const { email, password } = userData;
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 24, fontWeight: '600' }}>Welcome back</Text>
+      <Text style={{ fontSize: 24, fontWeight: '600' }}>
+        {t('Welcome back')}
+      </Text>
       {!showRegister ? (
         <>
           <FormInput
@@ -55,7 +58,7 @@ const Login: React.FC<Props> = ({
             }}
             value={password}
             error={'Please enter your password'}
-            placer={'Password'}
+            placer={t('Password')}
             password
             testID={'login-password'}
           />

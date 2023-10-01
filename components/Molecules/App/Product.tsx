@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { FavoritesContext } from '@/context/favorites-context';
+import { useTranslation } from '@/context/i18n-context';
 import { Product as ProductType } from '@/util/types';
 import { CartContext } from '@/context/cart-context';
 import { BaseButton } from '@/components/Atoms';
@@ -15,6 +16,7 @@ const Product: React.FC<Props> = ({ item, navigate }) => {
   const { addCartItem: add } = useContext(CartContext);
   const { toggleFavorite: toggle, favoriteItems } =
     useContext(FavoritesContext);
+  const { t } = useTranslation();
 
   const isFavorite = favoriteItems.find((i) => i.id === item.id);
 
@@ -33,7 +35,7 @@ const Product: React.FC<Props> = ({ item, navigate }) => {
       <BaseButton
         testID={`add-${item.id}`}
         onClick={() => add(item)}
-        title='Add to Cart'
+        title={t('Add to Cart')}
       />
       <Pressable
         style={styles.favoriteButton}

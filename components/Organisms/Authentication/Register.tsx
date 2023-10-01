@@ -4,8 +4,9 @@ import {
   AuthSwitch,
 } from '@/components/Molecules/Authentication';
 import { NavigationProp } from '@react-navigation/native';
-import { AuthContext } from '@/context/auth-context';
+import { useTranslation } from '@/context/i18n-context';
 import { StyleSheet, View, Text } from 'react-native';
+import { AuthContext } from '@/context/auth-context';
 import { validEmail } from '@/helper';
 import { useContext } from 'react';
 import { useFail } from '@/hooks';
@@ -30,13 +31,16 @@ const Register: React.FC<Props> = ({
     password: '',
     confirmPassword: '',
   });
+  const { t } = useTranslation();
   useFail(error);
 
   const { email, password, confirmPassword } = userData;
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 24, fontWeight: '600' }}>I'm new here</Text>
+      <Text style={{ fontSize: 24, fontWeight: '600' }}>
+        {t("I'm new here")}
+      </Text>
       {showRegister ? (
         <>
           <FormInput
@@ -56,7 +60,7 @@ const Register: React.FC<Props> = ({
             }}
             value={password}
             error={'Your password must be at least 6 characters long'}
-            placer={'Password'}
+            placer={t('Password')}
             password
             testID={'registration-password'}
           />
@@ -67,7 +71,7 @@ const Register: React.FC<Props> = ({
             }}
             value={confirmPassword}
             error={'Passwords do not match'}
-            placer={'Confirm password'}
+            placer={t('Confirm password')}
             password
             testID={'registration-confirm'}
           />
@@ -106,13 +110,13 @@ const Register: React.FC<Props> = ({
               });
               setValidate(false);
             }}
-            text={'Register'}
+            text={t('Register')}
             testID={'registration-submit'}
           />
         </>
       ) : (
         <AuthSwitch
-          text={'Register'}
+          text={t('Register')}
           onClick={() => {
             setShowRegister(true);
           }}
