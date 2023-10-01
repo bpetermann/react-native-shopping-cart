@@ -22,6 +22,11 @@ const en = {
   Password: 'Password',
   'Confirm password': 'Confirm password',
   'Until next time': 'Until next time',
+  // Product Detail
+  '2 -4 Working days': '2 -4 Working days',
+  'Standard delivery': 'Standard delivery',
+  'Free Shipping & Returns': 'Free Shipping & Returns',
+  '30 days return policy': '30 days return policy',
 };
 
 const de = {
@@ -49,5 +54,10 @@ const de = {
   Password: 'Passwort',
   'Confirm password': 'Passwort bestätigen',
   'Until next time': 'Bis zum nächsten mal',
+  // Product Detail
+  '2 -4 Working days': '2 -4 Arbeitstage',
+  'Standard delivery': 'Standardlieferung',
+  'Free Shipping & Returns': 'Kostenloser Versand & Rückgabe',
+  '30 days return policy': '30 Tage Rückgaberecht',
 };
 export { en, de };

@@ -9,10 +9,10 @@ type Props = {
 };
 
 const Categories: React.FC<Props> = ({ change, category }) => {
-  const { t } = useTranslation();
   const changeCategory = (name: string) => {
     change(name);
   };
+  const { t } = useTranslation();
 
   return (
     <Container>

@@ -110,7 +110,7 @@ const Register: React.FC<Props> = ({
               });
               setValidate(false);
             }}
-            text={'Register'}
+            text={t('Register')}
             testID={'registration-submit'}
           />
         </>
