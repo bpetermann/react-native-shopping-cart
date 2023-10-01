@@ -14,7 +14,7 @@ const Searchbar = forwardRef<TextInput, Props>(({ focus, search }, ref) => {
   const { t } = useTranslation();
   const { user } = useContext(AuthContext);
 
-  const userGreeting = `👋 Welcome, ${user?.email?.split('@')?.[0]}!`;
+  const userGreeting = t('👋 Welcome') + `${user?.email?.split('@')?.[0]}!`;
 
   const searchproducts = (text: string) => {
     search(text.toLowerCase());

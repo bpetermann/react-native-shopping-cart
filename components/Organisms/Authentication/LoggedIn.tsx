@@ -1,9 +1,11 @@
+import { useTranslation } from '@/context/i18n-context';
 import { View, Pressable, Text } from 'react-native';
 import { AuthContext } from '@/context/auth-context';
 import { useContext } from 'react';
 
 const LoggedIn = () => {
   const { logout } = useContext(AuthContext);
+  const { t } = useTranslation();
 
   return (
     <View
@@ -15,7 +17,9 @@ const LoggedIn = () => {
         gap: 32,
       }}
     >
-      <Text style={{ fontSize: 24, fontWeight: '600' }}>Until next time</Text>
+      <Text style={{ fontSize: 24, fontWeight: '600' }}>
+        {t('Until next time')}
+      </Text>
       <Pressable
         style={{
           backgroundColor: '#000',
