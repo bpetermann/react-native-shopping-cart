@@ -13,7 +13,8 @@ const Favorites = () => {
   return (
     <Modal visible={showFavorites} animationType='fade'>
       <Container>
-        <View style={styles.favs}>
+        <View style={styles.favs} testID={'favs-modal'}>
+          {' '}
           <View style={styles.close}>
             <IconButton
               onClick={() => setShowFavorites(false)}

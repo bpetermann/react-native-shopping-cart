@@ -40,6 +40,7 @@ const ProductDetail: React.FC<Props> = ({ item }) => {
           style={styles.favoriteButton}
           onPress={() => toggleFavorite(item)}
           android_ripple={{ color: '#efeff0' }}
+          testID='favorite-btn'
         >
           <Image
             style={[styles.icon, isFavorite && styles.favorite]}
