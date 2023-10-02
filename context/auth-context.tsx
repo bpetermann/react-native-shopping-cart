@@ -23,7 +23,7 @@ type User = {
   date: number;
 };
 
-const users: User[] = [];
+export const users: User[] = [];
 
 export const AuthContext = createContext<UserContext>({
   user: null,
