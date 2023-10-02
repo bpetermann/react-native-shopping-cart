@@ -5,7 +5,18 @@ describe('Add an item to the cart', () => {
     '[data-testid="products"] > :nth-child(1) > :nth-child(1)';
 
   beforeEach(() => {
-    cy.visit('/');
+    cy.visit('/', {
+      onBeforeLoad(win) {
+        Object.defineProperty(win.navigator, 'language', { value: 'en-EN' });
+        Object.defineProperty(win.navigator, 'languages', { value: ['en'] });
+        Object.defineProperty(win.navigator, 'accept_languages', {
+          value: ['en'],
+        });
+      },
+      headers: {
+        'Accept-Language': 'en',
+      },
+    });
   });
 
   it('should increase the amount button by one', () => {
