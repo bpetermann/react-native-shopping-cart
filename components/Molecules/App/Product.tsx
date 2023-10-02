@@ -28,7 +28,11 @@ const Product: React.FC<Props> = ({ item, navigate }) => {
         }}
         android_ripple={{ color: '#efeff0' }}
       >
-        <Image style={styles.img} source={imageMap[item.name]} />
+        <Image
+          style={styles.img}
+          source={imageMap[item.name]}
+          testID={`img`}
+        />
       </Pressable>
       <Text>{item.name}</Text>
       <Text>{item.price} $</Text>

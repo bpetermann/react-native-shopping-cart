@@ -24,7 +24,7 @@ describe('Add an item to the cart', () => {
         cy.wrap(fullText.substring(0, 5)).as('product');
       });
 
-    cy.get(firstProduct).find('img').click();
+    cy.get(firstProduct).find('[data-testid="img"]').click();
   });
 
   it('should put the selected item to the favorites', () => {
