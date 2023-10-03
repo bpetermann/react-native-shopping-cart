@@ -6,19 +6,19 @@ describe('Filter products', () => {
   const invalidSearchTerm = 'abcdefghijklmopqrstuvwxyz';
 
   beforeEach(() => {
-    cy.visit('/');
+    cy.dropby();
 
     cy.get(firstProduct)
       .invoke('text')
-      .then((fullText) => {
+      .then((fullText: string) => {
         cy.wrap(fullText.substring(0, 5)).as('product');
       });
   });
 
   it('should show items matching the filter', () => {
-    cy.get('@product').then((value) => {
+    cy.get<string>('@product').then((value) => {
       cy.get('input').type(value);
-      cy.contains(value);
+      cy.get('[data-testid="products"]').contains(value);
     });
   });
 

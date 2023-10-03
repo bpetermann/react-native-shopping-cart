@@ -5,18 +5,7 @@ describe('Add an item to the cart', () => {
     '[data-testid="products"] > :nth-child(1) > :nth-child(1)';
 
   beforeEach(() => {
-    cy.visit('/', {
-      onBeforeLoad(win) {
-        Object.defineProperty(win.navigator, 'language', { value: 'en-EN' });
-        Object.defineProperty(win.navigator, 'languages', { value: ['en'] });
-        Object.defineProperty(win.navigator, 'accept_languages', {
-          value: ['en'],
-        });
-      },
-      headers: {
-        'Accept-Language': 'en',
-      },
-    });
+    cy.dropby();
 
     cy.get(firstProduct)
       .invoke('text')
@@ -35,7 +24,11 @@ describe('Add an item to the cart', () => {
       .click({ force: true, multiple: true });
 
     cy.get('@product').then((value) => {
-      cy.get('[data-testid="favs-modal"]').contains(value);
+      cy.get('[data-testid="favs-modal"]')
+        .invoke('text')
+        .then((modalText) => {
+          expect(modalText).to.contain(value);
+        });
     });
   });
 

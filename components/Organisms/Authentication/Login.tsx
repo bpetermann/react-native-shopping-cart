@@ -85,6 +85,7 @@ const Login: React.FC<Props> = ({
               setValidate(false);
               navigation.navigate('Home');
             }}
+            testID='login-submit'
             text={'Login'}
           />
         </>

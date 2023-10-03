@@ -5,7 +5,11 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    env: {
+      host: '/',
+    },
     baseUrl: 'http://localhost:19006',
+    experimentalRunAllSpecs: true,
     viewportHeight: 890,
     viewportWidth: 481,
   },

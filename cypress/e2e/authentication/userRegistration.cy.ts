@@ -1,24 +1,12 @@
 /// <reference types="cypress" />
 
 describe('Register a user', () => {
-  const validEmail = 'john.doe@gmail.com';
-  const invalidEmail = 'john.doe.gmail.com';
-  const validPassword = '123456!';
-  const invalidPassword = '123';
-
-  beforeEach(() => {
-    cy.visit('/', {
-      onBeforeLoad(win) {
-        Object.defineProperty(win.navigator, 'language', { value: 'en-EN' });
-        Object.defineProperty(win.navigator, 'languages', { value: ['en'] });
-        Object.defineProperty(win.navigator, 'accept_languages', {
-          value: ['en'],
-        });
-      },
-      headers: {
-        'Accept-Language': 'en',
-      },
+  beforeEach(function () {
+    cy.fixture('users/guest').then((user) => {
+      this.user = user;
     });
+    cy.dropby();
+
     cy.get('[data-testid="auth-link"]').click();
     cy.get('[data-testid="auth-switch"]')
       .click()
@@ -30,10 +18,10 @@ describe('Register a user', () => {
       });
   });
 
-  it('should show an error if the passwords do not match', () => {
-    cy.get('@emailInput').type(validEmail);
-    cy.get('@passwordInput').type(validPassword);
-    cy.get('@confirmInput').type(invalidPassword);
+  it('should show an error if the passwords do not match', function () {
+    cy.get('@emailInput').type(this.user.validEmail);
+    cy.get('@passwordInput').type(this.user.validPassword);
+    cy.get('@confirmInput').type(this.user.invalidPassword);
     cy.get('@submit')
       .click()
       .then(() => {
@@ -41,8 +29,8 @@ describe('Register a user', () => {
       });
   });
 
-  it('should show an error if the password is too short', () => {
-    cy.get('@emailInput').type(validEmail);
+  it('should show an error if the password is too short', function () {
+    cy.get('@emailInput').type(this.user.validEmail);
     cy.get('@submit')
       .click()
       .then(() => {
@@ -58,8 +46,8 @@ describe('Register a user', () => {
       });
   });
 
-  it('should show an error if the email is invalid', () => {
-    cy.get('@emailInput').type(invalidEmail);
+  it('should show an error if the email is invalid', function () {
+    cy.get('@emailInput').type(this.user.invalidEmail);
     cy.get('@submit')
       .click()
       .then(() => {
@@ -67,10 +55,10 @@ describe('Register a user', () => {
       });
   });
 
-  it('should redirect in case of a successful registration', () => {
-    cy.get('@emailInput').type(validEmail);
-    cy.get('@passwordInput').type(validPassword);
-    cy.get('@confirmInput').type(validPassword);
+  it('should redirect in case of a successful registration', function () {
+    cy.get('@emailInput').type(this.user.validEmail);
+    cy.get('@passwordInput').type(this.user.validPassword);
+    cy.get('@confirmInput').type(this.user.validPassword);
 
     cy.get('@submit')
       .click()
@@ -78,7 +66,7 @@ describe('Register a user', () => {
         cy.get('input').should(
           'have.attr',
           'placeholder',
-          `👋 Welcome, ${validEmail.split('@')[0]}!`
+          `👋 Welcome, ${this.user.validEmail.split('@')[0]}!`
         );
       });
   });
