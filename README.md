@@ -20,6 +20,13 @@ npm start
 - For Android devices scan the QR Code that is displayed in the terminal with the [Expo Go](https://expo.dev/client) app
 - Type "npm run web" to view in the browser
 
+### Run Cypress
+
+```
+npm start web
+npm run test
+```
+
 ### Thanks
 
 - Model photo by <a href="https://unsplash.com/de/@wiola3001">Wioletta Płonkowska
