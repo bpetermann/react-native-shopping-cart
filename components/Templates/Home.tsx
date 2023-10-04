@@ -4,16 +4,15 @@ import {
   Products,
   Searchbar,
 } from '@/components/Organisms/Home';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { NavigationProp } from '@react-navigation/native';
 import { ScrollView, TextInput } from 'react-native';
 import { useInitialData, useSuccess } from '@/hooks';
 import { Header } from '@/components/Organisms/App';
 import { useState, createRef } from 'react';
-import { RootStackParamList } from 'App';
 import { Product } from '@/util/types';
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList>;
+  navigation: NavigationProp<any, any>;
   route: {
     params: {
       success: string;
@@ -36,7 +35,7 @@ const Home = ({ navigation, route }: Props) => {
   };
 
   const showDetail = (item: Product) => {
-    navigation.replace('ProductDetail', {
+    navigation.navigate('ProductDetail', {
       item,
     });
   };

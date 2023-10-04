@@ -33,10 +33,8 @@ describe('Add an item to the cart', () => {
   });
 
   it('should increase the amount button by one', () => {
-    cy.contains('Add to Cart')
-      .click({ force: true })
-      .then(() => {
-        cy.get('[data-testid="cart-amount"]').should('have.text', '1');
-      });
+    cy.contains('Add to Cart').click({ force: true });
+    cy.get('[data-testid="cart"]').click({ multiple: true, force: true });
+    cy.get('[data-testid="cart-modal"]').contains('Cart (1)');
   });
 });

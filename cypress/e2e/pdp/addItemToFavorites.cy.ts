@@ -33,10 +33,8 @@ describe('Add an item to the cart', () => {
   });
 
   it('should increase the favorites amount by one', () => {
-    cy.get('[data-testid="favorite-btn"]')
-      .click()
-      .then(() => {
-        cy.get('[data-testid="favorites-amount"]').should('have.text', '1');
-      });
+    cy.get('[data-testid="favorite-btn"]').click();
+    cy.get('[data-testid="favorites"]').click({ multiple: true, force: true });
+    cy.get('[data-testid="favs-modal"]').contains('Favorites (1)');
   });
 });
