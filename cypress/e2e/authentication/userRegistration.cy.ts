@@ -5,7 +5,7 @@ describe('Register a user', () => {
     cy.fixture('common').then(({ guest }) => {
       this.user = guest;
     });
-    cy.visitEn();
+    cy.stubVisit();
 
     cy.get('[data-testid="auth-link"]').click();
     cy.get('[data-testid="auth-switch"]')

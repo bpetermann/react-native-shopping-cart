@@ -5,8 +5,7 @@ describe('Add an item to the cart', () => {
     '[data-testid="products"] > :nth-child(1) > :nth-child(1)';
 
   beforeEach(() => {
-    cy.visitEn();
-
+    cy.stubVisit();
     cy.get(firstProduct)
       .invoke('text')
       .then((fullText) => {

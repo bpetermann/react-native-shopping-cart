@@ -2,8 +2,7 @@
 
 describe('Add an item to the cart', () => {
   beforeEach(() => {
-    cy.visitEn();
-
+    cy.stubVisit();
     cy.get('[data-testid="cart"]').click();
   });
 

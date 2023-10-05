@@ -14,3 +14,13 @@ Cypress.Commands.add('visitEn', () => {
     },
   });
 });
+
+Cypress.Commands.add('stubVisit', () => {
+  cy.fixture('common').then(({ data, api }) => {
+    this.data = data;
+    this.request = api;
+
+    cy.intercept(this.request, this.data).as('stubbed');
+    cy.visitEn();
+  });
+});

@@ -12,5 +12,6 @@ type Product = {
 declare namespace Cypress {
   interface Chainable<Subject> {
     visitEn(): Chainable<void>;
+    stubVisit(): Chainable<void>;
   }
 }
