@@ -5,7 +5,7 @@ describe('Add an item to the cart', () => {
     '[data-testid="products"] > :nth-child(1) > :nth-child(1)';
 
   beforeEach(() => {
-    cy.dropby();
+    cy.visitEn();
 
     cy.get(firstProduct)
       .invoke('text')

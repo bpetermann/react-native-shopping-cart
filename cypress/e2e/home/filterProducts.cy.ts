@@ -6,7 +6,7 @@ describe('Filter products', () => {
   const invalidSearchTerm = 'abcdefghijklmopqrstuvwxyz';
 
   beforeEach(() => {
-    cy.dropby();
+    cy.visitEn();
 
     cy.get(firstProduct)
       .invoke('text')

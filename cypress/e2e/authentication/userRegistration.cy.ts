@@ -2,10 +2,10 @@
 
 describe('Register a user', () => {
   beforeEach(function () {
-    cy.fixture('users/guest').then((user) => {
-      this.user = user;
+    cy.fixture('common').then(({ guest }) => {
+      this.user = guest;
     });
-    cy.dropby();
+    cy.visitEn();
 
     cy.get('[data-testid="auth-link"]').click();
     cy.get('[data-testid="auth-switch"]')

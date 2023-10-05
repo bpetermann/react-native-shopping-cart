@@ -1,6 +1,0 @@
-{
-  "validEmail": "jane.doe@gmail.com",
-  "invalidEmail": "jane.doe.gmail.com",
-  "validPassword": "123456!",
-  "invalidPassword": "123"
-}

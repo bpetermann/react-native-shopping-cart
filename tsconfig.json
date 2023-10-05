@@ -12,9 +12,11 @@
     "skipLibCheck": true,
     "target": "ESNext",
     "types": ["react-native", "node"],
+
     "baseUrl": "./",
     "paths": {
       "@/*": ["*"]
     }
-  }
+  },
+  "exclude": ["cypress.config.ts", "cypress", "node_modules"]
 }

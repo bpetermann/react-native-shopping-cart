@@ -2,10 +2,10 @@
 
 describe('Login a existing user', () => {
   beforeEach(function () {
-    cy.fixture('users/registered').then((user) => {
+    cy.fixture('common').then(({ user }) => {
       this.user = user;
     });
-    cy.dropby();
+    cy.visitEn();
 
     cy.get('[data-testid="auth-link"]')
       .click()
@@ -17,6 +17,7 @@ describe('Login a existing user', () => {
   });
 
   it('should redirect in case of a successful login', function () {
+    cy.log(this.user)
     cy.get('@emailInput').type(this.user.email);
     cy.get('@passwordInput').type(this.user.password);
 
