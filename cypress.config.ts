@@ -10,6 +10,7 @@ export default defineConfig({
     },
     baseUrl: 'http://localhost:19006',
     experimentalRunAllSpecs: true,
+    experimentalStudio: true,
     viewportHeight: 890,
     viewportWidth: 481,
   },

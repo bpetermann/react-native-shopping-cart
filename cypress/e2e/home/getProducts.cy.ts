@@ -6,6 +6,6 @@ describe('Check if products are loaded correctly', () => {
   });
 
   it('should call the API on page visit', function _() {
-    cy.wait('@stubbed');
+    cy.wait('@stub');
   });
 });
