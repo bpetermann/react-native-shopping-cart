@@ -4,32 +4,43 @@ import { Product } from '@/components/Molecules/App';
 import { Container } from '@/components/Atoms';
 import { fetchProducts } from '@/util/http';
 import withLoader from '@/hoc/withLoader';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 type Props = {
   category: string;
   search: string;
   navigate: (item: ProductType) => void;
   data: ProductType[];
+  setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
 };
 
-const Products: React.FC<Props> = ({ category, search, navigate, data }) => {
+const Products: React.FC<Props> = ({
+  category,
+  search,
+  navigate,
+  data,
+  setProducts,
+}) => {
   const products = useMemo(
     () =>
       data?.filter((product) => {
         return (
-          product.description.toLowerCase().includes(search) &&
+          product.description.toLowerCase().includes(search.toLowerCase()) &&
           product.category.includes(category)
         );
       }),
     [data, category, search]
   );
 
+  useEffect(() => {
+    setProducts(data);
+  }, [data]);
+
   const zeroSearch = (
     <View style={{ padding: 24 }}>
       <Text style={{ textAlign: 'center' }}>
         Your search for{' '}
-        <Text style={{ fontWeight: '600' }}>{`"${search}"`} </Text>
+        <Text style={{ fontWeight: '600' }}>{search} </Text>
         did not match any entries
       </Text>
     </View>

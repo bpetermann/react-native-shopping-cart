@@ -6,7 +6,7 @@ export async function fetchProducts() {
     const response = await axios.get(
       `https://my-json-server.typicode.com/bpetermann/shopping-cart-jsonserver/storeItems`
     );
-console.log(response)
+
     const items = response.data.map((i: Product) => ({
       ...i,
       category: i.category.concat(', Women'),

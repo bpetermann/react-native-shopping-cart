@@ -5,6 +5,7 @@ import {
   Searchbar,
 } from '@/components/Organisms/Home';
 import { NavigationProp } from '@react-navigation/native';
+import { Product as ProductType } from '@/util/types';
 import { ScrollView, TextInput } from 'react-native';
 import { useInitialData, useSuccess } from '@/hooks';
 import { Header } from '@/components/Organisms/App';
@@ -24,6 +25,7 @@ const Home = ({ navigation, route }: Props) => {
   const success = route?.params?.success;
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
+  const [products, setProducts] = useState<ProductType[]>([]);
 
   useSuccess(success);
   useInitialData();
@@ -44,13 +46,20 @@ const Home = ({ navigation, route }: Props) => {
     <>
       <Header focus={focusSearch} navigation={navigation} />
       <ScrollView>
-        <Searchbar ref={ref} focus={focusSearch} search={setSearch} />
+        <Searchbar
+          suggestions={products.map((item) => item.name)}
+          setSearch={setSearch}
+          focus={focusSearch}
+          search={search}
+          ref={ref}
+        />
         <Categories change={setCategory} category={category} />
         <Hero />
         <Products
+          setProducts={setProducts}
+          navigate={showDetail}
           category={category}
           search={search}
-          navigate={showDetail}
           data={[]}
         />
       </ScrollView>
