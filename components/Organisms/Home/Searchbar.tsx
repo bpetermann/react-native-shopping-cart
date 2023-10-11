@@ -22,20 +22,19 @@ type Props = {
 
 const Searchbar = forwardRef<TextInput, Props>(
   ({ suggestions, setSearch, focus, search }, ref) => {
-    const { t } = useTranslation();
-    const { user } = useContext(AuthContext);
     const [searchSuggestion, setSearchSuggestion] = useState('');
+    const { user } = useContext(AuthContext);
+    const { t } = useTranslation();
 
     const userGreeting = t('👋 Welcome') + `${user?.email?.split('@')?.[0]}!`;
 
     const searchproducts = (text: string) => {
-      setSearchSuggestion('');
-      if (suggest && text) {
-        const productSuggestion = suggest.find(text);
-        if (productSuggestion) {
-          setSearchSuggestion(productSuggestion.value);
-        }
+      const recommandation = suggest?.find(text);
+
+      if (recommandation) {
+        setSearchSuggestion(recommandation.value);
       }
+
       setSearch(text);
     };
 
@@ -68,10 +67,13 @@ const Searchbar = forwardRef<TextInput, Props>(
             </Pressable>
           </View>
         </Container>
-        {searchSuggestion && (
+        {search && searchSuggestion && (
           <View style={styles.suggestion}>
             <Pressable
-              onPress={() => searchproducts(searchSuggestion)}
+              onPress={() => {
+                searchproducts(searchSuggestion);
+                setSearchSuggestion('');
+              }}
               android_ripple={{ color: '#efeff0' }}
             >
               <Text>
