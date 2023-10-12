@@ -6,7 +6,8 @@ import {
   useState,
   useMemo,
 } from 'react';
-import { StyleSheet, View, Image, TextInput, Text } from 'react-native';
+import { StyleSheet, View, Image, TextInput } from 'react-native';
+import { Recommandation } from '@/components/Molecules/Home';
 import { useTranslation } from '@/context/i18n-context';
 import { AuthContext } from '@/context/auth-context';
 import { Container } from '@/components/Atoms';
@@ -26,17 +27,7 @@ const Searchbar = forwardRef<TextInput, Props>(
     const { user } = useContext(AuthContext);
     const { t } = useTranslation();
 
-    const userGreeting = t('👋 Welcome') + `${user?.email?.split('@')?.[0]}!`;
-
-    const searchproducts = (text: string) => {
-      const recommandation = suggest?.find(text);
-
-      if (recommandation) {
-        setSearchSuggestion(recommandation.value);
-      }
-
-      setSearch(text);
-    };
+    const userGreeting = t('👋 Welcome') + `${user?.email?.split('@')?.[0]}`!;
 
     const suggest = useMemo(() => {
       if (suggestions.length) {
@@ -45,6 +36,21 @@ const Searchbar = forwardRef<TextInput, Props>(
         return trie;
       }
     }, [suggestions]);
+
+    const searchproducts = (text: string) => {
+      const recommandation = suggest?.find(text);
+      setSearchSuggestion('');
+
+      if (
+        recommandation &&
+        typeof recommandation.value === 'string' &&
+        recommandation.value !== text
+      ) {
+        setSearchSuggestion(recommandation?.value);
+      }
+
+      setSearch(text);
+    };
 
     return (
       <>
@@ -68,22 +74,11 @@ const Searchbar = forwardRef<TextInput, Props>(
           </View>
         </Container>
         {search && searchSuggestion && (
-          <View style={styles.suggestion}>
-            <Pressable
-              onPress={() => {
-                searchproducts(searchSuggestion);
-                setSearchSuggestion('');
-              }}
-              android_ripple={{ color: '#efeff0' }}
-            >
-              <Text>
-                {search}
-                <Text style={{ color: '#747474' }}>
-                  {searchSuggestion.slice(search.length)}
-                </Text>
-              </Text>
-            </Pressable>
-          </View>
+          <Recommandation
+            searchSuggestion={searchSuggestion}
+            searchproducts={searchproducts}
+            search={search}
+          />
         )}
       </>
     );
@@ -106,12 +101,6 @@ const styles = StyleSheet.create({
   img: {
     width: 28,
     height: 28,
-  },
-  suggestion: {
-    height: 52,
-    padding: 16,
-    borderBottomWidth: 1,
-    borderColor: '#d2d3d5',
   },
 });
 

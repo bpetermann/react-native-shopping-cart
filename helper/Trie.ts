@@ -1,26 +1,31 @@
-class TrieNode {
-  value: any;
-  children: any[];
+type NodePrimitive = string | number | boolean | null;
+type NodeObject = { [k: string]: NodeValue };
+type NodeArray = NodeValue[];
+type NodeValue = NodeArray | NodeObject | NodePrimitive;
+
+class Node {
+  value: NodeValue;
+  children: Node[];
   constructor() {
     this.value = null;
-    this.children = Array(26).fill(undefined);
+    this.children = Array(26).fill(null);
   }
 }
 
-export class Trie {
-  root: TrieNode;
+class Trie {
+  root: Node;
   constructor() {
-    this.root = new TrieNode();
+    this.root = new Node();
   }
 
-  insert(key: string, value: string) {
+  insert(key: string, value: NodeValue) {
     key = key.toLowerCase();
 
     let node = this.root;
     for (let i = 0; i < key.length; i++) {
       const alphabetIndex = key[i].charCodeAt(0) - 97;
       if (!node.children[alphabetIndex]) {
-        const newNode = new TrieNode();
+        const newNode = new Node();
         node.children[alphabetIndex] = newNode;
       }
       node = node.children[alphabetIndex];
@@ -28,29 +33,31 @@ export class Trie {
     node.value = value;
   }
 
-  find(key: string) {
+  find(key: string): Node | null {
     key = key.toLowerCase();
     let node = this.root;
     for (let i = 0; i < key.length; i++) {
       const alphabetIndex = key[i].charCodeAt(0) - 97;
 
       if (!node.children[alphabetIndex]) {
-        return false;
+        return null;
       }
 
       node = node.children[alphabetIndex];
     }
 
-    while (node.value === null && node.children) {
-      const nodeWithChildren = node.children.find((i) => i !== undefined);
+    while (!node.value && node.children) {
+      const nodeWithChildren = node.children.find((i) => i !== null);
+
       if (!nodeWithChildren) {
-        return false;
+        return null;
       }
+
       node = nodeWithChildren;
     }
 
-    if (node.value === null) {
-      return false;
+    if (!node.value) {
+      return null;
     }
 
     return node;
@@ -61,3 +68,5 @@ export class Trie {
     if (node) node.value = null;
   }
 }
+
+export { Trie };
