@@ -27,7 +27,7 @@ const Searchbar = forwardRef<TextInput, Props>(
     const { user } = useContext(AuthContext);
     const { t } = useTranslation();
 
-    const userGreeting = t('👋 Welcome') + `${user?.email?.split('@')?.[0]}`!;
+    const userGreeting = t('👋 Welcome') + `${user?.email?.split('@')?.[0]}!`;
 
     const suggest = useMemo(() => {
       if (suggestions.length) {
@@ -38,15 +38,11 @@ const Searchbar = forwardRef<TextInput, Props>(
     }, [suggestions]);
 
     const searchproducts = (text: string) => {
-      const recommandation = suggest?.find(text);
+      const recommandation = suggest?.findValue(text, 'string');
       setSearchSuggestion('');
 
-      if (
-        recommandation &&
-        typeof recommandation.value === 'string' &&
-        recommandation.value !== text
-      ) {
-        setSearchSuggestion(recommandation?.value);
+      if (recommandation && recommandation !== text) {
+        setSearchSuggestion(recommandation);
       }
 
       setSearch(text);
