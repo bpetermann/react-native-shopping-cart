@@ -9,7 +9,9 @@ import { Product as ProductType } from '@/util/types';
 import { ScrollView, TextInput } from 'react-native';
 import { useInitialData, useSuccess } from '@/hooks';
 import { Header } from '@/components/Organisms/App';
+import { type AppState } from '@/store/reducer';
 import { useState, createRef } from 'react';
+import { useSelector } from 'react-redux';
 import { Product } from '@/util/types';
 
 type Props = {
@@ -26,7 +28,9 @@ const Home = ({ navigation, route }: Props) => {
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState<ProductType[]>([]);
+  const favoriteItems = useSelector((state: AppState) => state.favoriteItems);
 
+  console.log(favoriteItems);
   useSuccess(success);
   useInitialData();
 

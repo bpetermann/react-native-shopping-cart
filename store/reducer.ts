@@ -46,7 +46,7 @@ export const reducer = (state: AppState = initialState, action: Action) => {
       };
 
     case SHOWFAVS:
-      return { ...state, showFavorites: !state.showFavorites };
+      return { ...state, showFavorites: action.payload };
 
     default:
       return state;

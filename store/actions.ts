@@ -5,7 +5,10 @@ export const TOGGLEFAVS = 'TOGGLEFAVS';
 export const GETFAVS = 'GETFAVS';
 export const SET_INITIAL_FAVS = 'SET_INITIAL_FAVS';
 
-export const showFavorites = () => ({ type: SHOWFAVS });
+export const showFavorites = (toggle: boolean) => ({
+  type: SHOWFAVS,
+  payload: toggle,
+});
 
 export const toggleFavorite = (item: Product) => ({
   type: TOGGLEFAVS,

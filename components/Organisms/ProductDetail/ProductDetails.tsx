@@ -1,7 +1,9 @@
 import { StyleSheet, Text, Image, View, Pressable } from 'react-native';
-import { FavoritesContext } from '@/context/favorites-context';
 import { useTranslation } from '@/context/i18n-context';
+import { useSelector, useDispatch } from 'react-redux';
 import { CartContext } from '@/context/cart-context';
+import { toggleFavorite } from '@/store/actions';
+import { type AppState } from '@/store/reducer';
 import { Product } from '@/util/types';
 import { useContext } from 'react';
 
@@ -10,8 +12,9 @@ type Props = {
 };
 
 const ProductDetail: React.FC<Props> = ({ item }) => {
-  const { toggleFavorite, favoriteItems } = useContext(FavoritesContext);
+  const favoriteItems = useSelector((state: AppState) => state.favoriteItems);
   const { addCartItem: add } = useContext(CartContext);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const isFavorite = favoriteItems.find((i) => i.id === item.id);
@@ -38,7 +41,7 @@ const ProductDetail: React.FC<Props> = ({ item }) => {
         </Pressable>
         <Pressable
           style={styles.favoriteButton}
-          onPress={() => toggleFavorite(item)}
+          onPress={() => dispatch(toggleFavorite(item))}
           android_ripple={{ color: '#efeff0' }}
           testID='favorite-btn'
         >
