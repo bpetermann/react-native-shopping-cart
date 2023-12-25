@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { toggleFavorite, type AppState } from '@/store';
 import { useTranslation } from '@/context/i18n-context';
 import { useSelector, useDispatch } from 'react-redux';
 import { Product as ProductType } from '@/util/types';
 import { CartContext } from '@/context/cart-context';
-import { toggleFavorite } from '@/store/actions';
-import { type AppState } from '@/store/reducer';
 import { BaseButton } from '@/components/Atoms';
 import { imageMap } from '@/lib/products';
 import { useContext } from 'react';

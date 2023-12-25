@@ -25,18 +25,19 @@ export const reducer = (state: AppState = initialState, action: Action) => {
         (i) => i.id === action.payload.id
       );
       if (index < 0) {
-        setStoreData([...state.favoriteItems, action.payload], 'favorites');
+        const newFavoriteItems = [...state.favoriteItems, action.payload];
+        setStoreData(newFavoriteItems, 'favorites');
 
         return {
           ...state,
-          favoriteItems: [...state.favoriteItems, action.payload],
+          favoriteItems: newFavoriteItems,
         };
       } else {
-        const newItems = state.favoriteItems.filter(
+        const updatedFavoriteItems = state.favoriteItems.filter(
           (i) => i.id !== action.payload.id
         );
-        setStoreData(newItems, 'favorites');
-        return { ...state, favoriteItems: newItems };
+        setStoreData(updatedFavoriteItems, 'favorites');
+        return { ...state, favoriteItems: updatedFavoriteItems };
       }
 
     case SET_INITIAL_FAVS:

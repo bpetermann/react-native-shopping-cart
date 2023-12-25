@@ -5,12 +5,11 @@ import {
   AmountButton,
 } from '@/components/Atoms';
 import { NavigationProp } from '@react-navigation/native';
+import { showFavorites, type AppState } from '@/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { CartContext } from '@/context/cart-context';
 import { useRoute } from '@react-navigation/native';
-import { showFavorites } from '@/store/actions';
 import { StyleSheet, View } from 'react-native';
-import { type AppState } from '@/store/reducer';
 import { useContext } from 'react';
 
 type Props = {

@@ -2,9 +2,8 @@ import { Container, Heading, IconButton } from '@/components/Atoms';
 import { StyleSheet, View, Modal, FlatList } from 'react-native';
 import { useTranslation } from '@/context/i18n-context';
 import { useSelector, useDispatch } from 'react-redux';
+import { type AppState, showFavorites } from '@/store';
 import { Product } from '@/components/Molecules/App';
-import { type AppState } from '@/store/reducer';
-import { showFavorites } from '@/store/actions';
 
 const Favorites = () => {
   const favoriteItems = useSelector((state: AppState) => state.favoriteItems);
@@ -19,7 +18,7 @@ const Favorites = () => {
         <View style={styles.favs} testID={'favs-modal'}>
           <View style={styles.close}>
             <IconButton
-              onClick={() =>  dispatch(showFavorites(false))}
+              onClick={() => dispatch(showFavorites(false))}
               img={require('@/assets/app/close.png')}
             />
           </View>
