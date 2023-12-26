@@ -1,14 +1,32 @@
 import { setStoreData } from '@/helper';
 import { Product } from '@/util/types';
 
-import { SET_INITIAL_FAVS, SHOWFAVS, TOGGLEFAVS } from './actions';
+export const SHOWFAVS = 'SHOWFAVS';
+export const TOGGLEFAVS = 'TOGGLEFAVS';
+export const GETFAVS = 'GETFAVS';
+export const SET_INITIAL_FAVS = 'SET_INITIAL_FAVS';
+
+export const showFavorites = (toggle: boolean) => ({
+  type: SHOWFAVS,
+  payload: toggle,
+});
+
+export const toggleFavorite = (item: Product) => ({
+  type: TOGGLEFAVS,
+  payload: item,
+});
+
+export const setInitialFavorites = (favoriteItems: Product[]) => ({
+  type: SET_INITIAL_FAVS,
+  payload: favoriteItems,
+});
 
 type AppState = {
   favoriteItems: Product[];
   showFavorites: boolean;
 };
 
-export const initialState: AppState = {
+export const initialFavoritesState: AppState = {
   favoriteItems: [],
   showFavorites: false,
 };
@@ -18,7 +36,7 @@ type Action = {
   payload?: any;
 };
 
-export const reducer = (state: AppState = initialState, action: Action) => {
+export const favoritesReducer = (state: AppState = initialFavoritesState, action: Action) => {
   switch (action.type) {
     case TOGGLEFAVS:
       const index = state.favoriteItems.findIndex(
@@ -41,10 +59,7 @@ export const reducer = (state: AppState = initialState, action: Action) => {
       }
 
     case SET_INITIAL_FAVS:
-      return {
-        ...state,
-        favoriteItems: action.payload,
-      };
+      return { ...state, favoriteItems: action.payload };
 
     case SHOWFAVS:
       return { ...state, showFavorites: action.payload };

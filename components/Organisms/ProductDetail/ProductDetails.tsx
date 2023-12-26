@@ -1,9 +1,8 @@
 import { StyleSheet, Text, Image, View, Pressable } from 'react-native';
-import { toggleFavorite, type AppState } from '@/store';
+import { toggleFavorite,  RootState } from '@/store';
 import { useTranslation } from '@/context/i18n-context';
 import { useSelector, useDispatch } from 'react-redux';
 import { CartContext } from '@/context/cart-context';
-import {} from '@/store/reducer';
 import { Product } from '@/util/types';
 import { useContext } from 'react';
 
@@ -12,7 +11,7 @@ type Props = {
 };
 
 const ProductDetail: React.FC<Props> = ({ item }) => {
-  const favoriteItems = useSelector((state: AppState) => state.favoriteItems);
+  const favoriteItems = useSelector((state: RootState) => state.favorites.favoriteItems);
   const { addCartItem: add } = useContext(CartContext);
   const dispatch = useDispatch();
   const { t } = useTranslation();

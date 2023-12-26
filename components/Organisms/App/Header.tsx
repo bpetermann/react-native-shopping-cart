@@ -5,7 +5,7 @@ import {
   AmountButton,
 } from '@/components/Atoms';
 import { NavigationProp } from '@react-navigation/native';
-import { showFavorites, type AppState } from '@/store';
+import { showFavorites, RootState } from '@/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { CartContext } from '@/context/cart-context';
 import { useRoute } from '@react-navigation/native';
@@ -18,7 +18,9 @@ type Props = {
 };
 
 const Header: React.FC<Props> = ({ navigation, focus }) => {
-  const favoriteItems = useSelector((state: AppState) => state.favoriteItems);
+  const favoriteItems = useSelector(
+    (state: RootState) => state.favorites.favoriteItems
+  );
   const dispatch = useDispatch();
 
   const { amount, setShowCart: openCart } = useContext(CartContext);

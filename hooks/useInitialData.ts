@@ -1,7 +1,7 @@
-import { setInitialFavorites } from '@/store/actions';
 import { AuthContext } from '@/context/auth-context';
 import { CartContext } from '@/context/cart-context';
 import { users } from '@/context/auth-context';
+import { setInitialFavorites } from '@/store';
 import { useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getStoreData } from '@/helper';

@@ -1,3 +1,3 @@
-export * from './actions';
-export * from './reducer';
+export * from './cart-reducer';
+export * from './favorites-reducer';
 export * from './store';

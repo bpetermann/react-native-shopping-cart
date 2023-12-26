@@ -1,4 +1,15 @@
-import { legacy_createStore as createStore } from 'redux';
-import { reducer } from './reducer';
+import { legacy_createStore as createStore, combineReducers } from 'redux';
+import { favoritesReducer, AppState } from './favorites-reducer';
+import { cartReducer, CartState } from './cart-reducer';
 
-export const store = createStore(reducer);
+export type RootState = {
+  favorites: AppState;
+  cart: CartState;
+};
+
+const rootReducer = combineReducers({
+  favorites: favoritesReducer,
+  cart: cartReducer,
+});
+
+export const store = createStore(rootReducer);
