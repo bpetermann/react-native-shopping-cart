@@ -1,4 +1,4 @@
-export * from './cart-reducer';
-export * from './favorites-reducer';
+export * from './actions';
+export * from './reducers';
 export * from './selectors';
 export * from './store';

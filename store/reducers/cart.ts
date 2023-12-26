@@ -1,12 +1,6 @@
 import { setStoreData } from '@/helper';
 import { Product } from '@/util/types';
-
-const ADD = 'ADD';
-
-export const addCartItem = (product: Product) => ({
-  type: ADD,
-  payload: product,
-});
+import { ADD } from '../actions';
 
 export type CartState = {
   cartItems: Product[];
@@ -25,7 +19,10 @@ type Action = {
   payload?: any;
 };
 
-export const cartReducer = (state: CartState = initialCartState, action: Action) => {
+export const cartReducer = (
+  state: CartState = initialCartState,
+  action: Action
+) => {
   switch (action.type) {
     case ADD:
       const existingCartItemIndex = state.cartItems.findIndex(
