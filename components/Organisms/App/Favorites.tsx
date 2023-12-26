@@ -1,13 +1,17 @@
+import {
+  showFavorites,
+  selectFavoriteItems,
+  selectShowFavorites,
+} from '@/store';
 import { Container, Heading, IconButton } from '@/components/Atoms';
 import { StyleSheet, View, Modal, FlatList } from 'react-native';
 import { useTranslation } from '@/context/i18n-context';
 import { useSelector, useDispatch } from 'react-redux';
-import {  RootState, showFavorites } from '@/store';
 import { Product } from '@/components/Molecules/App';
 
 const Favorites = () => {
-  const favoriteItems = useSelector((state: RootState) => state.favorites.favoriteItems);
-  const show = useSelector((state: RootState) => state.favorites.showFavorites);
+  const favoriteItems = useSelector(selectFavoriteItems);
+  const show = useSelector(selectShowFavorites);
   const dispatch = useDispatch();
 
   const { t } = useTranslation();

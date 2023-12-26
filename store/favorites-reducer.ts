@@ -21,12 +21,12 @@ export const setInitialFavorites = (favoriteItems: Product[]) => ({
   payload: favoriteItems,
 });
 
-type AppState = {
+type FavoritesState = {
   favoriteItems: Product[];
   showFavorites: boolean;
 };
 
-export const initialFavoritesState: AppState = {
+export const initialFavoritesState: FavoritesState = {
   favoriteItems: [],
   showFavorites: false,
 };
@@ -36,7 +36,7 @@ type Action = {
   payload?: any;
 };
 
-export const favoritesReducer = (state: AppState = initialFavoritesState, action: Action) => {
+export const favoritesReducer = (state: FavoritesState = initialFavoritesState, action: Action) => {
   switch (action.type) {
     case TOGGLEFAVS:
       const index = state.favoriteItems.findIndex(
@@ -69,4 +69,4 @@ export const favoritesReducer = (state: AppState = initialFavoritesState, action
   }
 };
 
-export { type AppState };
+export { type FavoritesState };

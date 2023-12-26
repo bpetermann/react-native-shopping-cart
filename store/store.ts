@@ -1,9 +1,9 @@
 import { legacy_createStore as createStore, combineReducers } from 'redux';
-import { favoritesReducer, AppState } from './favorites-reducer';
+import { favoritesReducer, FavoritesState } from './favorites-reducer';
 import { cartReducer, CartState } from './cart-reducer';
 
 export type RootState = {
-  favorites: AppState;
+  favorites: FavoritesState;
   cart: CartState;
 };
 
