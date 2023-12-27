@@ -1,4 +1,4 @@
-import { Product } from '@/util/types';
+import { Product } from '@/globals';
 
 export const ADD = 'ADD';
 export const REMOVE = 'REMOVE';

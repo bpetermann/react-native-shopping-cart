@@ -6,7 +6,7 @@ import { StyleSheet, Image, View, ScrollView } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { Header } from '@/components/Organisms/App';
 import { imageMap } from '@/lib/products';
-import { Product } from '@/util/types';
+import { Product } from '@/globals';
 
 type Props = {
   navigation: NavigationProp<any, any>;

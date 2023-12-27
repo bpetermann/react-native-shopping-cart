@@ -1,6 +1,6 @@
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { useState, useEffect, ComponentType } from 'react';
-import { Product } from '@/util/types';
+import { Product } from '@/globals';
 
 export default function withLoader<P extends object>(
   Element: ComponentType<P>,

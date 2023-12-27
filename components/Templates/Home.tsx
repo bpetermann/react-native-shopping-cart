@@ -5,12 +5,11 @@ import {
   Searchbar,
 } from '@/components/Organisms/Home';
 import { NavigationProp } from '@react-navigation/native';
-import { Product as ProductType } from '@/util/types';
 import { ScrollView, TextInput } from 'react-native';
 import { useInitialData, useSuccess } from '@/hooks';
 import { Header } from '@/components/Organisms/App';
 import { useState, createRef } from 'react';
-import { Product } from '@/util/types';
+import { Product } from '@/globals';
 
 type Props = {
   navigation: NavigationProp<any, any>;
@@ -25,7 +24,7 @@ const Home = ({ navigation, route }: Props) => {
   const success = route?.params?.success;
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
-  const [products, setProducts] = useState<ProductType[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useSuccess(success);
   useInitialData();

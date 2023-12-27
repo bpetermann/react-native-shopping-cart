@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { addCartItem, removeCartItem } from '@/store';
 import { useDispatch } from 'react-redux';
-import { Product } from '@/util/types';
+import { Product } from '@/globals';
 
 type Props = {
   item: Product;

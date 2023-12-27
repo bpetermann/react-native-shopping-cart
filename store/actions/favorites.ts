@@ -1,4 +1,4 @@
-import { Product } from '@/util/types';
+import { Product } from '@/globals';
 
 export const SHOW = 'SHOW';
 export const TOGGLE = 'TOGGLE';

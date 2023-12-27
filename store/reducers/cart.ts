@@ -1,6 +1,6 @@
 import { ADD, REMOVE, SHOWCART, SET_INITIAL_CART } from '../actions';
 import { setStoreData } from '@/helper';
-import { Product } from '@/util/types';
+import { Product } from '@/globals';
 
 export type CartState = {
   cartItems: Product[];

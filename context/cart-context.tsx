@@ -1,3 +1,5 @@
+// Moved logic from context to Redux store, kept context code for documentation
+
 import {
   createContext,
   useState,
@@ -7,7 +9,7 @@ import {
   ReactNode,
 } from 'react';
 import { setStoreData, getStoreData } from '@/helper';
-import { Product } from '@/util/types';
+import { Product } from '@/globals';
 
 interface CartContext {
   cartItems: Product[];

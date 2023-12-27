@@ -2,7 +2,7 @@ import { toggleFavorite, selectFavoriteItems, addCartItem } from '@/store';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { useTranslation } from '@/context/i18n-context';
 import { useSelector, useDispatch } from 'react-redux';
-import { Product as ProductType } from '@/util/types';
+import { Product as ProductType } from '@/globals';
 import { BaseButton } from '@/components/Atoms';
 import { imageMap } from '@/lib/products';
 

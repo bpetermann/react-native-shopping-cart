@@ -1,6 +1,6 @@
 import { StyleSheet, View, FlatList, Text } from 'react-native';
-import { Product as ProductType } from '@/util/types';
 import { Product } from '@/components/Molecules/App';
+import { Product as ProductType } from '@/globals';
 import { Container } from '@/components/Atoms';
 import { fetchProducts } from '@/util/http';
 import withLoader from '@/hoc/withLoader';

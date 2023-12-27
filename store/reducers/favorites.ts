@@ -1,6 +1,6 @@
 import { TOGGLE, SHOW, SET_INITIAL_FAVORITES } from '../actions';
 import { setStoreData } from '@/helper';
-import { Product } from '@/util/types';
+import { Product } from '@/globals';
 
 type FavoritesState = {
   favoriteItems: Product[];
