@@ -20,6 +20,10 @@ npm start
 - For Android devices scan the QR Code that is displayed in the terminal with the [Expo Go](https://expo.dev/client) app
 - Type "npm run web" to view in the browser
 
+### Redux
+
+- The app utilizes a Redux store to manage the state of the cart and favorites functionality. The Redux store handles the logic and storage for these features, providing a centralized location for accessing and modifying this shared state throughout the application.
+
 ### Run Cypress tests
 
 ```
