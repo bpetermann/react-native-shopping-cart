@@ -2,9 +2,7 @@ import { toggleFavorite, selectFavoriteItems, addCartItem } from '@/store';
 import { StyleSheet, Text, Image, View, Pressable } from 'react-native';
 import { useTranslation } from '@/context/i18n-context';
 import { useSelector, useDispatch } from 'react-redux';
-import { CartContext } from '@/context/cart-context';
 import { Product } from '@/util/types';
-import { useContext } from 'react';
 
 type Props = {
   item: Product;
