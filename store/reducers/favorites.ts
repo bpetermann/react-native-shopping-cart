@@ -1,4 +1,4 @@
-import { TOGGLEFAVS, SET_INITIAL_FAVS, SHOWFAVS } from '../actions';
+import { TOGGLE, SHOW, SET_INITIAL_FAVORITES } from '../actions';
 import { setStoreData } from '@/helper';
 import { Product } from '@/util/types';
 
@@ -22,7 +22,7 @@ export const favoritesReducer = (
   action: Action
 ) => {
   switch (action.type) {
-    case TOGGLEFAVS:
+    case TOGGLE:
       const index = state.favoriteItems.findIndex(
         (i) => i.id === action.payload.id
       );
@@ -42,10 +42,10 @@ export const favoritesReducer = (
         return { ...state, favoriteItems: updatedFavoriteItems };
       }
 
-    case SET_INITIAL_FAVS:
+    case SET_INITIAL_FAVORITES:
       return { ...state, favoriteItems: action.payload };
 
-    case SHOWFAVS:
+    case SHOW:
       return { ...state, showFavorites: action.payload };
 
     default:

@@ -1,24 +1,24 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native';
-import { CartContext } from '@/context/cart-context';
+import { addCartItem, removeCartItem } from '@/store';
+import { useDispatch } from 'react-redux';
 import { Product } from '@/util/types';
-import { useContext } from 'react';
 
 type Props = {
   item: Product;
 };
 
 const CartItem: React.FC<Props> = ({ item }) => {
-  const { addCartItem: add, removeCartItem: remove } = useContext(CartContext);
+  const dispatch = useDispatch();
 
   return (
     <View>
       <View style={styles.product}>
         <Text style={styles.heading}>{item.name}</Text>
         <View style={styles.amount}>
-          <Pressable onPress={() => add(item)}>
+          <Pressable onPress={() => dispatch(addCartItem(item))}>
             <Text style={styles.add}>+</Text>
           </Pressable>
-          <Pressable onPress={() => remove(item)}>
+          <Pressable onPress={() => dispatch(removeCartItem(item))}>
             <Text style={styles.delete}>-</Text>
           </Pressable>
         </View>

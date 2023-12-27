@@ -10,8 +10,6 @@ import { ScrollView, TextInput } from 'react-native';
 import { useInitialData, useSuccess } from '@/hooks';
 import { Header } from '@/components/Organisms/App';
 import { useState, createRef } from 'react';
-import { useSelector } from 'react-redux';
-import { type RootState } from '@/store';
 import { Product } from '@/util/types';
 
 type Props = {
@@ -28,9 +26,7 @@ const Home = ({ navigation, route }: Props) => {
   const [category, setCategory] = useState('Shoes');
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState<ProductType[]>([]);
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
-  console.log(cartItems);
   useSuccess(success);
   useInitialData();
 

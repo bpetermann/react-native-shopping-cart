@@ -1,17 +1,21 @@
+import {
+  selectShowCart,
+  openCart,
+  selectCartItems,
+  selectCartAmount,
+} from '@/store';
 import { StyleSheet, View, Modal, FlatList, Button } from 'react-native';
 import { Container, Heading, IconButton } from '@/components/Atoms';
 import { useTranslation } from '@/context/i18n-context';
 import { CartItem } from '@/components/Molecules/App';
-import { CartContext } from '@/context/cart-context';
-import { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Cart = () => {
-  const {
-    cartItems,
-    amount,
-    showCart,
-    setShowCart: closeCart,
-  } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
+  const showCart = useSelector(selectShowCart);
+  const amount = useSelector(selectCartAmount);
+
+  const dispatch = useDispatch();
 
   const totalPrice = cartItems
     .reduce(function (acc, prod) {
@@ -26,7 +30,7 @@ const Cart = () => {
         <View style={styles.cart} testID={`cart-modal`}>
           <View style={styles.close}>
             <IconButton
-              onClick={() => closeCart(false)}
+              onClick={() => dispatch(openCart(false))}
               img={require('@/assets/app/close.png')}
             />
           </View>
@@ -35,7 +39,7 @@ const Cart = () => {
               <Button
                 title={t('No items (yet!)')}
                 color='#ff6900'
-                onPress={() => closeCart(false)}
+                onPress={() => dispatch(openCart(false))}
               />
             </View>
           ) : (

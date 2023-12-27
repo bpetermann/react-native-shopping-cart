@@ -1,5 +1,5 @@
+import { toggleFavorite, selectFavoriteItems, addCartItem } from '@/store';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
-import { toggleFavorite, selectFavoriteItems } from '@/store';
 import { useTranslation } from '@/context/i18n-context';
 import { useSelector, useDispatch } from 'react-redux';
 import { Product as ProductType } from '@/util/types';
@@ -14,7 +14,7 @@ type Props = {
 };
 
 const Product: React.FC<Props> = ({ item, navigate }) => {
-  const { addCartItem: add } = useContext(CartContext);
+  // const { addCartItem: add } = useContext(CartContext);
   const favoriteItems = useSelector(selectFavoriteItems);
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -35,7 +35,7 @@ const Product: React.FC<Props> = ({ item, navigate }) => {
       <Text>{item.price} $</Text>
       <BaseButton
         testID={`add-${item.id}`}
-        onClick={() => add(item)}
+        onClick={() => dispatch(addCartItem(item))}
         title={t('Add to Cart')}
       />
       <Pressable

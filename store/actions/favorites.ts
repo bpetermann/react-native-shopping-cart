@@ -1,21 +1,20 @@
 import { Product } from '@/util/types';
 
-export const SHOWFAVS = 'SHOWFAVS';
-export const TOGGLEFAVS = 'TOGGLEFAVS';
-export const GETFAVS = 'GETFAVS';
-export const SET_INITIAL_FAVS = 'SET_INITIAL_FAVS';
+export const SHOW = 'SHOW';
+export const TOGGLE = 'TOGGLE';
+export const SET_INITIAL_FAVORITES = 'SET_INITIAL_FAVORITES';
 
 export const showFavorites = (toggle: boolean) => ({
-  type: SHOWFAVS,
+  type: SHOW,
   payload: toggle,
 });
 
 export const toggleFavorite = (item: Product) => ({
-  type: TOGGLEFAVS,
+  type: TOGGLE,
   payload: item,
 });
 
 export const setInitialFavorites = (favoriteItems: Product[]) => ({
-  type: SET_INITIAL_FAVS,
+  type: SET_INITIAL_FAVORITES,
   payload: favoriteItems,
 });

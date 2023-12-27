@@ -1,7 +1,6 @@
 import { Home, ProductDetail, Authentication } from '@/components/Templates';
 import { TranslationContextProvider } from '@/context/i18n-context';
 import { Cart, Favorites } from '@/components/Organisms/App';
-import { CartContextProvider } from '@/context/cart-context';
 import { AuthContextProvider } from '@/context/auth-context';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -25,33 +24,31 @@ export default function App() {
   return (
     <Provider store={store}>
       <TranslationContextProvider>
-        <CartContextProvider>
-            <AuthContextProvider>
-              <View style={isS ? styles.app : styles.web}>
-                <NavigationContainer>
-                  <Stack.Navigator>
-                    <Stack.Screen
-                      name='Home'
-                      component={Home}
-                      options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                      name='ProductDetail'
-                      component={ProductDetail}
-                      options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                      name='Authentication'
-                      component={Authentication}
-                      options={{ headerShown: false }}
-                    />
-                  </Stack.Navigator>
-                </NavigationContainer>
-                <Cart />
-                <Favorites />
-              </View>
-            </AuthContextProvider>
-        </CartContextProvider>
+        <AuthContextProvider>
+          <View style={isS ? styles.app : styles.web}>
+            <NavigationContainer>
+              <Stack.Navigator>
+                <Stack.Screen
+                  name='Home'
+                  component={Home}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name='ProductDetail'
+                  component={ProductDetail}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name='Authentication'
+                  component={Authentication}
+                  options={{ headerShown: false }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+            <Cart />
+            <Favorites />
+          </View>
+        </AuthContextProvider>
       </TranslationContextProvider>
     </Provider>
   );

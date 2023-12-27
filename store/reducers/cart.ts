@@ -1,16 +1,14 @@
+import { ADD, REMOVE, SHOWCART } from '../actions';
 import { setStoreData } from '@/helper';
 import { Product } from '@/util/types';
-import { ADD } from '../actions';
 
 export type CartState = {
   cartItems: Product[];
-  amount: number;
   showCart: boolean;
 };
 
 export const initialCartState: CartState = {
   cartItems: [],
-  amount: 0,
   showCart: false,
 };
 
@@ -44,6 +42,32 @@ export const cartReducer = (
         setStoreData(newCartItems, 'cart');
         return { ...state, cartItems: newCartItems };
       }
+
+    case REMOVE:
+      const toBeRemoved = state.cartItems.findIndex(
+        (item) => item.name === action.payload.name
+      );
+      const existingItem = state.cartItems[toBeRemoved];
+      let cartUpdate;
+      if (existingItem?.amount > 1) {
+        const updatedItem = {
+          ...existingItem,
+          amount: existingItem.amount - 1,
+        };
+        cartUpdate = [...state.cartItems];
+        cartUpdate[toBeRemoved] = updatedItem;
+        setStoreData(cartUpdate, 'cart');
+        return { ...state, cartItems: cartUpdate };
+      } else {
+        const newCart = state.cartItems.filter(
+          (item) => item.name !== action.payload.name
+        );
+        setStoreData(newCart, 'cart');
+        return { ...state, cartItems: newCart };
+      }
+
+    case SHOWCART:
+      return { ...state, showCart: action.payload };
 
     default:
       return state;
