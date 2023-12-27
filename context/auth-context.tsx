@@ -7,6 +7,7 @@ import {
 import { ReactNode, createContext, useState } from 'react';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
+import { User } from '@/globals';
 
 interface UserContext {
   user: { email: string } | null;
@@ -15,13 +16,6 @@ interface UserContext {
   getUser: () => void;
   logout: () => void;
 }
-
-type User = {
-  id: string;
-  email: string;
-  password: string;
-  date: number;
-};
 
 export const users: User[] = [];
 
@@ -40,7 +34,7 @@ export const AuthContext = createContext<UserContext>({
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<{ email: string } | null>(null);
 
-  const register = (data: { email: any; password: string }) => {
+  const register = (data: { email: string; password: string }) => {
     const userIndex = users.findIndex((i) => i.email === data.email);
 
     if (userIndex < 0) {
@@ -61,7 +55,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     return false;
   };
 
-  const login = (data: { email: any; password: string }) => {
+  const login = (data: { email: string; password: string }) => {
     const user = users.filter((i) => i.email === data.email)?.[0];
 
     if (user) {

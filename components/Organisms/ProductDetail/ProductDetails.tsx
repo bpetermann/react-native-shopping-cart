@@ -1,17 +1,16 @@
+import { toggleFavorite, selectFavoriteItems, addCartItem } from '@/store';
 import { StyleSheet, Text, Image, View, Pressable } from 'react-native';
-import { FavoritesContext } from '@/context/favorites-context';
 import { useTranslation } from '@/context/i18n-context';
-import { CartContext } from '@/context/cart-context';
-import { Product } from '@/util/types';
-import { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Product } from '@/globals';
 
 type Props = {
   item: Product;
 };
 
 const ProductDetail: React.FC<Props> = ({ item }) => {
-  const { toggleFavorite, favoriteItems } = useContext(FavoritesContext);
-  const { addCartItem: add } = useContext(CartContext);
+  const favoriteItems = useSelector(selectFavoriteItems);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const isFavorite = favoriteItems.find((i) => i.id === item.id);
@@ -23,7 +22,7 @@ const ProductDetail: React.FC<Props> = ({ item }) => {
       <Text style={{ paddingTop: 16 }}>€ {item.price} incl. VAT</Text>
       <View style={styles.container}>
         <Pressable
-          onPress={() => add(item)}
+          onPress={() => dispatch(addCartItem(item))}
           style={styles.button}
           android_ripple={{ color: '#efeff0' }}
         >
@@ -38,7 +37,7 @@ const ProductDetail: React.FC<Props> = ({ item }) => {
         </Pressable>
         <Pressable
           style={styles.favoriteButton}
-          onPress={() => toggleFavorite(item)}
+          onPress={() => dispatch(toggleFavorite(item))}
           android_ripple={{ color: '#efeff0' }}
           testID='favorite-btn'
         >

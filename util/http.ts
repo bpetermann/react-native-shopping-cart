@@ -1,5 +1,5 @@
+import { Product } from '@/globals';
 import axios from 'axios';
-import { Product } from './types';
 
 export async function fetchProducts() {
   try {

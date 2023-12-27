@@ -1,5 +1,5 @@
-import { Product } from '@/util/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Product } from '@/globals';
 
 export function validEmail(value: string) {
   return new RegExp(

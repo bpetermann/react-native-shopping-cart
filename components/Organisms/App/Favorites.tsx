@@ -1,22 +1,28 @@
+import {
+  showFavorites,
+  selectFavoriteItems,
+  selectShowFavorites,
+} from '@/store';
 import { Container, Heading, IconButton } from '@/components/Atoms';
 import { StyleSheet, View, Modal, FlatList } from 'react-native';
-import { FavoritesContext } from '@/context/favorites-context';
 import { useTranslation } from '@/context/i18n-context';
+import { useSelector, useDispatch } from 'react-redux';
 import { Product } from '@/components/Molecules/App';
-import { useContext } from 'react';
 
 const Favorites = () => {
-  const { favoriteItems, showFavorites, setShowFavorites } =
-    useContext(FavoritesContext);
+  const favoriteItems = useSelector(selectFavoriteItems);
+  const show = useSelector(selectShowFavorites);
+  const dispatch = useDispatch();
+
   const { t } = useTranslation();
 
   return (
-    <Modal visible={showFavorites} animationType='fade'>
+    <Modal visible={show} animationType='fade'>
       <Container>
         <View style={styles.favs} testID={'favs-modal'}>
           <View style={styles.close}>
             <IconButton
-              onClick={() => setShowFavorites(false)}
+              onClick={() => dispatch(showFavorites(false))}
               img={require('@/assets/app/close.png')}
             />
           </View>

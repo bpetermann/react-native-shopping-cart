@@ -1,3 +1,5 @@
+// Moved logic from context to Redux store, kept context code for documentation
+
 import {
   Dispatch,
   ReactNode,
@@ -6,7 +8,7 @@ import {
   useState,
 } from 'react';
 import { setStoreData, getStoreData } from '@/helper';
-import { Product } from '@/util/types';
+import { Product } from '@/globals';
 
 interface FavoritesContext {
   favoriteItems: Product[];
