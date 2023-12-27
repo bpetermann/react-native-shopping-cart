@@ -1,4 +1,4 @@
-import { ADD, REMOVE, SHOWCART } from '../actions';
+import { ADD, REMOVE, SHOWCART, SET_INITIAL_CART } from '../actions';
 import { setStoreData } from '@/helper';
 import { Product } from '@/util/types';
 
@@ -22,7 +22,7 @@ export const cartReducer = (
   action: Action
 ) => {
   switch (action.type) {
-    case ADD:
+    case ADD: {
       const existingCartItemIndex = state.cartItems.findIndex(
         (item) => item.name === action.payload.name
       );
@@ -42,22 +42,23 @@ export const cartReducer = (
         setStoreData(newCartItems, 'cart');
         return { ...state, cartItems: newCartItems };
       }
+    }
 
     case REMOVE:
-      const toBeRemoved = state.cartItems.findIndex(
+      const existingCartItemIndex = state.cartItems.findIndex(
         (item) => item.name === action.payload.name
       );
-      const existingItem = state.cartItems[toBeRemoved];
-      let cartUpdate;
-      if (existingItem?.amount > 1) {
+      const existingCartItem = state.cartItems[existingCartItemIndex];
+      let updatedCart;
+      if (existingCartItem?.amount > 1) {
         const updatedItem = {
-          ...existingItem,
-          amount: existingItem.amount - 1,
+          ...existingCartItem,
+          amount: existingCartItem.amount - 1,
         };
-        cartUpdate = [...state.cartItems];
-        cartUpdate[toBeRemoved] = updatedItem;
-        setStoreData(cartUpdate, 'cart');
-        return { ...state, cartItems: cartUpdate };
+        updatedCart = [...state.cartItems];
+        updatedCart[existingCartItemIndex] = updatedItem;
+        setStoreData(updatedCart, 'cart');
+        return { ...state, cartItems: updatedCart };
       } else {
         const newCart = state.cartItems.filter(
           (item) => item.name !== action.payload.name
@@ -65,6 +66,9 @@ export const cartReducer = (
         setStoreData(newCart, 'cart');
         return { ...state, cartItems: newCart };
       }
+
+    case SET_INITIAL_CART:
+      return { ...state, cartItems: action.payload };
 
     case SHOWCART:
       return { ...state, showCart: action.payload };

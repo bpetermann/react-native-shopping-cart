@@ -1,7 +1,7 @@
+import { setInitialFavorites, setInitialCart } from '@/store';
 import { AuthContext } from '@/context/auth-context';
 import { CartContext } from '@/context/cart-context';
 import { users } from '@/context/auth-context';
-import { setInitialFavorites } from '@/store';
 import { useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getStoreData } from '@/helper';
@@ -14,22 +14,25 @@ const mockUser = {
   password: '8.397415388533946e+25',
 };
 
-export default function useBreakpoints() {
+export default function useInitialData() {
   const dispatch = useDispatch();
   const { getUser } = useContext(AuthContext);
-  const { getCart } = useContext(CartContext);
 
   useEffect(() => {
-    const getFavorites = async () => {
+    const getInitialData = async () => {
       const favorites = await getStoreData('favorites');
+      const cart = await getStoreData('cart');
 
       if (Array.isArray(favorites)) {
         dispatch(setInitialFavorites(favorites));
       }
+
+      if (Array.isArray(cart)) {
+        dispatch(setInitialCart(cart));
+      }
     };
-    getFavorites();
+    getInitialData();
     getUser();
-    getCart();
     if (process.env.NODE_ENV === 'development') users.push(mockUser);
   }, []);
 }

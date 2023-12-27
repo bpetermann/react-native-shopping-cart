@@ -3,10 +3,8 @@ import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { useTranslation } from '@/context/i18n-context';
 import { useSelector, useDispatch } from 'react-redux';
 import { Product as ProductType } from '@/util/types';
-import { CartContext } from '@/context/cart-context';
 import { BaseButton } from '@/components/Atoms';
 import { imageMap } from '@/lib/products';
-import { useContext } from 'react';
 
 type Props = {
   item: ProductType;
@@ -14,7 +12,6 @@ type Props = {
 };
 
 const Product: React.FC<Props> = ({ item, navigate }) => {
-  // const { addCartItem: add } = useContext(CartContext);
   const favoriteItems = useSelector(selectFavoriteItems);
   const dispatch = useDispatch();
   const { t } = useTranslation();
