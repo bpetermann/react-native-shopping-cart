@@ -6,11 +6,12 @@ import {
 import { NavigationProp } from '@react-navigation/native';
 import { useTranslation } from '@/context/i18n-context';
 import { StyleSheet, View, Text } from 'react-native';
-import { AuthContext } from '@/context/auth-context';
-import { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { validEmail } from '@/helper';
 import { useFail } from '@/hooks';
+import { loginAPI } from '@/util';
+import { useState } from 'react';
+import { login } from '@/store';
 
 type Props = {
   navigation: NavigationProp<any, any>;
@@ -24,7 +25,6 @@ const Login: React.FC<Props> = ({
   setShowRegister,
 }) => {
   const [error, setError] = useState<string | undefined>(undefined);
-  const { login } = useContext(AuthContext);
   const [validate, setValidate] = useState(false);
   const [userData, setUserData] = useState({
     email: '',
@@ -73,12 +73,14 @@ const Login: React.FC<Props> = ({
                 return;
               }
 
-              const valid = login({ email, password });
+              const valid = loginAPI({ email, password });
 
               if (!valid) {
                 setError('Login');
                 return;
               }
+
+              dispatch(login({ email, password }));
 
               setUserData({
                 email: '',

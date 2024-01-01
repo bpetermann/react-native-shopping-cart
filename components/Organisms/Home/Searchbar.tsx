@@ -9,9 +9,10 @@ import {
 import { StyleSheet, View, Image, TextInput } from 'react-native';
 import { Recommandation } from '@/components/Molecules/Home';
 import { useTranslation } from '@/context/i18n-context';
-import { AuthContext } from '@/context/auth-context';
 import { Container } from '@/components/Atoms';
+import { useSelector } from 'react-redux';
 import { Pressable } from 'react-native';
+import { selectUser } from '@/store';
 import { Trie } from '@/helper/Trie';
 
 type Props = {
@@ -24,8 +25,9 @@ type Props = {
 const Searchbar = forwardRef<TextInput, Props>(
   ({ suggestions, setSearch, focus, search }, ref) => {
     const [searchSuggestion, setSearchSuggestion] = useState('');
-    const { user } = useContext(AuthContext);
+    //  const { user } = useContext(AuthContext);
     const { t } = useTranslation();
+    const user = useSelector(selectUser);
 
     const userGreeting = t('👋 Welcome') + `${user?.email?.split('@')?.[0]}!`;
 

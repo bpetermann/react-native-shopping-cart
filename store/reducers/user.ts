@@ -1,5 +1,5 @@
-import { LOGIN, REGISTER } from '../actions';
-import { setStoreData } from '@/helper';
+import { setStoreData, clearStoreData } from '@/helper';
+import { LOGIN, LOGOUT, REGISTER } from '../actions';
 
 export type UserState = {
   user: { email: string } | null;
@@ -25,6 +25,9 @@ export const userReducer = (
     case LOGIN:
       setStoreData(action.payload.email, 'user');
       return { ...state, user: { email: action.payload.email } };
+    case LOGOUT:
+      clearStoreData('user');
+      return { ...state, user: null };
     default:
       return state;
   }

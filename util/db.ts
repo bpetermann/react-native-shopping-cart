@@ -6,7 +6,6 @@ const users: User[] = [];
 
 const registerAPI = (data: { email: string; password: string }) => {
   const userIndex = users.findIndex((i) => i.email === data.email);
-  console.log(users);
 
   if (userIndex < 0) {
     const time = Date.now();

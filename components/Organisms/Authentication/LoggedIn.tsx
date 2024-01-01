@@ -1,11 +1,11 @@
 import { useTranslation } from '@/context/i18n-context';
 import { View, Pressable, Text } from 'react-native';
-import { AuthContext } from '@/context/auth-context';
-import { useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from '@/store';
 
 const LoggedIn = () => {
-  const { logout } = useContext(AuthContext);
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   return (
     <View
@@ -26,7 +26,7 @@ const LoggedIn = () => {
           padding: 12,
           width: '100%',
         }}
-        onPress={logout}
+        onPress={() => dispatch(logout())}
         android_ripple={{ color: '#efeff0' }}
       >
         <Text

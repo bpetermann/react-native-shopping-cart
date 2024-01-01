@@ -4,10 +4,10 @@ import {
   LoggedIn,
 } from '@/components/Organisms/Authentication';
 import { NavigationProp } from '@react-navigation/native';
-import { AuthContext } from '@/context/auth-context';
 import { Header } from '@/components/Organisms/App';
 import { View, ScrollView } from 'react-native';
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from '@/store';
 import { useState } from 'react';
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
 
 const Authentication: React.FC<Props> = ({ navigation }) => {
   const [showRegister, setShowRegister] = useState(false);
-  const { user } = useContext(AuthContext);
+  const user = useSelector(selectUser);
 
   const border = (
     <View

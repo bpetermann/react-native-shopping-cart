@@ -8,7 +8,7 @@ import { useTranslation } from '@/context/i18n-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, View, Text } from 'react-native';
 import { AuthContext } from '@/context/auth-context';
-import { register, selectUsers } from '@/store';
+import { register } from '@/store';
 import { validEmail } from '@/helper';
 import { useContext } from 'react';
 import { useFail } from '@/hooks';
@@ -36,7 +36,6 @@ const Register: React.FC<Props> = ({
   });
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const users = useSelector(selectUsers);
 
   useFail(error);
 
@@ -96,7 +95,7 @@ const Register: React.FC<Props> = ({
                 return;
               }
 
-              const isValid = registerAPI({ email, password })
+              const isValid = registerAPI({ email, password });
 
               if (!isValid) {
                 setError('Registration');
