@@ -1,9 +1,9 @@
 import { setInitialFavorites, setInitialCart } from '@/store';
 import { AuthContext } from '@/context/auth-context';
-import { users } from '@/context/auth-context';
 import { useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getStoreData } from '@/helper';
+import { users } from '@/util';
 
 const mockUser = {
   // password 123456!

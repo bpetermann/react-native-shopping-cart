@@ -8,6 +8,7 @@ import { useTranslation } from '@/context/i18n-context';
 import { StyleSheet, View, Text } from 'react-native';
 import { AuthContext } from '@/context/auth-context';
 import { useContext, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { validEmail } from '@/helper';
 import { useFail } from '@/hooks';
 
@@ -30,6 +31,7 @@ const Login: React.FC<Props> = ({
     password: '',
   });
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   useFail(error);
 
   const { email, password } = userData;
