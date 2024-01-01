@@ -24,26 +24,18 @@ export const userReducer = (
 ) => {
   switch (action.type) {
     case REGISTER:
-      const userIndex = state.users.findIndex(
-        (i) => i.email === action.payload.email
-      );
+      const time = Date.now();
 
-      if (userIndex < 0) {
-        const time = Date.now();
+      const user = {
+        email: action.payload.email,
+        password: hashValue(action.payload.password, time),
+        id: uuidv4(),
+        date: time,
+      };
 
-        const user = {
-          email: action.payload.data.email,
-          password: hashValue(action.payload.password, time),
-          id: uuidv4(),
-          date: time,
-        };
-
-        const newUsers = [...state.users, user];
-        setStoreData(user.email, 'user');
-        return { ...state, user: { email: user.email }, users: newUsers };
-      } else {
-        return state;
-      }
+      const newUsers = [...state.users, user];
+      setStoreData(user.email, 'user');
+      return { ...state, user: { email: user.email }, users: newUsers };
 
     default:
       return state;

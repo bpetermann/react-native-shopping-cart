@@ -3,12 +3,12 @@ import {
   Register,
   LoggedIn,
 } from '@/components/Organisms/Authentication';
+import { NavigationProp } from '@react-navigation/native';
 import { AuthContext } from '@/context/auth-context';
 import { Header } from '@/components/Organisms/App';
 import { View, ScrollView } from 'react-native';
 import { useContext } from 'react';
 import { useState } from 'react';
-import { NavigationProp } from '@react-navigation/native';
 
 type Props = {
   navigation: NavigationProp<any, any>;

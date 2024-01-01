@@ -5,8 +5,10 @@ import {
 } from '@/components/Molecules/Authentication';
 import { NavigationProp } from '@react-navigation/native';
 import { useTranslation } from '@/context/i18n-context';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, View, Text } from 'react-native';
 import { AuthContext } from '@/context/auth-context';
+import { registerUser, selectUsers } from '@/store';
 import { validEmail } from '@/helper';
 import { useContext } from 'react';
 import { useFail } from '@/hooks';
@@ -32,6 +34,9 @@ const Register: React.FC<Props> = ({
     confirmPassword: '',
   });
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const users = useSelector(selectUsers);
+  console.log(users);
   useFail(error);
 
   const { email, password, confirmPassword } = userData;
@@ -90,12 +95,9 @@ const Register: React.FC<Props> = ({
                 return;
               }
 
-              const isSucces = register({
-                email,
-                password,
-              });
+              const userExists = users.find((i) => i.email === email);
 
-              if (!isSucces) {
+              if (userExists) {
                 setError('Registration');
                 setUserData({
                   email: '',
@@ -104,6 +106,8 @@ const Register: React.FC<Props> = ({
                 });
                 return;
               }
+
+              dispatch(registerUser({ email, password }));
 
               navigation.navigate('Home', {
                 success: 'Registration',
