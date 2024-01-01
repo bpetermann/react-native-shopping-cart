@@ -5,15 +5,13 @@ import {
 } from '@/components/Molecules/Authentication';
 import { NavigationProp } from '@react-navigation/native';
 import { useTranslation } from '@/context/i18n-context';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { StyleSheet, View, Text } from 'react-native';
-import { AuthContext } from '@/context/auth-context';
-import { register } from '@/store';
 import { validEmail } from '@/helper';
-import { useContext } from 'react';
+import { registerAPI } from '@/util';
+import { register } from '@/store';
 import { useFail } from '@/hooks';
 import { useState } from 'react';
-import { registerAPI } from '@/util';
 
 type Props = {
   navigation: NavigationProp<any, any>;
@@ -26,7 +24,6 @@ const Register: React.FC<Props> = ({
   showRegister,
   setShowRegister,
 }) => {
-  // const { register } = useContext(AuthContext);
   const [error, setError] = useState<string | undefined>(undefined);
   const [validate, setValidate] = useState(false);
   const [userData, setUserData] = useState({

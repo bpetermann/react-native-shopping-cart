@@ -1,4 +1,4 @@
-// Moved logic from context to Redux store, kept context code for documentation
+// Moved logic from context to redux store, kept context code for documentation
 
 import {
   createContext,

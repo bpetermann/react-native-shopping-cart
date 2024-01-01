@@ -1,3 +1,5 @@
+// Moved logic from context to redux store, kept context code for documentation
+
 import {
   setStoreData,
   getStoreData,
