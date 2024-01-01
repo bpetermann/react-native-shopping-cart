@@ -1,8 +1,7 @@
-import { setInitialFavorites, setInitialCart } from '@/store';
-import { AuthContext } from '@/context/auth-context';
-import { useContext, useEffect } from 'react';
+import { setInitialFavorites, setInitialCart, setInitialUser } from '@/store';
 import { useDispatch } from 'react-redux';
 import { getStoreData } from '@/helper';
+import { useEffect } from 'react';
 import { users } from '@/util';
 
 const mockUser = {
@@ -15,12 +14,12 @@ const mockUser = {
 
 export default function useInitialData() {
   const dispatch = useDispatch();
-  const { getUser } = useContext(AuthContext);
 
   useEffect(() => {
     const getInitialData = async () => {
       const favorites = await getStoreData('favorites');
       const cart = await getStoreData('cart');
+      const user = await getStoreData('user');
 
       if (Array.isArray(favorites)) {
         dispatch(setInitialFavorites(favorites));
@@ -29,9 +28,13 @@ export default function useInitialData() {
       if (Array.isArray(cart)) {
         dispatch(setInitialCart(cart));
       }
+
+      if (typeof user === 'string') {
+        dispatch(setInitialUser({ email: user }));
+      }
     };
     getInitialData();
-    getUser();
+
     if (process.env.NODE_ENV === 'development') users.push(mockUser);
   }, []);
 }

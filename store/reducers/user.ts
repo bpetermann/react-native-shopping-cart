@@ -1,5 +1,5 @@
 import { setStoreData, clearStoreData } from '@/helper';
-import { LOGIN, LOGOUT, REGISTER } from '../actions';
+import { LOGIN, LOGOUT, REGISTER, SET_INITIAL_USER } from '../actions';
 
 export type UserState = {
   user: { email: string } | null;
@@ -28,6 +28,8 @@ export const userReducer = (
     case LOGOUT:
       clearStoreData('user');
       return { ...state, user: null };
+    case SET_INITIAL_USER:
+      return { ...state, user: { email: action.payload.email } };
     default:
       return state;
   }
