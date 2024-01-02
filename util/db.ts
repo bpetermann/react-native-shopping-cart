@@ -4,6 +4,11 @@ import { User } from '@/globals';
 
 const users: User[] = [];
 
+const mockUser = {
+  password: '123456!',
+  email: 'john.doe@gmail.com',
+};
+
 const registerAPI = (data: { email: string; password: string }) => {
   const userIndex = users.findIndex((i) => i.email === data.email);
 
@@ -35,4 +40,4 @@ const loginAPI = (data: { email: string; password: string }) => {
   return false;
 };
 
-export { users, registerAPI, loginAPI };
+export { users, mockUser, registerAPI, loginAPI };

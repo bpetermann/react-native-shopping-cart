@@ -1,16 +1,8 @@
 import { setInitialFavorites, setInitialCart, setInitialUser } from '@/store';
+import { mockUser, registerAPI } from '@/util';
 import { useDispatch } from 'react-redux';
 import { getStoreData } from '@/helper';
 import { useEffect } from 'react';
-import { users } from '@/util';
-
-const mockUser = {
-  // password 123456!
-  date: 1696270985636,
-  email: 'john.doe@gmail.com',
-  id: '1d46a7c5-9d12-4c2b-987a-5f5925c8d49b',
-  password: '8.397415388533946e+25',
-};
 
 export default function useInitialData() {
   const dispatch = useDispatch();
@@ -21,20 +13,12 @@ export default function useInitialData() {
       const cart = await getStoreData('cart');
       const user = await getStoreData('user');
 
-      if (Array.isArray(favorites)) {
-        dispatch(setInitialFavorites(favorites));
-      }
-
-      if (Array.isArray(cart)) {
-        dispatch(setInitialCart(cart));
-      }
-
-      if (typeof user === 'string') {
-        dispatch(setInitialUser({ email: user }));
-      }
+      if (Array.isArray(favorites)) dispatch(setInitialFavorites(favorites));
+      if (Array.isArray(cart)) dispatch(setInitialCart(cart));
+      if (typeof user === 'string') dispatch(setInitialUser({ email: user }));
     };
     getInitialData();
 
-    if (process.env.NODE_ENV === 'development') users.push(mockUser);
+    if (process.env.NODE_ENV === 'development') registerAPI(mockUser);
   }, []);
 }

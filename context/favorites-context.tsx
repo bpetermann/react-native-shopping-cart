@@ -1,4 +1,4 @@
-// Moved logic from context to redux store, kept context code for documentation
+// For documentation purposes only, logic moved to redux store
 
 import {
   Dispatch,

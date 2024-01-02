@@ -22,7 +22,7 @@ npm start
 
 ### Redux
 
-- The app utilizes a Redux store to manage the state of the cart and favorites functionality. The Redux store handles the logic and storage for these features, providing a centralized location for accessing and modifying this shared state throughout the application.
+- The app utilizes a Redux store to manage the state of the cart, user and favorites functionality. The Redux store handles the logic and storage for these features, providing a centralized location for accessing and modifying this shared state throughout the application.
 
 ### Run Cypress tests
 
