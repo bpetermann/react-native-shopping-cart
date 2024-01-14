@@ -9,9 +9,11 @@ export default function useInitialData() {
 
   useEffect(() => {
     const getInitialData = async () => {
-      const favorites = await getStoreData('favorites');
-      const cart = await getStoreData('cart');
-      const user = await getStoreData('user');
+      const [favorites, cart, user] = await Promise.all([
+        getStoreData('favorites'),
+        getStoreData('cart'),
+        getStoreData('user'),
+      ]);
 
       if (Array.isArray(favorites)) dispatch(setInitialFavorites(favorites));
       if (Array.isArray(cart)) dispatch(setInitialCart(cart));
