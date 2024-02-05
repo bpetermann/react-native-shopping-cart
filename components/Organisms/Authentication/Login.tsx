@@ -6,12 +6,11 @@ import {
 import { NavigationProp } from '@react-navigation/native';
 import { useTranslation } from '@/context/i18n-context';
 import { StyleSheet, View, Text } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { login, useUserDispatch } from '@/store';
 import { validEmail } from '@/helper';
 import { useFail } from '@/hooks';
 import { loginAPI } from '@/util';
 import { useState } from 'react';
-import { login } from '@/store';
 
 type Props = {
   navigation: NavigationProp<any, any>;
@@ -31,7 +30,7 @@ const Login: React.FC<Props> = ({
     password: '',
   });
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useUserDispatch();
   useFail(error);
 
   const { email, password } = userData;

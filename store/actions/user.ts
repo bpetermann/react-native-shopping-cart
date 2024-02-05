@@ -1,7 +1,7 @@
-export const REGISTER = 'REGISTER';
-export const LOGIN = 'LOGIN';
-export const LOGOUT = 'LOGOUT';
-export const SET_INITIAL_USER = 'SET_INITIAL_USER';
+export const REGISTER = 'REGISTER' as const;
+export const LOGIN = 'LOGIN' as const;
+export const LOGOUT = 'LOGOUT' as const;
+export const SET_INITIAL_USER = 'SET_INITIAL_USER' as const;
 
 export const login = (data: { email: string; password: string }) => ({
   type: LOGIN,

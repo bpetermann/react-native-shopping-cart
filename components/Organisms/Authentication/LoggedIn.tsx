@@ -1,11 +1,10 @@
 import { useTranslation } from '@/context/i18n-context';
 import { View, Pressable, Text } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { logout } from '@/store';
+import { logout, useUserDispatch } from '@/store';
 
 const LoggedIn = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useUserDispatch();
 
   return (
     <View

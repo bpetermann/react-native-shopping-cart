@@ -5,11 +5,10 @@ import {
 } from '@/components/Molecules/Authentication';
 import { NavigationProp } from '@react-navigation/native';
 import { useTranslation } from '@/context/i18n-context';
-import { useDispatch } from 'react-redux';
 import { StyleSheet, View, Text } from 'react-native';
+import { register, useUserDispatch } from '@/store';
 import { validEmail } from '@/helper';
 import { registerAPI } from '@/util';
-import { register } from '@/store';
 import { useFail } from '@/hooks';
 import { useState } from 'react';
 
@@ -32,7 +31,7 @@ const Register: React.FC<Props> = ({
     confirmPassword: '',
   });
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useUserDispatch();
 
   useFail(error);
 
