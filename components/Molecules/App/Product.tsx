@@ -3,13 +3,14 @@ import {
   selectFavoriteItems,
   addCartItem,
   useCartDispatch,
+  useFavoritesDispatch,
 } from '@/store';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { useTranslation } from '@/context/i18n-context';
-import { useSelector, useDispatch } from 'react-redux';
 import { Product as ProductType } from '@/globals';
 import { BaseButton } from '@/components/Atoms';
 import { imageMap } from '@/lib/products';
+import { useSelector } from 'react-redux';
 
 type Props = {
   item: ProductType;
@@ -19,7 +20,7 @@ type Props = {
 const Product: React.FC<Props> = ({ item, navigate }) => {
   const favoriteItems = useSelector(selectFavoriteItems);
   const cartDispatch = useCartDispatch();
-  const dispatch = useDispatch();
+  const favsDispatch = useFavoritesDispatch();
 
   const { t } = useTranslation();
 
@@ -44,7 +45,7 @@ const Product: React.FC<Props> = ({ item, navigate }) => {
       />
       <Pressable
         style={styles.favoriteButton}
-        onPress={() => dispatch(toggleFavorite(item))}
+        onPress={() => favsDispatch(toggleFavorite(item))}
         android_ripple={{ color: '#efeff0' }}
       >
         <Image

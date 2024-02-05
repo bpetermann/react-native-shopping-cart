@@ -4,6 +4,7 @@ import {
   openCart,
   selectCartAmount,
   useCartDispatch,
+  useFavoritesDispatch,
 } from '@/store';
 import {
   Container,
@@ -12,9 +13,9 @@ import {
   AmountButton,
 } from '@/components/Atoms';
 import { NavigationProp } from '@react-navigation/native';
-import { useSelector, useDispatch } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
+import { useSelector } from 'react-redux';
 
 type Props = {
   navigation: NavigationProp<any, any>;
@@ -24,9 +25,8 @@ type Props = {
 const Header: React.FC<Props> = ({ navigation, focus }) => {
   const favoriteItems = useSelector(selectFavoriteItems);
   const amount = useSelector(selectCartAmount);
+  const favsDispatch = useFavoritesDispatch();
   const cartDispatch = useCartDispatch();
-  const dispatch = useDispatch();
-
   const route = useRoute();
 
   return (
@@ -44,7 +44,7 @@ const Header: React.FC<Props> = ({ navigation, focus }) => {
           />
           <AmountButton
             testID='favorites'
-            onClick={() => dispatch(showFavorites(true))}
+            onClick={() => favsDispatch(showFavorites(true))}
             img={require('@/assets/app/heart.png')}
             amount={favoriteItems.length}
           />
