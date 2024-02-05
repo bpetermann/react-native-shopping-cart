@@ -1,9 +1,9 @@
 import { Product } from '@/globals';
 
-export const ADD = 'ADD';
-export const REMOVE = 'REMOVE';
-export const SHOWCART = 'SHOWCART';
-export const SET_INITIAL_CART = 'SET_INITIAL_CART';
+export const ADD = 'ADD' as const;
+export const REMOVE = 'REMOVE' as const;
+export const SHOWCART = 'SHOWCART' as const;
+export const SET_INITIAL_CART = 'SET_INITIAL_CART' as const;
 
 export const addCartItem = (product: Product) => ({
   type: ADD,

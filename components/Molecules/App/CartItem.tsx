@@ -1,6 +1,5 @@
+import { addCartItem, removeCartItem, useCartDispatch } from '@/store';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
-import { addCartItem, removeCartItem } from '@/store';
-import { useDispatch } from 'react-redux';
 import { Product } from '@/globals';
 
 type Props = {
@@ -8,7 +7,7 @@ type Props = {
 };
 
 const CartItem: React.FC<Props> = ({ item }) => {
-  const dispatch = useDispatch();
+  const dispatch = useCartDispatch();
 
   return (
     <View>

@@ -1,4 +1,4 @@
-import { toggleFavorite, selectFavoriteItems, addCartItem } from '@/store';
+import { toggleFavorite, selectFavoriteItems, addCartItem, useCartDispatch } from '@/store';
 import { StyleSheet, Text, Image, View, Pressable } from 'react-native';
 import { useTranslation } from '@/context/i18n-context';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,6 +10,7 @@ type Props = {
 
 const ProductDetail: React.FC<Props> = ({ item }) => {
   const favoriteItems = useSelector(selectFavoriteItems);
+  const cartDispatch = useCartDispatch()
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -22,7 +23,7 @@ const ProductDetail: React.FC<Props> = ({ item }) => {
       <Text style={{ paddingTop: 16 }}>€ {item.price} incl. VAT</Text>
       <View style={styles.container}>
         <Pressable
-          onPress={() => dispatch(addCartItem(item))}
+          onPress={() => cartDispatch(addCartItem(item))}
           style={styles.button}
           android_ripple={{ color: '#efeff0' }}
         >

@@ -3,19 +3,20 @@ import {
   openCart,
   selectCartItems,
   selectCartAmount,
+  useCartDispatch,
 } from '@/store';
 import { StyleSheet, View, Modal, FlatList, Button } from 'react-native';
 import { Container, Heading, IconButton } from '@/components/Atoms';
 import { useTranslation } from '@/context/i18n-context';
 import { CartItem } from '@/components/Molecules/App';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Cart = () => {
   const cartItems = useSelector(selectCartItems);
   const showCart = useSelector(selectShowCart);
   const amount = useSelector(selectCartAmount);
 
-  const dispatch = useDispatch();
+  const dispatch = useCartDispatch();
 
   const totalPrice = cartItems
     .reduce(function (acc, prod) {
