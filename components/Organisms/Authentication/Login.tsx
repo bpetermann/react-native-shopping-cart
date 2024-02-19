@@ -8,7 +8,7 @@ import { useTranslation } from '@/context/i18n-context';
 import { StyleSheet, View, Text } from 'react-native';
 import { login, useUserDispatch } from '@/store';
 import { validEmail } from '@/helper';
-// import { useFail } from '@/hooks';
+import { useFail } from '@/hooks';
 import { loginAPI } from '@/util';
 import { useState } from 'react';
 
@@ -31,7 +31,7 @@ const Login: React.FC<Props> = ({
   });
   const { t } = useTranslation();
   const dispatch = useUserDispatch();
-  // useFail(error);
+  useFail(error);
 
   const { email, password } = userData;
 

@@ -9,7 +9,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { register, useUserDispatch } from '@/store';
 import { validEmail } from '@/helper';
 import { registerAPI } from '@/util';
-// import { useFail } from '@/hooks';
+import { useFail } from '@/hooks';
 import { useState } from 'react';
 
 type Props = {
@@ -33,7 +33,7 @@ const Register: React.FC<Props> = ({
   const { t } = useTranslation();
   const dispatch = useUserDispatch();
 
-  // useFail(error);
+  useFail(error);
 
   const { email, password, confirmPassword } = userData;
 

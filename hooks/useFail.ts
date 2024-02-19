@@ -1,15 +1,13 @@
+import { useToast } from 'react-native-toast-notifications';
 import useBreakpoints from './useBreakpoints';
-import { ToastAndroid } from 'react-native';
 import { useEffect } from 'react';
 
-export default function useSuccess(fail: string | undefined) {
+export default function useFail(fail: string | undefined) {
   const { isS } = useBreakpoints();
-
+  const toast = useToast();
   useEffect(() => {
     if (isS && fail) {
-      (function () {
-        ToastAndroid.show(`${fail} failed`, ToastAndroid.LONG);
-      })();
+      toast.show(`${fail} failed`, { duration: 2000 });
     }
   }, [fail]);
 }
