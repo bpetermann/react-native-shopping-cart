@@ -6,7 +6,7 @@ import {
 } from '@/components/Organisms/Home';
 import { NavigationProp } from '@react-navigation/native';
 import { ScrollView, TextInput } from 'react-native';
-import { useInitialData, useSuccess } from '@/hooks';
+import { useInitialData } from '@/hooks';
 import { Header } from '@/components/Organisms/App';
 import { useState, createRef } from 'react';
 import { Product } from '@/globals';
@@ -26,7 +26,7 @@ const Home = ({ navigation, route }: Props) => {
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
 
-  useSuccess(success);
+  // useSuccess(success);
   useInitialData();
 
   const ref = createRef<TextInput>();
