@@ -1,5 +1,6 @@
 import { Home, ProductDetail, Authentication } from '@/components/Templates';
 import { TranslationContextProvider } from '@/context/i18n-context';
+import { ToastProvider } from 'react-native-toast-notifications';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Cart, Favorites } from '@/components/Organisms/App';
@@ -23,29 +24,31 @@ export default function App() {
   return (
     <Provider store={store}>
       <TranslationContextProvider>
-        <View style={isS ? styles.app : styles.web}>
-          <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen
-                name='Home'
-                component={Home}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name='ProductDetail'
-                component={ProductDetail}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name='Authentication'
-                component={Authentication}
-                options={{ headerShown: false }}
-              />
-            </Stack.Navigator>
-          </NavigationContainer>
-          <Cart />
-          <Favorites />
-        </View>
+        <ToastProvider>
+          <View style={isS ? styles.app : styles.web}>
+            <NavigationContainer>
+              <Stack.Navigator>
+                <Stack.Screen
+                  name='Home'
+                  component={Home}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name='ProductDetail'
+                  component={ProductDetail}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name='Authentication'
+                  component={Authentication}
+                  options={{ headerShown: false }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+            <Cart />
+            <Favorites />
+          </View>
+        </ToastProvider>
       </TranslationContextProvider>
     </Provider>
   );
